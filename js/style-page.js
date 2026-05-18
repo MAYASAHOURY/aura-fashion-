@@ -91,211 +91,229 @@
 
   // ---------- Curated outfits (accurate links) ----------
   const CURATED_COMBOS = {
+
+    // CLASSIC — outfits[0]=tailored blazer+trousers · [3]=white shirt+linen pants summer · [6]=blazer+pencil skirt office
     classic: [
-      { name: 'The Everyday', tier: 'aff', tag: 'Effortless · daily wear', heroIdx: 0, pieces: [
-        { category: 'Top',       name: 'White Cotton Button-Down',  store: 'H&M',         price: '$25', q: 'white cotton button down shirt women' },
-        { category: 'Bottom',    name: 'High-Waist Beige Trousers', store: 'Bershka',     price: '$35', q: 'high waist beige tailored trousers women' },
-        { category: 'Shoes',     name: 'Pointed Leather Flats',     store: 'SHEIN',       price: '$22', q: 'pointed leather ballet flats women' },
-        { category: 'Bag',       name: 'Beige Faux-Leather Tote',   store: 'H&M',         price: '$30', q: 'beige faux leather tote bag' },
-        { category: 'Accessory', name: 'Pearl Stud Earrings',       store: 'H&M',         price: '$8',  q: 'pearl stud earrings small' }
+      { name: 'The Everyday', tier: 'aff', tag: 'Structured · tailored daily look', heroIdx: 0, pieces: [
+        { category: 'Blazer',    name: 'Tailored Camel Blazer',           store: 'H&M',     price: '$59', q: 'tailored camel blazer women structured' },
+        { category: 'Top',       name: 'White Cotton Button-Down',        store: 'SHEIN',   price: '$15', q: 'white cotton button down shirt women tucked' },
+        { category: 'Bottom',    name: 'High-Waist Slim Trousers',        store: 'Bershka', price: '$35', q: 'high waist slim tailored trousers beige women' },
+        { category: 'Shoes',     name: 'Pointed Leather Loafers',         store: 'H&M',     price: '$39', q: 'pointed leather loafers women flat' },
+        { category: 'Bag',       name: 'Structured Tote Bag',             store: 'H&M',     price: '$32', q: 'structured faux leather tote bag women neutral' }
       ]},
-      { name: 'The Elevated', tier: 'mid', tag: 'Polished · weekend evenings', heroIdx: 3, pieces: [
-        { category: 'Top',       name: 'Silk Camisole Ivory',       store: 'Mango',           price: '$59',  q: 'silk camisole ivory women' },
-        { category: 'Bottom',    name: 'Tailored Wool Trousers',    store: 'COS',             price: '$135', q: 'tailored wool trousers women' },
-        { category: 'Shoes',     name: 'Leather Loafers',           store: 'Mango',           price: '$99',  q: 'leather loafers women' },
-        { category: 'Bag',       name: 'Structured Top-Handle',     store: 'Charles & Keith', price: '$89',  q: 'structured top handle bag' },
-        { category: 'Accessory', name: 'Silk Twill Scarf',          store: 'ASOS',            price: '$35',  q: 'silk twill scarf' }
+      { name: 'The Elevated', tier: 'mid', tag: 'Linen · warm weather polish', heroIdx: 3, pieces: [
+        { category: 'Top',       name: 'White Linen Button-Down Shirt',   store: 'Mango',           price: '$59',  q: 'white linen button down shirt women oversized tucked' },
+        { category: 'Bottom',    name: 'High-Waist Wide-Leg Linen',       store: 'COS',             price: '$115', q: 'high waist wide leg linen trousers cream women' },
+        { category: 'Shoes',     name: 'Leather Flat Sandals',            store: 'Charles & Keith', price: '$69',  q: 'leather flat sandals women minimal pointed' },
+        { category: 'Bag',       name: 'Woven Straw Tote Bag',            store: '& Other Stories', price: '$79',  q: 'woven straw tote bag women summer minimal' },
+        { category: 'Accessory', name: 'Thin Gold Hoop Earrings',         store: 'Mejuri',          price: '$65',  q: 'thin gold hoop earrings women small classic' }
       ]},
-      { name: 'The Statement', tier: 'lux', tag: 'Investment · special moments', heroIdx: 6, pieces: [
-        { category: 'Top',       name: 'Cashmere Crewneck',         store: 'Massimo Dutti', price: '$245', q: 'cashmere crewneck cream women' },
-        { category: 'Bottom',    name: 'Pleated Midi Skirt',        store: 'Reformation',   price: '$248', q: 'pleated midi skirt wool' },
-        { category: 'Shoes',     name: 'Pointed Slingback Heels',   store: 'A.P.C.',        price: '$395', q: 'pointed slingback heels black' },
-        { category: 'Bag',       name: 'Top-Handle Leather Bag',    store: 'Polène',   price: '$495', q: 'top handle leather bag' },
-        { category: 'Accessory', name: 'Pearl Drop Earrings',       store: 'Mejuri',        price: '$148', q: 'pearl drop earrings gold' }
+      { name: 'The Statement', tier: 'lux', tag: 'Office power · investment dressing', heroIdx: 6, pieces: [
+        { category: 'Blazer',    name: 'Structured Wool Blazer',          store: 'Massimo Dutti', price: '$295', q: 'structured wool blazer women tailored office' },
+        { category: 'Bottom',    name: 'Tailored Pencil Midi Skirt',      store: 'Reformation',   price: '$198', q: 'tailored pencil midi skirt women knee length office' },
+        { category: 'Shoes',     name: 'Pointed Leather Slingbacks',      store: 'A.P.C.',        price: '$395', q: 'pointed leather slingback heels women office' },
+        { category: 'Bag',       name: 'Top-Handle Work Tote',            store: 'Polène',        price: '$495', q: 'polene top handle leather work tote bag women' },
+        { category: 'Accessory', name: 'Gold Pearl Drop Earrings',        store: 'Mejuri',        price: '$148', q: 'pearl drop earrings gold women classic' }
       ]}
     ],
+
+    // CASUAL — outfits[0]=jeans+sweater · [3]=white tee+shorts · [6]=oversized sweater+jeans coffee run
     casual: [
-      { name: 'The Everyday', tier: 'aff', tag: 'Easy · weekend errands', heroIdx: 0, pieces: [
-        { category: 'Top',       name: 'Oversized White Tee',       store: 'H&M',   price: '$15', q: 'oversized white t-shirt women' },
-        { category: 'Bottom',    name: 'Straight-Leg Blue Jeans',   store: 'SHEIN', price: '$28', q: 'straight leg blue jeans women' },
-        { category: 'Shoes',     name: 'White Canvas Sneakers',     store: 'SHEIN', price: '$25', q: 'white canvas sneakers women' },
-        { category: 'Bag',       name: 'Canvas Tote',               store: 'H&M',   price: '$18', q: 'canvas tote bag beige' },
-        { category: 'Accessory', name: 'Baseball Cap',              store: 'H&M',   price: '$12', q: 'beige baseball cap' }
+      { name: 'The Everyday', tier: 'aff', tag: 'Easy · sweater and jeans', heroIdx: 0, pieces: [
+        { category: 'Top',       name: 'Soft Crew-Neck Knit Sweater',     store: 'H&M',   price: '$25', q: 'soft crew neck knit sweater women casual neutral' },
+        { category: 'Bottom',    name: 'Straight-Leg Blue Jeans',         store: 'SHEIN', price: '$28', q: 'straight leg blue jeans women mid rise casual' },
+        { category: 'Shoes',     name: 'White Canvas Low-Top Sneakers',   store: 'H&M',   price: '$25', q: 'white canvas low top sneakers women' },
+        { category: 'Bag',       name: 'Natural Canvas Tote Bag',         store: 'H&M',   price: '$18', q: 'natural canvas tote bag women casual' },
+        { category: 'Accessory', name: 'Simple Gold Hoop Earrings',       store: 'H&M',   price: '$9',  q: 'simple small gold hoop earrings women' }
       ]},
-      { name: 'The Elevated', tier: 'mid', tag: 'Casually polished · brunch', heroIdx: 3, pieces: [
-        { category: 'Top',       name: 'Soft Beige Knit Sweater',   store: 'Uniqlo',          price: '$45', q: 'soft knit beige sweater women' },
-        { category: 'Bottom',    name: 'Wide-Leg Light Wash Jeans', store: 'Mango',           price: '$69', q: 'wide leg light wash jeans women' },
-        { category: 'Shoes',     name: 'White Leather Sneakers',    store: 'Converse',        price: '$85', q: 'white leather sneakers' },
-        { category: 'Bag',       name: 'Small Crossbody Leather',   store: 'Charles & Keith', price: '$79', q: 'small crossbody leather bag' },
-        { category: 'Accessory', name: 'Silver Hoop Earrings',      store: 'Pandora',         price: '$55', q: 'silver hoop earrings small' }
+      { name: 'The Elevated', tier: 'mid', tag: 'Sunny · white tee and shorts', heroIdx: 3, pieces: [
+        { category: 'Top',       name: 'Fitted White Cotton Tee',         store: 'Uniqlo',          price: '$25', q: 'fitted white cotton t-shirt women quality' },
+        { category: 'Bottom',    name: 'High-Waist Linen Shorts',         store: 'Mango',           price: '$45', q: 'high waist linen shorts women casual chic' },
+        { category: 'Shoes',     name: 'White Leather Low-Top Sneakers',  store: 'Converse',        price: '$85', q: 'white leather low top sneakers women converse' },
+        { category: 'Bag',       name: 'Small Leather Crossbody Bag',     store: 'Charles & Keith', price: '$75', q: 'small leather crossbody bag women casual' },
+        { category: 'Accessory', name: 'Tortoise Oval Sunglasses',        store: 'ASOS',            price: '$25', q: 'tortoise frame oval sunglasses women' }
       ]},
-      { name: 'The Statement', tier: 'lux', tag: 'Quiet luxury · weekend', heroIdx: 6, pieces: [
-        { category: 'Top',       name: 'Cashmere Crew Sweater',     store: 'COS',    price: '$175', q: 'cashmere crew sweater women' },
-        { category: 'Bottom',    name: 'High-Rise Straight Jeans',  store: 'Levis',  price: '$98',  q: 'high rise straight leg jeans women' },
-        { category: 'Shoes',     name: 'Premium White Sneakers',    store: 'A.P.C.', price: '$295', q: 'white leather sneakers premium' },
-        { category: 'Bag',       name: 'Structured Leather Tote',   store: 'Toteme', price: '$590', q: 'structured leather tote bag' },
-        { category: 'Accessory', name: 'Gold Layered Chain',        store: 'Mejuri', price: '$148', q: 'gold layered chain necklace' }
+      { name: 'The Statement', tier: 'lux', tag: 'Quiet luxury · coffee run', heroIdx: 6, pieces: [
+        { category: 'Top',       name: 'Cashmere Crew-Neck Sweater',      store: 'COS',    price: '$175', q: 'cashmere crew neck sweater women oversized quality' },
+        { category: 'Bottom',    name: 'High-Rise Straight-Leg Jeans',    store: 'Levis',  price: '$98',  q: 'levis high rise straight leg jeans women' },
+        { category: 'Shoes',     name: 'White Leather Sneakers',          store: 'A.P.C.', price: '$295', q: 'white leather low top sneakers premium women' },
+        { category: 'Bag',       name: 'Structured Leather Tote',         store: 'Toteme', price: '$590', q: 'toteme structured leather tote bag women' },
+        { category: 'Accessory', name: 'Gold Layered Chain Necklace',     store: 'Mejuri', price: '$148', q: 'gold layered chain necklace women delicate' }
       ]}
     ],
+
+    // STREETWEAR — outfits[0]=oversized hoodie+cargo pants · [3]=graphic tee+shorts+sneakers · [6]=oversized layered streetwear
     streetwear: [
-      { name: 'The Everyday', tier: 'aff', tag: 'Urban · everyday city', heroIdx: 0, pieces: [
-        { category: 'Top',       name: 'Oversized Graphic Hoodie',  store: 'SHEIN', price: '$25', q: 'oversized graphic hoodie unisex' },
-        { category: 'Bottom',    name: 'Baggy Cargo Pants',         store: 'SHEIN', price: '$32', q: 'baggy cargo pants women' },
-        { category: 'Shoes',     name: 'Chunky Black Sneakers',     store: 'SHEIN', price: '$45', q: 'chunky black sneakers women' },
-        { category: 'Bag',       name: 'Nylon Crossbody Sling',     store: 'H&M',   price: '$25', q: 'nylon crossbody sling bag' },
-        { category: 'Accessory', name: 'Knit Beanie Black',         store: 'H&M',   price: '$12', q: 'knit beanie black' }
+      { name: 'The Everyday', tier: 'aff', tag: 'Urban · hoodie and cargos', heroIdx: 0, pieces: [
+        { category: 'Top',       name: 'Oversized Graphic Hoodie',        store: 'SHEIN',     price: '$25', q: 'oversized graphic print hoodie women streetwear unisex' },
+        { category: 'Bottom',    name: 'Baggy Wide-Leg Cargo Pants',      store: 'SHEIN',     price: '$32', q: 'baggy wide leg cargo pants women streetwear' },
+        { category: 'Shoes',     name: 'Chunky Platform Sneakers',        store: 'Cider',     price: '$45', q: 'chunky platform sole sneakers women streetwear' },
+        { category: 'Bag',       name: 'Nylon Crossbody Sling Bag',       store: 'H&M',       price: '$25', q: 'nylon crossbody sling bag streetwear black' },
+        { category: 'Accessory', name: 'Black Ribbed Knit Beanie',        store: 'H&M',       price: '$12', q: 'black ribbed knit beanie streetwear women' }
       ]},
-      { name: 'The Elevated', tier: 'mid', tag: 'Streetwear sharp · day out', heroIdx: 3, pieces: [
-        { category: 'Top',       name: 'Oversized Crewneck Sweatshirt', store: 'Urban Outfitters', price: '$69',  q: 'oversized crewneck sweatshirt' },
-        { category: 'Bottom',    name: 'Wide-Leg Cargo Pants',          store: 'ASOS',             price: '$65',  q: 'wide leg cargo pants women' },
-        { category: 'Shoes',     name: 'Nike Air Force 1',              store: 'Nike',             price: '$115', q: 'air force 1' },
-        { category: 'Bag',       name: 'Nike Belt Bag',                 store: 'Nike',             price: '$45',  q: 'belt bag waist pack' },
-        { category: 'Accessory', name: 'Chunky Silver Chain',           store: 'Urban Outfitters', price: '$35',  q: 'chunky silver chain necklace' }
+      { name: 'The Elevated', tier: 'mid', tag: 'Summer street · tee and shorts', heroIdx: 3, pieces: [
+        { category: 'Top',       name: 'Oversized Graphic Tee',           store: 'Urban Outfitters', price: '$35',  q: 'oversized graphic tee women streetwear vintage print' },
+        { category: 'Bottom',    name: 'High-Waist Biker Shorts',         store: 'ASOS',             price: '$45',  q: 'high waist biker shorts women streetwear black' },
+        { category: 'Shoes',     name: 'Nike Air Force 1 White Low',      store: 'Nike',             price: '$115', q: 'nike air force 1 white low women sneakers' },
+        { category: 'Bag',       name: 'Mini Belt Bag Waist Pack',        store: 'Nike',             price: '$45',  q: 'nike mini belt bag waist pack women' },
+        { category: 'Accessory', name: 'Chunky Silver Chain Necklace',    store: 'Urban Outfitters', price: '$35',  q: 'chunky silver chain necklace women streetwear' }
       ]},
-      { name: 'The Statement', tier: 'lux', tag: 'Designer · investment', heroIdx: 6, pieces: [
-        { category: 'Top',       name: 'Heavyweight Cotton Tee',    store: 'Acne Studios', price: '$240', q: 'heavyweight cotton t-shirt' },
-        { category: 'Bottom',    name: 'Wide-Leg Trousers',         store: 'Jacquemus',    price: '$395', q: 'wide leg trousers' },
-        { category: 'Shoes',     name: 'Designer Leather Sneakers', store: 'Acne Studios', price: '$395', q: 'leather sneakers' },
-        { category: 'Bag',       name: 'Le Bambino Bag',            store: 'Jacquemus',    price: '$795', q: 'le bambino' },
-        { category: 'Accessory', name: 'Chunky Sterling Chain',     store: 'Mejuri',       price: '$198', q: 'chunky sterling silver chain necklace' }
+      { name: 'The Statement', tier: 'lux', tag: 'Layered · designer investment', heroIdx: 6, pieces: [
+        { category: 'Outer',     name: 'Oversized Wool-Blend Coat',       store: 'Acne Studios', price: '$895', q: 'acne studios oversized wool blend coat women streetwear' },
+        { category: 'Top',       name: 'Heavyweight Cotton Logo Tee',     store: 'Acne Studios', price: '$240', q: 'acne studios heavyweight cotton logo t-shirt women' },
+        { category: 'Bottom',    name: 'Wide-Leg Tailored Trousers',      store: 'Jacquemus',    price: '$395', q: 'jacquemus wide leg tailored trousers women' },
+        { category: 'Shoes',     name: 'Platform Leather Sneakers',       store: 'Acne Studios', price: '$495', q: 'acne studios platform leather sneakers women' },
+        { category: 'Bag',       name: 'Le Bambino Long Bag',             store: 'Jacquemus',    price: '$595', q: 'jacquemus le bambino long bag women' }
       ]}
     ],
+
+    // MINIMALIST — outfits[0]=beige outfit · [3]=linen dress · [6]=white tee+jeans minimal
     minimalist: [
-      { name: 'The Everyday', tier: 'aff', tag: 'Quiet · daily wear', heroIdx: 0, pieces: [
-        { category: 'Top',       name: 'Fitted White Tee',          store: 'H&M',     price: '$12', q: 'fitted white t-shirt women' },
-        { category: 'Bottom',    name: 'High-Rise Black Trousers',  store: 'SHEIN',   price: '$28', q: 'high rise black tailored trousers women' },
-        { category: 'Shoes',     name: 'Black Leather Loafers',     store: 'H&M',     price: '$45', q: 'black leather loafers women' },
-        { category: 'Bag',       name: 'Black Shoulder Bag',        store: 'H&M',     price: '$25', q: 'black shoulder bag minimal' },
-        { category: 'Accessory', name: 'Thin Gold Hoops',           store: 'Pandora', price: '$45', q: 'thin gold hoop earrings' }
+      { name: 'The Everyday', tier: 'aff', tag: 'Tonal beige · quiet daily wear', heroIdx: 0, pieces: [
+        { category: 'Top',       name: 'Ribbed Cream Mock-Neck Knit',     store: 'H&M',    price: '$25', q: 'ribbed cream mock neck knit sweater women minimal' },
+        { category: 'Bottom',    name: 'Wide-Leg Beige Trousers',         store: 'SHEIN',  price: '$28', q: 'wide leg beige tailored trousers women minimal neutral' },
+        { category: 'Shoes',     name: 'Square-Toe Beige Loafers',        store: 'H&M',    price: '$45', q: 'square toe beige leather loafers women minimal' },
+        { category: 'Bag',       name: 'Structured Cream Tote Bag',       store: 'H&M',    price: '$29', q: 'structured cream tote bag women minimal' },
+        { category: 'Accessory', name: 'Thin Gold Stud Earrings',         store: 'Pandora', price: '$45', q: 'thin small gold stud earrings women minimal' }
       ]},
-      { name: 'The Elevated', tier: 'mid', tag: 'Refined · capsule wardrobe', heroIdx: 3, pieces: [
-        { category: 'Top',       name: 'Merino Crew Sweater',       store: 'COS',              price: '$125', q: 'merino wool crew sweater women' },
-        { category: 'Bottom',    name: 'Tailored Wide-Leg Trousers',store: 'COS',              price: '$165', q: 'tailored wide leg trousers women' },
-        { category: 'Shoes',     name: 'Black Leather Mules',       store: '& Other Stories',  price: '$179', q: 'black leather mules women' },
-        { category: 'Bag',       name: 'Structured Black Bag',      store: 'COS',              price: '$175', q: 'structured black leather bag' },
-        { category: 'Accessory', name: 'Gold Bar Pendant',          store: 'Mejuri',           price: '$65',  q: 'gold bar pendant necklace' }
+      { name: 'The Elevated', tier: 'mid', tag: 'Linen dress · summer simplicity', heroIdx: 3, pieces: [
+        { category: 'Dress',     name: 'Linen Midi Shirt Dress',          store: 'COS',             price: '$165', q: 'linen midi shirt dress women minimal cream oat' },
+        { category: 'Shoes',     name: 'Minimal Leather Flat Sandals',    store: '& Other Stories', price: '$119', q: 'minimal leather flat sandals women summer' },
+        { category: 'Bag',       name: 'Woven Handle Leather Tote',       store: 'Mango',           price: '$99',  q: 'woven leather handle tote bag women minimal summer' },
+        { category: 'Accessory', name: 'Small Gold Hoop Earrings',        store: 'Mejuri',          price: '$65',  q: 'small gold hoop earrings women minimal delicate' },
+        { category: 'Jewelry',   name: 'Thin Gold Chain Necklace',        store: 'Mejuri',          price: '$78',  q: 'thin gold chain necklace women delicate minimal' }
       ]},
-      { name: 'The Statement', tier: 'lux', tag: 'Architectural · investment', heroIdx: 6, pieces: [
-        { category: 'Top',       name: 'Cashmere Turtleneck',       store: 'Toteme',      price: '$580', q: 'cashmere turtleneck black' },
-        { category: 'Bottom',    name: 'Wool Pleated Trousers',     store: 'Toteme',      price: '$495', q: 'wool pleated trousers' },
-        { category: 'Shoes',     name: 'Pointed Slingback Heels',   store: 'A.P.C.',      price: '$425', q: 'pointed slingback heels black' },
-        { category: 'Bag',       name: 'Numero Un Bag',             store: 'Polène', price: '$595', q: 'numero un' },
-        { category: 'Accessory', name: 'Gold Signet Ring',          store: 'Mejuri',      price: '$248', q: 'gold signet ring' }
+      { name: 'The Statement', tier: 'lux', tag: 'White tee · investment basics', heroIdx: 6, pieces: [
+        { category: 'Top',       name: 'Heavyweight White Cotton Tee',    store: 'A.P.C.',  price: '$110', q: 'heavyweight white cotton t-shirt women clean minimal apc' },
+        { category: 'Bottom',    name: 'Straight Dark-Wash Denim',        store: 'A.P.C.',  price: '$245', q: 'straight leg dark wash jeans women apc minimal' },
+        { category: 'Shoes',     name: 'White Leather Low-Top Sneakers',  store: 'A.P.C.',  price: '$295', q: 'white leather low top sneakers women minimal apc' },
+        { category: 'Bag',       name: 'Numéro Un Leather Tote',          store: 'Polène',  price: '$595', q: 'polene numero un leather tote bag women minimal' },
+        { category: 'Accessory', name: 'Gold Signet Ring',                store: 'Mejuri',  price: '$248', q: 'gold signet ring women minimal investment' }
       ]}
     ],
+
+    // ELEGANT — outfits[0]=silk blouse+skirt · [3]=cream linen dress · [6]=midi dress wedding guest
     elegant: [
-      { name: 'The Everyday', tier: 'aff', tag: 'Romantic · day to evening', heroIdx: 0, pieces: [
-        { category: 'Top',       name: 'Satin Camisole',            store: 'SHEIN', price: '$18', q: 'satin camisole top women' },
-        { category: 'Bottom',    name: 'Pleated Midi Skirt',        store: 'H&M',   price: '$35', q: 'pleated midi skirt women' },
-        { category: 'Shoes',     name: 'Pointed Block Heels',       store: 'SHEIN', price: '$30', q: 'pointed block heel pumps women' },
-        { category: 'Bag',       name: 'Mini Pearl Clutch',         store: 'SHEIN', price: '$25', q: 'pearl beaded clutch bag' },
-        { category: 'Accessory', name: 'Pearl Drop Earrings',       store: 'H&M',   price: '$12', q: 'pearl drop earrings' }
+      { name: 'The Everyday', tier: 'aff', tag: 'Romantic · silk blouse and skirt', heroIdx: 0, pieces: [
+        { category: 'Top',       name: 'Satin Camisole Blouse Blush',     store: 'SHEIN', price: '$18', q: 'satin camisole blouse blush pink women elegant fluid' },
+        { category: 'Bottom',    name: 'Pleated Satin Midi Skirt',        store: 'H&M',   price: '$35', q: 'pleated satin midi skirt women elegant soft' },
+        { category: 'Shoes',     name: 'Pointed Kitten Heel Mules',       store: 'SHEIN', price: '$30', q: 'pointed kitten heel mule shoes women elegant' },
+        { category: 'Bag',       name: 'Mini Pearl Beaded Clutch',        store: 'SHEIN', price: '$22', q: 'mini pearl beaded clutch bag women elegant evening' },
+        { category: 'Accessory', name: 'Pearl Drop Earrings',             store: 'H&M',   price: '$12', q: 'pearl drop earrings women elegant delicate' }
       ]},
-      { name: 'The Elevated', tier: 'mid', tag: 'Silk · slow evening', heroIdx: 3, pieces: [
-        { category: 'Top',       name: 'Silk Slip Blouse',          store: 'Mango',           price: '$89',  q: 'silk slip blouse women' },
-        { category: 'Bottom',    name: 'Satin Midi Slip Skirt',     store: '& Other Stories', price: '$129', q: 'satin midi slip skirt' },
-        { category: 'Shoes',     name: 'Satin Mules',               store: 'Charles & Keith', price: '$89',  q: 'satin mules women' },
-        { category: 'Bag',       name: 'Mini Evening Bag',          store: 'Charles & Keith', price: '$79',  q: 'mini evening bag pearl' },
-        { category: 'Accessory', name: 'Crystal Drop Earrings',     store: '& Other Stories', price: '$45',  q: 'crystal drop earrings' }
+      { name: 'The Elevated', tier: 'mid', tag: 'Cream linen · slow summer elegance', heroIdx: 3, pieces: [
+        { category: 'Dress',     name: 'Cream Linen Midi Wrap Dress',     store: 'Mango',           price: '$89',  q: 'cream linen midi wrap dress women elegant summer' },
+        { category: 'Shoes',     name: 'Strappy Leather Flat Sandals',    store: 'Charles & Keith', price: '$79',  q: 'strappy leather flat sandals women elegant summer' },
+        { category: 'Bag',       name: 'Mini Woven Top-Handle Bag',       store: 'Charles & Keith', price: '$89',  q: 'mini woven top handle bag women elegant summer' },
+        { category: 'Accessory', name: 'Crystal Stud Earrings',           store: '& Other Stories', price: '$45',  q: 'crystal stud earrings women elegant refined' },
+        { category: 'Jewelry',   name: 'Dainty Gold Chain Necklace',      store: 'Mejuri',          price: '$65',  q: 'dainty gold chain necklace women elegant' }
       ]},
-      { name: 'The Statement', tier: 'lux', tag: 'Silk slip · gala', heroIdx: 6, pieces: [
-        { category: 'Top',       name: 'Silk Camisole',             store: 'Reformation',     price: '$148', q: 'silk camisole top' },
-        { category: 'Bottom',    name: 'Silk Slip Midi Skirt',      store: 'Reformation',     price: '$248', q: 'silk slip midi skirt' },
-        { category: 'Shoes',     name: 'Crystal Strap Heels',       store: 'Jacquemus',       price: '$595', q: 'crystal embellished heels' },
-        { category: 'Bag',       name: 'Mini Top Handle',           store: 'Polène',     price: '$395', q: 'mini top handle bag' },
-        { category: 'Accessory', name: 'Pearl Drop Earrings',       store: 'Tiffany & Co.',   price: '$395', q: 'pearl drop earrings' }
+      { name: 'The Statement', tier: 'lux', tag: 'Silk · wedding guest to gala', heroIdx: 6, pieces: [
+        { category: 'Dress',     name: 'Silk Midi Slip Dress Champagne',  store: 'Reformation',   price: '$248', q: 'silk midi slip dress women elegant champagne wedding guest' },
+        { category: 'Shoes',     name: 'Satin Pointed Kitten Heels',      store: 'Jacquemus',     price: '$495', q: 'satin pointed kitten heel pumps women elegant wedding' },
+        { category: 'Bag',       name: 'Mini Top-Handle Evening Bag',     store: 'Polène',        price: '$395', q: 'mini leather top handle evening bag women elegant' },
+        { category: 'Accessory', name: 'Gold Pearl Drop Earrings',        store: 'Tiffany & Co.', price: '$395', q: 'gold pearl drop earrings women elegant fine jewelry' },
+        { category: 'Jewelry',   name: 'Fine Gold Chain Necklace',        store: 'Mejuri',        price: '$178', q: 'fine gold chain necklace women elegant layered' }
       ]}
     ],
+
+    // KOREAN — outfits[0]=cardigan+skirt · [3]=korean summer dress · [6]=school uniform style
     korean: [
-      { name: 'The Everyday', tier: 'aff', tag: 'Soft · café date', heroIdx: 0, pieces: [
-        { category: 'Top',       name: 'Cropped Pastel Cardigan',   store: 'YesStyle', price: '$28', q: 'cropped pastel cardigan' },
-        { category: 'Bottom',    name: 'Pleated Mini Skirt',        store: 'SHEIN',    price: '$22', q: 'pleated mini skirt school girl' },
-        { category: 'Shoes',     name: 'White Sneakers',            store: 'SHEIN',    price: '$35', q: 'white sneakers women korean' },
-        { category: 'Bag',       name: 'Mini Pearl Shoulder Bag',   store: 'YesStyle', price: '$32', q: 'mini pearl shoulder bag' },
-        { category: 'Accessory', name: 'Pearl Hair Clips Set',      store: 'SHEIN',    price: '$8',  q: 'pearl hair clips set' }
+      { name: 'The Everyday', tier: 'aff', tag: 'Soft · cardigan and skirt', heroIdx: 0, pieces: [
+        { category: 'Top',       name: 'Cropped Pastel Knit Cardigan',    store: 'YesStyle', price: '$28', q: 'cropped pastel knit cardigan women korean fashion soft' },
+        { category: 'Bottom',    name: 'Pleated Mini Skirt',              store: 'SHEIN',    price: '$22', q: 'pleated mini skirt schoolgirl women korean fashion' },
+        { category: 'Shoes',     name: 'White Lace-Up Sneakers',          store: 'SHEIN',    price: '$35', q: 'white lace up sneakers women korean fashion clean' },
+        { category: 'Bag',       name: 'Mini Pearl Chain Shoulder Bag',   store: 'YesStyle', price: '$32', q: 'mini pearl chain shoulder bag women korean fashion' },
+        { category: 'Accessory', name: 'Pearl Hair Clip Set',             store: 'SHEIN',    price: '$8',  q: 'pearl hair clip barrette set women korean fashion' }
       ]},
-      { name: 'The Elevated', tier: 'mid', tag: 'Studied · day to dinner', heroIdx: 3, pieces: [
-        { category: 'Top',       name: 'Knit Cardigan Beige',       store: 'Uniqlo',          price: '$59', q: 'knit cardigan beige women' },
-        { category: 'Bottom',    name: 'Pleated Mini Skirt',        store: 'Mango',           price: '$45', q: 'pleated mini skirt women' },
-        { category: 'Shoes',     name: 'Chunky Mary Janes',         store: 'Charles & Keith', price: '$75', q: 'chunky mary jane shoes' },
-        { category: 'Bag',       name: 'Mini Shoulder Bag',         store: 'Charles & Keith', price: '$89', q: 'mini shoulder bag pearl' },
-        { category: 'Accessory', name: 'Satin Ribbon Hair Clip',    store: '& Other Stories', price: '$25', q: 'satin ribbon hair clip' }
+      { name: 'The Elevated', tier: 'mid', tag: 'Summer dress · café date', heroIdx: 3, pieces: [
+        { category: 'Dress',     name: 'Soft Floral Wrap Mini Dress',     store: 'Uniqlo',          price: '$49', q: 'soft floral wrap mini dress women korean fashion summer' },
+        { category: 'Shoes',     name: 'Platform Mary Jane Shoes',        store: 'Charles & Keith', price: '$75', q: 'platform mary jane shoes women korean fashion chunky' },
+        { category: 'Bag',       name: 'Mini Quilted Chain Shoulder Bag', store: 'Charles & Keith', price: '$79', q: 'mini quilted chain shoulder bag women korean fashion' },
+        { category: 'Accessory', name: 'Bow Ribbon Hair Clip',            store: '& Other Stories', price: '$25', q: 'bow ribbon hair clip women korean fashion cute' },
+        { category: 'Jewelry',   name: 'Dainty Pearl Pendant Necklace',   store: 'Pandora',         price: '$55', q: 'dainty pearl pendant necklace women korean fashion' }
       ]},
-      { name: 'The Statement', tier: 'lux', tag: 'Modern · investment', heroIdx: 6, pieces: [
-        { category: 'Top',       name: 'Cashmere Cropped Cardigan', store: '& Other Stories', price: '$165', q: 'cashmere cropped cardigan' },
-        { category: 'Bottom',    name: 'Tailored Mini Skirt',       store: 'Aritzia',         price: '$138', q: 'tailored mini skirt' },
-        { category: 'Shoes',     name: 'Leather Mary Janes',        store: 'Reformation',     price: '$248', q: 'leather mary jane shoes' },
-        { category: 'Bag',       name: 'Mini Top Handle Bag',       store: 'Polène',     price: '$395', q: 'mini top handle bag' },
-        { category: 'Accessory', name: 'Pearl Hair Pin Gold',       store: 'Mejuri',          price: '$98',  q: 'pearl hair pin gold' }
+      { name: 'The Statement', tier: 'lux', tag: 'School-chic · investment look', heroIdx: 6, pieces: [
+        { category: 'Top',       name: 'Cashmere Cropped Cardigan',       store: '& Other Stories', price: '$165', q: 'cashmere cropped cardigan women korean style refined' },
+        { category: 'Bottom',    name: 'Tailored Fitted Mini Skirt',      store: 'Aritzia',         price: '$138', q: 'tailored fitted mini skirt women korean fashion' },
+        { category: 'Shoes',     name: 'Leather Platform Mary Janes',     store: 'Reformation',     price: '$248', q: 'leather platform mary jane shoes women korean fashion' },
+        { category: 'Bag',       name: 'Mini Leather Top-Handle Bag',     store: 'Polène',          price: '$295', q: 'mini leather top handle bag women korean fashion small' },
+        { category: 'Accessory', name: 'Gold Pearl Hair Pin',             store: 'Mejuri',          price: '$98',  q: 'gold pearl hair pin barrette women elegant korean' }
       ]}
     ],
+
+    // Y2K — outfits[0]=low rise jeans+baby tee · [3]=mini skirt+halter top · [6]=denim on denim
     y2k: [
-      { name: 'The Everyday', tier: 'aff', tag: 'Playful · everyday', heroIdx: 0, pieces: [
-        { category: 'Top',       name: 'Baby Tee Crop',             store: 'SHEIN', price: '$12', q: 'baby tee y2k crop top' },
-        { category: 'Bottom',    name: 'Low-Rise Flare Jeans',      store: 'SHEIN', price: '$28', q: 'low rise flare jeans women' },
-        { category: 'Shoes',     name: 'Platform Sneakers',         store: 'Cider', price: '$45', q: 'platform sneakers chunky' },
-        { category: 'Bag',       name: 'Mini Pink Shoulder Bag',    store: 'SHEIN', price: '$18', q: 'mini shoulder bag y2k pink' },
-        { category: 'Accessory', name: 'Butterfly Hair Clips',      store: 'SHEIN', price: '$6',  q: 'butterfly hair clips y2k' }
+      { name: 'The Everyday', tier: 'aff', tag: 'Playful · baby tee and low-rise', heroIdx: 0, pieces: [
+        { category: 'Top',       name: 'Graphic Baby Tee Crop Top',       store: 'SHEIN', price: '$12', q: 'graphic baby tee crop top y2k women printed' },
+        { category: 'Bottom',    name: 'Low-Rise Flare Jeans',            store: 'SHEIN', price: '$28', q: 'low rise flare jeans women y2k 2000s style' },
+        { category: 'Shoes',     name: 'Chunky Platform Sneakers',        store: 'Cider', price: '$45', q: 'chunky platform sole sneakers women y2k thick' },
+        { category: 'Bag',       name: 'Mini Rhinestone Shoulder Bag',    store: 'SHEIN', price: '$18', q: 'mini rhinestone embellished shoulder bag women y2k' },
+        { category: 'Accessory', name: 'Butterfly Hair Clips Set',        store: 'SHEIN', price: '$6',  q: 'butterfly hair clips set y2k women 2000s nostalgia' }
       ]},
-      { name: 'The Elevated', tier: 'mid', tag: 'Party · night out', heroIdx: 3, pieces: [
-        { category: 'Top',       name: 'Mesh Long-Sleeve Top',      store: 'Princess Polly',    price: '$45', q: 'mesh long sleeve top' },
-        { category: 'Bottom',    name: 'Low-Rise Flare Jeans',      store: 'ASOS',              price: '$65', q: 'low rise flare jeans' },
-        { category: 'Shoes',     name: 'Pointy Kitten Heels',       store: 'ASOS',              price: '$65', q: 'pointy kitten heels' },
-        { category: 'Bag',       name: 'Mini Baguette Bag',         store: 'ASOS',              price: '$45', q: 'mini baguette bag y2k' },
-        { category: 'Accessory', name: 'Tinted Oval Sunglasses',    store: 'Urban Outfitters',  price: '$25', q: 'tinted oval sunglasses y2k' }
+      { name: 'The Elevated', tier: 'mid', tag: 'Summer Y2K · halter and micro skirt', heroIdx: 3, pieces: [
+        { category: 'Top',       name: 'Halter Neck Crop Top',            store: 'Princess Polly',   price: '$45', q: 'halter neck crop top women y2k summer' },
+        { category: 'Bottom',    name: 'Micro Mini Denim Skirt',          store: 'ASOS',             price: '$55', q: 'micro mini denim skirt women y2k low rise' },
+        { category: 'Shoes',     name: 'Pointed Kitten Heel Mules',       store: 'ASOS',             price: '$65', q: 'pointed kitten heel mule shoes women y2k party' },
+        { category: 'Bag',       name: 'Mini Baguette Shoulder Bag',      store: 'ASOS',             price: '$45', q: 'mini baguette shoulder bag women y2k nostalgia' },
+        { category: 'Accessory', name: 'Tinted Oval Sunglasses Y2K',      store: 'Urban Outfitters', price: '$25', q: 'tinted oval sunglasses y2k women 2000s style' }
       ]},
-      { name: 'The Statement', tier: 'lux', tag: 'Designer · main character', heroIdx: 6, pieces: [
-        { category: 'Top',       name: 'Logo Crop Top',             store: 'Jacquemus',    price: '$295', q: 'logo crop top' },
-        { category: 'Bottom',    name: 'Designer Low-Rise Jeans',   store: 'Acne Studios', price: '$395', q: 'low rise jeans' },
-        { category: 'Shoes',     name: 'Pointed Stiletto Heels',    store: 'Jacquemus',    price: '$595', q: 'pointed stiletto heels' },
-        { category: 'Bag',       name: 'Designer Mini Baguette',    store: 'Jacquemus',    price: '$495', q: 'mini baguette bag' },
-        { category: 'Accessory', name: 'Tinted Designer Sunglasses',store: 'Acne Studios', price: '$295', q: 'tinted oval sunglasses' }
+      { name: 'The Statement', tier: 'lux', tag: 'Denim on denim · main character', heroIdx: 6, pieces: [
+        { category: 'Jacket',    name: 'Oversized Denim Jacket',          store: 'Acne Studios', price: '$350', q: 'acne studios oversized denim jacket women low rise y2k' },
+        { category: 'Bottom',    name: 'Low-Rise Straight Denim Jeans',   store: 'Acne Studios', price: '$295', q: 'acne studios low rise straight leg jeans women denim' },
+        { category: 'Top',       name: 'Fitted Rhinestone Crop Tee',      store: 'Jacquemus',    price: '$195', q: 'fitted rhinestone crop tee women y2k designer' },
+        { category: 'Shoes',     name: 'Platform Ankle Boots',            store: 'Dr. Martens',  price: '$220', q: 'platform ankle boots women y2k chunky dr martens' },
+        { category: 'Bag',       name: 'Designer Mini Baguette',          store: 'Jacquemus',    price: '$495', q: 'jacquemus mini baguette bag women y2k designer' }
       ]}
     ],
+
+    // VINTAGE — outfits[0]=70s jeans+blouse · [3]=60s summer dress · [6]=vintage tea dress romantic
     vintage: [
-      { name: 'The Everyday', tier: 'aff', tag: '70s · everyday throwback', heroIdx: 0, pieces: [
-        { category: 'Top',       name: 'Prairie Blouse Cream',      store: 'SHEIN', price: '$22', q: 'prairie blouse vintage cream women' },
-        { category: 'Bottom',    name: 'High-Waist Flare Jeans',    store: 'SHEIN', price: '$32', q: 'high waist flare jeans 70s' },
-        { category: 'Shoes',     name: 'Suede Ankle Boots',         store: 'SHEIN', price: '$45', q: 'suede ankle boots vintage' },
-        { category: 'Bag',       name: 'Leather Satchel Tan',       store: 'SHEIN', price: '$35', q: 'leather satchel bag vintage tan' },
-        { category: 'Accessory', name: 'Wide Leather Belt',         store: 'H&M',   price: '$18', q: 'wide leather belt vintage' }
+      { name: 'The Everyday', tier: 'aff', tag: '70s · prairie blouse and flares', heroIdx: 0, pieces: [
+        { category: 'Top',       name: 'Prairie Blouse Cream Boho',       store: 'SHEIN',  price: '$22', q: 'prairie blouse women vintage cream boho 70s style flowy' },
+        { category: 'Bottom',    name: 'High-Waist Flare Jeans',          store: 'SHEIN',  price: '$32', q: 'high waist flare jeans women vintage 70s retro' },
+        { category: 'Shoes',     name: 'Tan Suede Ankle Boots',           store: 'H&M',    price: '$55', q: 'tan suede ankle boots women vintage 70s style' },
+        { category: 'Bag',       name: 'Tan Leather Satchel Bag',         store: 'Depop',  price: '$38', q: 'tan leather vintage satchel bag women 70s' },
+        { category: 'Accessory', name: 'Wide Brown Leather Belt',         store: 'H&M',    price: '$18', q: 'wide brown leather belt women vintage retro' }
       ]},
-      { name: 'The Elevated', tier: 'mid', tag: 'Bohemian · weekends', heroIdx: 3, pieces: [
-        { category: 'Top',       name: '70s Style Blouse',          store: 'Free People', price: '$98',  q: '70s style blouse women' },
-        { category: 'Bottom',    name: 'High-Waist Flare Trousers', store: 'Mango',       price: '$85',  q: 'high waist flare trousers' },
-        { category: 'Shoes',     name: 'Tan Suede Knee Boots',      store: 'Mango',       price: '$129', q: 'suede knee high boots tan' },
-        { category: 'Bag',       name: 'Vintage Leather Crossbody', store: 'Etsy',        price: '$95',  q: 'vintage leather crossbody bag' },
-        { category: 'Accessory', name: 'Large Gold Hoops',          store: 'Mejuri',      price: '$85',  q: 'gold hoop earrings large' }
+      { name: 'The Elevated', tier: 'mid', tag: '60s summer · dress edit', heroIdx: 3, pieces: [
+        { category: 'Dress',     name: 'Floral A-Line Shift Dress',       store: 'Free People',     price: '$128', q: 'floral a-line shift dress women 60s vintage summer style' },
+        { category: 'Shoes',     name: 'Block-Heel Mary Jane Pumps',      store: 'Mango',           price: '$89',  q: 'block heel mary jane pumps women vintage 60s' },
+        { category: 'Bag',       name: 'Woven Straw Bucket Bag',          store: 'Etsy',            price: '$65',  q: 'woven straw bucket bag vintage women summer' },
+        { category: 'Accessory', name: 'Round Tortoise Sunglasses',       store: 'Urban Outfitters', price: '$35', q: 'round tortoise sunglasses women vintage 60s retro' },
+        { category: 'Jewelry',   name: 'Large Gold Hoop Earrings',        store: 'Mejuri',          price: '$85',  q: 'large gold hoop earrings women vintage statement' }
       ]},
-      { name: 'The Statement', tier: 'lux', tag: 'Heritage · investment', heroIdx: 6, pieces: [
-        { category: 'Top',       name: 'Silk Romantic Blouse',      store: 'Reformation',  price: '$178', q: 'silk romantic blouse' },
-        { category: 'Bottom',    name: 'Wide-Leg Wool Trousers',    store: 'Reformation',  price: '$228', q: 'wide leg wool trousers' },
-        { category: 'Shoes',     name: 'Tall Suede Boots Tan',      store: 'Acne Studios', price: '$595', q: 'tall suede boots tan' },
-        { category: 'Bag',       name: 'Vintage Leather Shoulder',  store: 'A.P.C.',       price: '$425', q: 'leather shoulder bag' },
-        { category: 'Accessory', name: 'Statement Gold Earrings',   store: 'Mejuri',       price: '$248', q: 'gold statement earrings' }
+      { name: 'The Statement', tier: 'lux', tag: 'Tea dress · romantic heritage', heroIdx: 6, pieces: [
+        { category: 'Dress',     name: 'Silk Floral Tea Midi Dress',      store: 'Reformation',  price: '$228', q: 'silk floral tea midi dress women vintage romantic garden' },
+        { category: 'Shoes',     name: 'Kitten Heel Mary Jane Pumps',     store: 'Mango',        price: '$119', q: 'kitten heel mary jane pumps women vintage romantic' },
+        { category: 'Bag',       name: 'Vintage Leather Shoulder Bag',    store: 'A.P.C.',       price: '$425', q: 'leather shoulder bag women vintage classic structured' },
+        { category: 'Accessory', name: 'Cat-Eye Sunglasses',              store: 'Le Specs',     price: '$89',  q: 'cat eye sunglasses women vintage elegant 60s' },
+        { category: 'Jewelry',   name: 'Pearl Drop Earrings',             store: 'Mejuri',       price: '$148', q: 'pearl drop earrings women vintage romantic feminine' }
       ]}
     ],
+
+    // SOFTGIRL — outfits[0]=pastel cardigan outfit · [3]=floral dress soft girl · [6]=pink knit sweater cozy
     softgirl: [
-      { name: 'The Everyday', tier: 'aff', tag: 'Sweet · everyday', heroIdx: 0, pieces: [
-        { category: 'Top',       name: 'Lace-Trim Camisole Pink',   store: 'SHEIN', price: '$14', q: 'lace trim camisole pink' },
-        { category: 'Bottom',    name: 'Pleated Mini Skirt Pastel', store: 'SHEIN', price: '$22', q: 'pleated mini skirt pastel pink' },
-        { category: 'Shoes',     name: 'Ballet Flats with Ribbon',  store: 'SHEIN', price: '$28', q: 'ballet flats with ribbon ties' },
-        { category: 'Bag',       name: 'Quilted Mini Bag Pink',     store: 'SHEIN', price: '$25', q: 'quilted mini shoulder bag pink' },
-        { category: 'Accessory', name: 'Pearl Hair Bow',            store: 'SHEIN', price: '$8',  q: 'pearl hair bow clip pastel' }
+      { name: 'The Everyday', tier: 'aff', tag: 'Pastel cardigan · sweetest daily look', heroIdx: 0, pieces: [
+        { category: 'Top',       name: 'Pastel Pink Knit Cardigan',       store: 'SHEIN', price: '$18', q: 'pastel pink knit cardigan women soft girl cropped' },
+        { category: 'Bottom',    name: 'Pleated Pastel Mini Skirt',       store: 'SHEIN', price: '$22', q: 'pleated pastel pink mini skirt women soft girl' },
+        { category: 'Shoes',     name: 'Ribbon-Tie Ballet Flat Shoes',    store: 'SHEIN', price: '$28', q: 'ribbon tie ballet flat shoes women soft girl pink' },
+        { category: 'Bag',       name: 'Mini Quilted Pastel Shoulder Bag',store: 'SHEIN', price: '$22', q: 'mini quilted pastel pink shoulder bag women soft girl' },
+        { category: 'Accessory', name: 'Pearl Bow Hair Clip',             store: 'SHEIN', price: '$8',  q: 'pearl bow hair clip women soft girl coquette' }
       ]},
-      { name: 'The Elevated', tier: 'mid', tag: 'Romantic · picnic', heroIdx: 3, pieces: [
-        { category: 'Top',       name: 'Lace-Trim Cami Top',        store: 'Reformation',     price: '$98', q: 'lace trim cami top' },
-        { category: 'Bottom',    name: 'Pleated Midi Skirt Pastel', store: '& Other Stories', price: '$95', q: 'pleated midi skirt pastel' },
-        { category: 'Shoes',     name: 'Ribbon Ballet Flats',       store: 'Mango',           price: '$69', q: 'ballet flats with ribbon ties' },
-        { category: 'Bag',       name: 'Quilted Pink Shoulder Bag', store: 'Charles & Keith', price: '$89', q: 'pink quilted shoulder bag' },
-        { category: 'Accessory', name: 'Pearl Heart Necklace',      store: 'Pandora',         price: '$85', q: 'pearl heart pendant necklace' }
+      { name: 'The Elevated', tier: 'mid', tag: 'Floral dress · picnic romance', heroIdx: 3, pieces: [
+        { category: 'Dress',     name: 'Floral Wrap Midi Dress',          store: 'Reformation',     price: '$228', q: 'floral wrap midi dress women soft girl romantic picnic' },
+        { category: 'Shoes',     name: 'Satin Ribbon Ballet Flats',       store: 'Mango',           price: '$69',  q: 'satin ribbon ballet flat shoes women soft girl elegant' },
+        { category: 'Bag',       name: 'Mini Quilted Pink Shoulder Bag',  store: 'Charles & Keith', price: '$89',  q: 'mini quilted pink shoulder bag women soft girl' },
+        { category: 'Accessory', name: 'Pearl Drop Earrings',             store: 'Pandora',         price: '$75',  q: 'pearl drop earrings women soft girl romantic' },
+        { category: 'Jewelry',   name: 'Pearl Heart Pendant Necklace',    store: 'Pandora',         price: '$85',  q: 'pearl heart pendant necklace women soft girl delicate' }
       ]},
-      { name: 'The Statement', tier: 'lux', tag: 'Coquette · special', heroIdx: 6, pieces: [
-        { category: 'Top',       name: 'Silk Romantic Blouse',      store: 'Reformation',   price: '$178', q: 'silk romantic blouse cream' },
-        { category: 'Bottom',    name: 'Tulle Midi Skirt',          store: 'Reformation',   price: '$228', q: 'tulle midi skirt' },
-        { category: 'Shoes',     name: 'Crystal Ballet Flats',      store: 'Jacquemus',     price: '$395', q: 'crystal embellished ballet flats' },
-        { category: 'Bag',       name: 'Mini Quilted Bag',          store: 'Polène',   price: '$395', q: 'mini quilted shoulder bag' },
-        { category: 'Accessory', name: 'Pearl Drop Earrings',       store: 'Tiffany & Co.', price: '$395', q: 'pearl drop earrings' }
+      { name: 'The Statement', tier: 'lux', tag: 'Cozy pink knit · softest luxury', heroIdx: 6, pieces: [
+        { category: 'Top',       name: 'Cashmere Knit Sweater Soft Pink', store: 'Reformation',   price: '$198', q: 'cashmere knit sweater soft pink women coquette cozy' },
+        { category: 'Bottom',    name: 'Pleated Pastel Mini Skirt',       store: '& Other Stories', price: '$89', q: 'pleated pastel mini skirt women soft girl pink refined' },
+        { category: 'Shoes',     name: 'Platform Leather Loafers Blush',  store: 'Charles & Keith', price: '$119', q: 'platform leather loafers blush pink women soft girl' },
+        { category: 'Bag',       name: 'Mini Quilted Chain Shoulder Bag', store: 'Polène',        price: '$395', q: 'mini quilted chain shoulder bag women soft girl luxury' },
+        { category: 'Accessory', name: 'Pearl Choker Necklace',           store: 'Tiffany & Co.', price: '$325', q: 'pearl choker necklace women soft girl elegant coquette' }
       ]}
     ]
   };
