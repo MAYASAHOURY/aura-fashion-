@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AURA — Find Your AURA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css?v=11">
+</head>
+<body>
+
+<!-- ===== PAGE VEIL — hides content until auth resolves; sits below intro (z 9997) ===== -->
+<div id="aura-veil" aria-hidden="true"></div>
+
+<!-- ===== PRE-ROLL: AURA on black (click anywhere to skip) ===== -->
+<div id="intro-preroll" class="intro-preroll" aria-hidden="true">
+  <div class="intro-preroll-inner">
+    <span class="intro-preroll-logo">AURA</span>
+    <span class="intro-preroll-rule"></span>
+    <span class="intro-preroll-sub">discover your aesthetic</span>
+  </div>
+  <span class="intro-preroll-hint">click anywhere to continue</span>
+</div>
+
+<!-- ===== CINEMATIC SCROLL-DRIVEN INTRO ===== -->
+<div id="intro" class="intro-cinema" aria-hidden="false">
+
+  <!-- Cinematic tunnel vignette — darkens edges, focuses eye to center -->
+  <div class="intro-vignette" aria-hidden="true"></div>
+
+  <!-- SCENE 1 — Dramatic zoom-out + vertical crane -->
+  <section class="scene scene-1" data-scene="1">
+    <div class="scene-bg"><img src="images/intro/intro-2.jpg" alt=""></div>
+    <div class="scene-fg scene-fg-cool"></div>
+    <div class="scene-grain"></div>
+    <div class="scene-text scene-text-tl">
+      <span class="scene-eyebrow">I — The Edit</span>
+      <h2 class="scene-title">Find <em>your</em><br>aesthetic.</h2>
+    </div>
+  </section>
+
+  <!-- SCENE 2 — Wide cinematic tracking shot -->
+  <section class="scene scene-2" data-scene="2">
+    <div class="scene-bg"><img src="images/intro/intro-3.jpg" alt=""></div>
+    <div class="scene-fg scene-fg-dark"></div>
+    <div class="scene-grain"></div>
+    <div class="scene-text scene-text-br">
+      <span class="scene-eyebrow">II — After Hours</span>
+      <h2 class="scene-title">Style is<br>your <em>story.</em></h2>
+    </div>
+  </section>
+
+  <!-- SCENE 3 — Curtain reveal + brand payoff -->
+  <section class="scene scene-3" data-scene="3">
+    <div class="scene-bg scene-bg-clean"><img src="images/intro/intro-1.jpg" alt=""></div>
+    <div class="scene-fg scene-fg-light"></div>
+    <div class="scene-text scene-text-c">
+      <span class="scene-eyebrow">III — Your AURA</span>
+    </div>
+    <div class="scene-cta">Enter AURA</div>
+  </section>
+
+  <!-- Persistent UI chrome -->
+  <div class="intro-chrome">
+    <button class="intro-skip" type="button" aria-label="Skip intro">
+      Skip intro
+    </button>
+    <div class="intro-progress"><div class="intro-progress-fill"></div></div>
+    <div class="intro-counter"><span id="intro-counter-num">01</span> / 03</div>
+    <div class="intro-prompt">scroll to explore</div>
+  </div>
+</div>
+
+<!-- Scroll spacer — 3 scenes × 80vh = 240vh -->
+<div id="intro-spacer" aria-hidden="true"></div>
+
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">AUR<span>A</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="quiz.html">Style Quiz</a></li>
+    <li><a href="#styles">Aesthetics</a></li>
+    <li><a href="stylist.html">AI Stylist</a></li>
+    <li><a href="moodboard.html">Moodboard</a></li>
+    <li><a href="brands.html">Partners</a></li>
+  </ul>
+  <button class="nav-auth-btn" id="nav-auth-btn" onclick="navAuthClick()">Account</button>
+  <div class="nav-burger" aria-label="Open menu" role="button" tabindex="0"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero hero-minimal">
+  <div class="hero-grid">
+    <div class="hero-content" data-parallax="0.06">
+      <span class="eyebrow">A curated fashion universe</span>
+      <h1 class="hero-title">Discover your aesthetic.<br><em>Own your style.</em></h1>
+      <div class="hero-actions">
+        <a href="quiz.html" class="btn btn-large">
+          Take the Style Quiz
+          <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#styles" class="btn btn-outline btn-large">Explore aesthetics</a>
+      </div>
+    </div>
+    <div class="hero-visual" data-parallax="0.14">
+      <div class="hero-img hero-img-1"><img src="images/home/hero-1.jpg" alt=""></div>
+      <div class="hero-img hero-img-2"><img src="images/home/hero-2.jpg" alt=""></div>
+      <div class="hero-img hero-img-3"><img src="images/home/hero-3.jpg" alt=""></div>
+    </div>
+  </div>
+</section>
+
+<!-- EDITORIAL QUOTE STRIP -->
+<div class="quote-strip">
+  <div class="quote-strip-inner"></div>
+</div>
+
+<!-- AESTHETIC GRID — single focused exploration block -->
+<section id="styles" class="section container reveal" style="padding: 60px 48px 80px;">
+  <div class="styles-grid" id="styles-grid"></div>
+</section>
+
+<!-- FLOATING FASHION QUOTES — final emotional moment -->
+<section class="quotes-cloud reveal">
+  <div class="quotes-cloud-stage">
+    <article class="quote-bubble qb-1">
+      <p class="quote-text">Fashion fades, only style remains.</p>
+      <p class="quote-author">— Coco Chanel</p>
+    </article>
+    <article class="quote-bubble qb-2">
+      <p class="quote-text">Style is a way to say who you are without having to speak.</p>
+      <p class="quote-author">— Rachel Zoe</p>
+    </article>
+    <article class="quote-bubble qb-3">
+      <p class="quote-text">I don't design clothes. I design dreams.</p>
+      <p class="quote-author">— Ralph Lauren</p>
+    </article>
+    <article class="quote-bubble qb-4">
+      <p class="quote-text">Simplicity is the ultimate sophistication.</p>
+      <p class="quote-author">— Leonardo da Vinci</p>
+    </article>
+    <article class="quote-bubble qb-5">
+      <p class="quote-text">In order to be irreplaceable, one must always be different.</p>
+      <p class="quote-author">— Coco Chanel</p>
+    </article>
+    <article class="quote-bubble qb-6">
+      <p class="quote-text">Clothes mean nothing until someone lives in them.</p>
+      <p class="quote-author">— Marc Jacobs</p>
+    </article>
+    <article class="quote-bubble qb-7">
+      <p class="quote-text">Elegance is when the inside is as beautiful as the outside.</p>
+      <p class="quote-author">— Coco Chanel</p>
+    </article>
+    <article class="quote-bubble qb-8">
+      <p class="quote-text">Trendy is the last stage before tacky.</p>
+      <p class="quote-author">— Karl Lagerfeld</p>
+    </article>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-brand">AUR<span>A</span></div><p class="footer-tagline">A curated fashion universe.</p></div>
+      <div class="footer-col"><h4>Discover</h4><ul><li><a href="quiz.html">Style quiz</a></li><li><a href="#styles">All aesthetics</a></li><li><a href="stylist.html">AI stylist</a></li><li><a href="moodboard.html">Moodboard</a></li><li><a href="brands.html">Partners</a></li></ul></div>
+      <div class="footer-col"><h4>Aesthetics</h4><ul><li><a href="style.html#classic">Classic</a></li><li><a href="style.html#minimalist">Minimalist</a></li><li><a href="style.html#korean">Korean</a></li><li><a href="style.html#elegant">Elegant</a></li></ul></div>
+      <div class="footer-col"><h4>Shop partners</h4><ul><li>Zara · COS · Mango</li><li>H&M · Uniqlo · ASOS</li><li>SHEIN · Bershka · Pull&Bear</li><li>Nike · Adidas · Sephora</li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 AURA Fashion</span><span>Designed with care, dressed with intention.</span></div>
+  </div>
+</footer>
+
+<script src="js/intro.js?v=7"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+<script src="js/data.js?v=3"></script>
+<script src="js/main.js?v=3"></script>
+<script src="js/firebase.js"></script>
+<script src="js/animations.js?v=10"></script>
+<script>
+/* ══════════════════════════════════════════════════════════════
+   AURA — Auth gate + cinematic transition pipeline
+   ══════════════════════════════════════════════════════════════
+
+   HOW THE VEIL WORKS
+   ─────────────────
+   #aura-veil sits at z-index 9997 — above all page content
+   and nav (100), but just below the cinematic intro (9998).
+   It starts FULLY OPAQUE so content never flashes before auth
+   resolves. The intro plays on top of it. Once we know the
+   user's state we either fade the veil out (show homepage)
+   or navigate to login while it's still covering everything
+   (zero visible flash in either direction).
+   ══════════════════════════════════════════════════════════════ */
+
+localStorage.removeItem('aura_guest'); // clean up legacy flag
+
+function isGuest() { return sessionStorage.getItem('aura_guest') === '1'; }
+function navAuthClick() { window.location.href = 'settings.html'; }
+
+/* ── Veil helpers ──────────────────────────────────────────── */
+function _revealPage() {
+  /* Fade the veil out → homepage slides in */
+  var v = document.getElementById('aura-veil');
+  if (v) {
+    /* Tiny tick so the browser has painted first */
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        v.classList.add('veil-out');
+      });
+    });
+  }
+}
+
+function _goToLogin() {
+  /* Veil is still opaque → navigate instantly, zero flash */
+  window.location.replace('login.html');
+}
+
+/* ── Intro awareness ───────────────────────────────────────── */
+function _introIsPlaying() {
+  var el   = document.getElementById('intro');
+  var seen = sessionStorage.getItem('aura_intro_seen');
+  return el && !seen;
+}
+
+/* ── Main auth listener ────────────────────────────────────── */
+firebase.auth().onAuthStateChanged(function(user) {
+  var btn = document.getElementById('nav-auth-btn');
+
+  if (user || isGuest()) {
+    /* ── Authenticated or guest: show the homepage ── */
+    if (btn) btn.textContent = 'Account';
+
+    if (_introIsPlaying()) {
+      /* Intro is running → reveal page once it fires homepage-reveal
+         (that's after the intro fades to cream, i.e. seamless) */
+      window.addEventListener('aura:homepage-reveal', _revealPage, { once: true });
+    } else {
+      /* No intro (return visit or already seen) → reveal immediately */
+      _revealPage();
+    }
+
+  } else {
+    /* ── Not authenticated: send to login ── */
+    if (_introIsPlaying()) {
+      /* Let intro finish, then navigate while veil covers the page */
+      window.addEventListener('aura:homepage-reveal', _goToLogin, { once: true });
+      /* Safety net: if the event never fires within 14 s */
+      setTimeout(function() {
+        if (window.location.pathname.indexOf('login') === -1) _goToLogin();
+      }, 14000);
+    } else {
+      /* No intro → navigate now (veil is opaque, nothing visible) */
+      _goToLogin();
+    }
+  }
+});
+</script>
+<script>
+const STYLE_ORDER = ['classic','casual','streetwear','minimalist','elegant','korean','y2k','vintage','softgirl'];
+(function() {
+  const grid = document.getElementById('styles-grid');
+  let html = '';
+  STYLE_ORDER.forEach((id, i) => {
+    const s = STYLES[id];
+    const num = String(i + 1).padStart(2, '0');
+    html += '<a href="style.html#' + s.id + '" class="style-card">';
+    html += '<img class="style-card-img" src="' + s.heroImg + '" alt="' + s.name + '" loading="lazy">';
+    html += '<div class="style-card-num">' + num + '</div>';
+    html += '<span class="style-card-tag">' + s.metaMood + '</span>';
+    html += '<div class="style-card-overlay"><h3 class="style-card-name">' + s.name + '</h3>';
+    html += '<span class="style-card-link">Explore &rarr;</span></div></a>';
+  });
+  grid.innerHTML = html;
+})();
+</script>
+
+</body>
+</html>

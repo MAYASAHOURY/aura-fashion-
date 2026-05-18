@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Style Quiz — AURA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css?v=11">
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">AUR<span>A</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="quiz.html" class="active">Style Quiz</a></li>
+    <li><a href="index.html#styles">Aesthetics</a></li>
+    <li><a href="stylist.html">AI Stylist</a></li>
+    <li><a href="moodboard.html">Moodboard</a></li>
+    <li><a href="brands.html">Partners</a></li>
+  </ul>
+  <button class="nav-auth-btn" id="nav-auth-btn" onclick="navAuthClick()">Account</button>
+  <div class="nav-burger" aria-label="Open menu" role="button" tabindex="0"><span></span><span></span><span></span></div>
+</nav>
+
+<section class="quiz-page">
+  <div class="quiz-container" id="quiz-container"></div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-brand">AUR<span>A</span></div><p class="footer-tagline">A curated fashion universe.</p></div>
+      <div class="footer-col"><h4>Discover</h4><ul><li><a href="quiz.html">Style quiz</a></li><li><a href="index.html#styles">All aesthetics</a></li><li><a href="stylist.html">AI stylist</a></li><li><a href="moodboard.html">Moodboard</a></li><li><a href="brands.html">Partners</a></li></ul></div>
+      <div class="footer-col"><h4>Aesthetics</h4><ul><li><a href="style.html#classic">Classic</a></li><li><a href="style.html#minimalist">Minimalist</a></li><li><a href="style.html#korean">Korean</a></li><li><a href="style.html#elegant">Elegant</a></li></ul></div>
+      <div class="footer-col"><h4>Shop partners</h4><ul><li>Zara · COS · Mango</li><li>H&M · Uniqlo · ASOS</li><li>SHEIN · Bershka · Pull&Bear</li><li>Nike · Adidas · Sephora</li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 AURA Fashion</span><span>Designed with care, dressed with intention.</span></div>
+  </div>
+</footer>
+
+<script src="js/data.js?v=3"></script>
+<script src="js/main.js?v=3"></script>
+<script src="js/animations.js?v=10"></script>
+<script>
+(function() {
+  const container = document.getElementById('quiz-container');
+  let stepIndex = 0;
+  let answers = [];
+
+  function render() {
+    if (stepIndex >= QUIZ.length) { renderResult(); return; }
+    const step = QUIZ[stepIndex];
+    const progress = (stepIndex / QUIZ.length) * 100;
+
+    let html = '<div class="quiz-progress">';
+    html += '<div class="quiz-progress-bar"><div class="quiz-progress-fill" style="width:' + progress + '%"></div></div>';
+    html += '<span class="quiz-progress-num">' + String(stepIndex + 1).padStart(2,'0') + ' / ' + String(QUIZ.length).padStart(2,'0') + '</span>';
+    html += '</div>';
+
+    html += '<div class="quiz-step" id="quiz-step">';
+    html += '<p class="quiz-question-num">Question ' + (stepIndex + 1) + '</p>';
+    html += '<h2 class="quiz-question">' + step.q + '</h2>';
+    html += '<div class="quiz-options quiz-options-clean">';
+    step.options.forEach((opt, i) => {
+      const sel = answers[stepIndex] === opt.tag ? ' selected' : '';
+      html += '<button class="quiz-option' + sel + '" data-tag="' + opt.tag + '" data-idx="' + i + '">';
+      html += '<span class="quiz-option-icon">' + opt.icon + '</span>';
+      html += '<span class="quiz-option-text">' + opt.text + '</span>';
+      html += '</button>';
+    });
+    html += '</div>';
+    html += '<div class="quiz-nav">';
+    html += '<button id="prev-btn"' + (stepIndex === 0 ? ' disabled' : '') + '>← Back</button>';
+    html += '<button id="next-btn"' + (!answers[stepIndex] ? ' disabled' : '') + '>' + (stepIndex === QUIZ.length - 1 ? 'See result →' : 'Next →') + '</button>';
+    html += '</div>';
+    html += '</div>';
+
+    container.innerHTML = html;
+
+    container.querySelectorAll('.quiz-option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        answers[stepIndex] = btn.dataset.tag;
+        container.querySelectorAll('.quiz-option').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        document.getElementById('next-btn').disabled = false;
+      });
+    });
+
+    document.getElementById('prev-btn').addEventListener('click', () => {
+      if (stepIndex > 0) {
+        const step = document.getElementById('quiz-step');
+        step.classList.add('exiting');
+        setTimeout(() => { stepIndex--; render(); }, 300);
+      }
+    });
+
+    document.getElementById('next-btn').addEventListener('click', () => {
+      if (!answers[stepIndex]) return;
+      const step = document.getElementById('quiz-step');
+      step.classList.add('exiting');
+      setTimeout(() => { stepIndex++; render(); }, 300);
+    });
+  }
+
+  function calculateResult() {
+    const tally = {};
+    answers.forEach(tag => { if (tag) tally[tag] = (tally[tag] || 0) + 1; });
+    let bestTag = 'minimalist', bestCount = 0;
+    Object.entries(tally).forEach(([tag, count]) => {
+      if (count > bestCount) { bestCount = count; bestTag = tag; }
+    });
+    return STYLES[bestTag];
+  }
+
+  /* ── Aura identity data ── */
+  const AURA_COLORS = {
+    classic:    '#c4a882', minimalist: '#aeaaa4', korean:  '#f2b8c6',
+    elegant:    '#a08070', y2k:        '#c084fc', streetwear: '#7c8794',
+    casual:     '#7fb5a5', softgirl:   '#ffacc7', vintage: '#c8966a'
+  };
+  const AURA_MANTRAS = {
+    classic:    'Timeless is always in style.',
+    minimalist: 'Less is the new more.',
+    korean:     'Softness is its own kind of strength.',
+    elegant:    'Dress like you\'re already where you want to be.',
+    y2k:        'The future looked better the first time.',
+    streetwear: 'Style speaks before you do.',
+    casual:     'Effortless is a full-time job.',
+    softgirl:   'Sweetness is never out of season.',
+    vintage:    'Old souls wear the best things.'
+  };
+
+  function renderResult() {
+    const result = calculateResult();
+    const auraColor  = AURA_COLORS[result.id]  || '#c8b49a';
+    const mantra     = AURA_MANTRAS[result.id] || 'Your style is your signature.';
+
+    /* Top-3 aesthetic breakdown */
+    const tally = {};
+    answers.forEach(t => { if (t) tally[t] = (tally[t] || 0) + 1; });
+    const total = answers.filter(Boolean).length || 1;
+    const top3 = Object.entries(tally)
+      .sort((a, b) => b[1] - a[1]).slice(0, 3)
+      .map(([tag, n]) => ({
+        name: (STYLES[tag] && STYLES[tag].name) || tag,
+        pct:  Math.round(n / total * 100),
+        primary: tag === result.id
+      }));
+
+    /* Letter-by-letter name spans */
+    const letters = result.name.split('').map(ch =>
+      '<span class="rl">' + (ch === ' ' ? '&nbsp;' : ch) + '</span>'
+    ).join('');
+
+    container.innerHTML =
+      '<div class="qr-cinema" id="qr-cinema">' +
+        /* orb */
+        '<div class="qr-orb-wrap">' +
+          '<div class="qr-orb" style="background:radial-gradient(circle at 38% 35%,' + auraColor + 'cc,' + auraColor + ');box-shadow:0 0 80px ' + auraColor + '66,0 0 160px ' + auraColor + '22"></div>' +
+          '<div class="qr-orb-ring" style="border-color:' + auraColor + '55"></div>' +
+        '</div>' +
+        /* name */
+        '<div class="qr-name-wrap">' +
+          '<span class="qr-eyebrow">Your aesthetic is</span>' +
+          '<div class="qr-name">' + letters + '</div>' +
+          '<p class="qr-mantra">&ldquo;' + mantra + '&rdquo;</p>' +
+        '</div>' +
+        /* aura color chip */
+        '<div class="qr-color-chip">' +
+          '<span class="qr-color-swatch" style="background:' + auraColor + '"></span>' +
+          '<div>' +
+            '<span class="qr-color-label">Your Aura Color</span>' +
+            '<span class="qr-color-hex">' + auraColor.toUpperCase() + '</span>' +
+          '</div>' +
+        '</div>' +
+        /* breakdown bars */
+        '<div class="qr-breakdown">' +
+          top3.map((s, i) =>
+            '<div class="qr-bar-row" style="animation-delay:' + (0.6 + i * 0.18) + 's">' +
+              '<span class="qr-bar-label">' + s.name + '</span>' +
+              '<div class="qr-bar-track">' +
+                '<div class="qr-bar-fill" style="--pct:' + s.pct + '%;background:' + (s.primary ? auraColor : 'var(--beige-dark)') + '"></div>' +
+              '</div>' +
+              '<span class="qr-bar-pct">' + s.pct + '%</span>' +
+            '</div>'
+          ).join('') +
+        '</div>' +
+        /* actions */
+        '<div class="qr-actions">' +
+          '<a href="style.html#' + result.id + '" class="btn">Explore your style →</a>' +
+          '<button id="retake" class="btn btn-outline" style="border-color:rgba(255,255,255,0.3);color:#fff">Retake quiz</button>' +
+        '</div>' +
+      '</div>';
+
+    /* Animate phases */
+    const cinema = document.getElementById('qr-cinema');
+    requestAnimationFrame(() => {
+      cinema.classList.add('qr-p1');
+      setTimeout(() => cinema.classList.add('qr-p2'), 700);
+      setTimeout(() => {
+        cinema.querySelectorAll('.rl').forEach((el, i) => {
+          setTimeout(() => el.classList.add('qr-in'), i * 55);
+        });
+      }, 900);
+      setTimeout(() => cinema.classList.add('qr-p3'), 1800);
+    });
+
+    document.getElementById('retake').addEventListener('click', () => {
+      stepIndex = 0; answers = []; render();
+    });
+  }
+
+  render();
+})();
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+<script src="js/firebase.js"></script>
+<script>
+function navAuthClick() { window.location.href = 'settings.html'; }
+firebase.auth().onAuthStateChanged(function(user) {
+  var btn = document.getElementById('nav-auth-btn');
+  if (btn) btn.textContent = 'Account';
+});
+</script>
+
+</body>
+</html>

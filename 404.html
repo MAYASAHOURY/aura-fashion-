@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page Not Found — AURA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css?v=11">
+<style>
+.page-404 {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 24px;
+  gap: 20px;
+}
+.page-404-num {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(80px, 18vw, 160px);
+  font-weight: 400;
+  color: #0a0a0a;
+  line-height: 1;
+  opacity: 0.08;
+  letter-spacing: -4px;
+}
+.page-404-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(26px, 5vw, 40px);
+  font-weight: 400;
+  color: #0a0a0a;
+  margin-top: -60px;
+}
+.page-404-title em { font-style: italic; color: #c084a0; }
+.page-404-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #aaa;
+  max-width: 320px;
+}
+.page-404-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 8px;
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">AUR<span>A</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="quiz.html">Style Quiz</a></li>
+    <li><a href="index.html#styles">Aesthetics</a></li>
+    <li><a href="stylist.html">AI Stylist</a></li>
+    <li><a href="moodboard.html">Moodboard</a></li>
+    <li><a href="brands.html">Partners</a></li>
+  </ul>
+  <button class="nav-auth-btn" id="nav-auth-btn" onclick="window.location.href='settings.html'">Account</button>
+  <div class="nav-burger" aria-label="Open menu" role="button" tabindex="0"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-404">
+  <div class="page-404-num">404</div>
+  <h1 class="page-404-title">Lost in <em>style.</em></h1>
+  <p class="page-404-sub">This page doesn't exist — but your aesthetic does.</p>
+  <div class="page-404-actions">
+    <a href="index.html" class="btn btn-large">Back to Homepage</a>
+    <a href="quiz.html" class="btn btn-outline btn-large">Take the Style Quiz</a>
+  </div>
+</div>
+
+<script src="js/animations.js?v=11"></script>
+</body>
+</html>
