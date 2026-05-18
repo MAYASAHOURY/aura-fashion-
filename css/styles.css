@@ -4945,13 +4945,17 @@ html.intro-active, html.intro-active body { overflow: hidden; }
 }
 .intro-cinema .scene-1 .scene-bg img { object-position: center 40%; }
 
-/* Scene 2 — show top of image so faces are fully visible */
-.intro-cinema .scene-2 .scene-bg img {
-  object-fit: cover;
-  object-position: center top;  /* pin to top edge so faces are never cropped */
-}
+/* Scene 2 — always show all three subjects in full
+   object-fit: contain preserves the full composition on every viewport.
+   The dark background fills the surrounding area so it reads as a
+   cinematic projection rather than whitespace. */
 .intro-cinema .scene-2 .scene-bg {
   background: #0d0a0f;
+  inset: 3% 4%;   /* projection-screen breathing room on desktop */
+}
+.intro-cinema .scene-2 .scene-bg img {
+  object-fit: contain;
+  object-position: center center;
 }
 
 /* Scene 3 — object-fit: contain on .scene-bg-clean img above handles the crop */
@@ -5130,6 +5134,13 @@ html.intro-active, html.intro-active body { overflow: hidden; }
   .intro-progress { left: 24px; right: 24px; bottom: 20px; }
   .intro-prompt { bottom: 40px; right: 24px; }
   .intro-cinema .scene-cta { bottom: 60px; }
+
+  /* Scene 2 mobile — let the image fill more of the screen on small viewports.
+     The letterbox bars (::before/::after) already provide top/bottom framing,
+     so we remove the desktop inset and use the full width. */
+  .intro-cinema .scene-2 .scene-bg {
+    inset: 0;   /* full viewport area; contain keeps subjects in frame */
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
