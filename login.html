@@ -438,8 +438,29 @@ body { font-family: var(--font-sans); background: #0a0a0a; overflow: hidden; hei
   });
 
   /* ── Google ─────────────────────────────────────────────── */
-  document.getElementById('google-btn').addEventListener('click', () => {
-    auth.signInWithPopup(provider).catch(e => showErr(document.getElementById('join-error'), friendlyErr(e.code)));
+  /* Mobile browsers block popups — use redirect on phones/tablets */
+  var isMobile = /iPhone|iPad|iPod|Android|Mobile/i.test(navigator.userAgent);
+
+  /* Handle the return from a redirect sign-in */
+  auth.getRedirectResult().then(function(result) {
+    if (result && result.user) {
+      sessionStorage.removeItem('aura_guest');
+      window.location.href = 'index.html';
+    }
+  }).catch(function(e) {
+    if (e.code && e.code !== 'auth/no-current-user') {
+      showErr(document.getElementById('join-error'), friendlyErr(e.code));
+    }
+  });
+
+  document.getElementById('google-btn').addEventListener('click', function() {
+    if (isMobile) {
+      auth.signInWithRedirect(provider);
+    } else {
+      auth.signInWithPopup(provider).catch(function(e) {
+        showErr(document.getElementById('join-error'), friendlyErr(e.code));
+      });
+    }
   });
 
   /* ── Sign out ───────────────────────────────────────────── */
