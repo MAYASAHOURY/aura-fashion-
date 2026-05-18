@@ -72,14 +72,42 @@ function attachSaveButtons() {
 function getAiResponse(userMessage) {
   const msg = userMessage.toLowerCase();
   const responses = (typeof AI_RESPONSES !== 'undefined') ? AI_RESPONSES : [];
+
+  // Detect budget intent from message
+  function detectBudget(m) {
+    if (/\b(cheap|affordable|budget|on a budget|inexpensive|low.?cost|bargain|under \$[0-9]|thrift|fast fashion)\b/.test(m)) return 'aff';
+    if (/\b(luxury|designer|high.?end|splurge|investment piece|premium|upscale|high fashion)\b/.test(m)) return 'lux';
+    if (/\b(mid.?range|moderate|reasonable price|not too expensive)\b/.test(m)) return 'mid';
+    return null;
+  }
+
+  // Score each response — multi-word phrases count more than single keywords
   let best = null, bestScore = 0;
   responses.forEach(r => {
-    const score = r.keywords.reduce((a, kw) => a + (msg.includes(kw.toLowerCase()) ? 1 : 0), 0);
+    let score = 0;
+    r.keywords.forEach(kw => {
+      if (msg.includes(kw.toLowerCase())) {
+        const wordCount = kw.trim().split(/\s+/).length;
+        score += wordCount > 1 ? wordCount + 1 : 1; // phrase bonus
+      }
+    });
     if (score > bestScore) { bestScore = score; best = r; }
   });
-  if (best && bestScore > 0) return { text: best.response, products: best.products || [] };
-  const fallbacks = (typeof AI_FALLBACKS !== 'undefined') ? AI_FALLBACKS : ['Tell me more.'];
-  return { text: fallbacks[Math.floor(Math.random() * fallbacks.length)], products: [] };
+
+  if (!best || bestScore === 0) {
+    const fallbacks = (typeof AI_FALLBACKS !== 'undefined') ? AI_FALLBACKS : ['Tell me more.'];
+    return { text: fallbacks[Math.floor(Math.random() * fallbacks.length)], products: [] };
+  }
+
+  // Filter products by detected budget tier if possible
+  const budget = detectBudget(msg);
+  let products = (best.products || []).slice();
+  if (budget && products.length >= 2) {
+    const filtered = products.filter(p => p.tier === budget);
+    if (filtered.length >= 1) products = filtered;
+  }
+
+  return { text: best.response, products };
 }
 
 // ---- Swap hardcoded URLs to local images ----

@@ -918,122 +918,439 @@ const QUIZ = [
 // AI STYLIST RESPONSES
 // ----------------------------------------
 const AI_RESPONSES = [
+
+  // ── BEIGE / NEUTRAL OUTFITS ──
   {
-    keywords: ['beige', 'tan', 'camel', 'pants', 'trousers'],
-    response: "Beige pants are a workhorse — they go with almost everything. Try:\n\n• A crisp white shirt + tan loafers for polished classic.\n• An oversized cream knit + white sneakers for soft minimalism.\n• A black turtleneck + ankle boots for autumn drama.",
+    keywords: ['beige pants', 'beige trousers', 'tan pants', 'camel pants', 'beige', 'tan', 'camel', 'trousers', 'pants'],
+    response: "Beige pants are a workhorse — they go with almost everything. Try:\n\n• A crisp white shirt + tan loafers for polished quiet luxury.\n• An oversized cream knit + white sneakers for soft minimalism.\n• A black turtleneck + ankle boots for autumn drama.\n• A camel blazer + white tee — effortlessly editorial.",
     productRefs: [
-      ['aff', 'SHEIN', 'White Button-Down', '$15', 'white button down shirt', 'white shirt product'],
-      ['mid', 'Uniqlo', 'Cashmere Crew', '$99', 'cashmere crew', 'cashmere sweater beige product'],
-      ['lux', 'Mango', 'Leather Loafers', '$99', 'leather loafers', 'leather loafers tan product']
+      ['aff', 'SHEIN', 'White Button-Down Shirt', '$15', 'white button down shirt women', 'white shirt product'],
+      ['mid', 'Uniqlo', 'Cashmere Crew Knit', '$79', 'cashmere crew neck sweater women', 'cashmere sweater beige product'],
+      ['mid', 'Mango', 'Fluid Beige Trousers', '$69', 'beige wide leg trousers women', 'beige trousers product'],
+      ['lux', 'COS', 'Tailored Camel Trousers', '$135', 'tailored camel trousers women', 'camel trousers product']
     ]
   },
+
+  // ── BLACK JEANS ──
   {
-    keywords: ['black', 'jeans', 'denim'],
-    response: "Black jeans anchor any wardrobe:\n\n• Camel coat + white tee + leather loafers — quiet luxury.\n• Graphic tee + chunky sneakers + bomber — easy streetwear.\n• Silk blouse + heeled mules — minimalist date night.",
+    keywords: ['black jeans', 'black denim', 'dark jeans', 'black jeans outfit', 'wear black jeans', 'black', 'jeans', 'denim'],
+    response: "Black jeans anchor any wardrobe:\n\n• Camel coat + white tee + leather loafers — quiet luxury.\n• Graphic tee + chunky sneakers + bomber — easy streetwear.\n• Silk blouse + heeled mules — minimalist date night.\n• Knit sweater + gold hoops + ankle boots — casual chic.",
     productRefs: [
-      ['aff', 'H&M', 'Black Skinny Jeans', '$30', 'black skinny jeans', 'black jeans product'],
-      ['mid', 'Levis', 'Mile High Black', '$98', 'mile high black jeans', 'black jeans levis product'],
-      ['lux', 'COS', 'Tapered Black Jean', '$135', 'tapered black jeans', 'black jeans woman product']
+      ['aff', 'H&M', 'Black Straight Jeans', '$30', 'black straight leg jeans women', 'black jeans product'],
+      ['mid', 'Levis', 'Mile High Black Jeans', '$98', 'levis mile high black jeans women', 'black jeans levis product'],
+      ['lux', 'COS', 'Tapered Black Denim', '$135', 'tailored black jeans women', 'black jeans woman product']
     ]
   },
+
+  // ── WHITE SHIRT ──
   {
-    keywords: ['white', 'shirt', 'blouse', 'button'],
-    response: "A white shirt is the most quietly powerful piece you can own. Style it:\n\n• Tucked into tailored trousers with loafers — classic.\n• Half-tucked into Levis with sneakers — casual cool.\n• Under a knit vest with pleated skirt — dark academia.",
+    keywords: ['white shirt', 'white blouse', 'white button', 'button down', 'button-down', 'white top', 'crisp shirt', 'white', 'shirt', 'blouse'],
+    response: "A white shirt is the most quietly powerful piece you can own:\n\n• Tucked into tailored trousers with loafers — classic.\n• Half-tucked into Levis with white sneakers — casual cool.\n• Under a knit vest with pleated skirt — refined.\n• Oversized + belted with wide-leg trousers — modern editorial.",
     productRefs: [
-      ['aff', 'SHEIN', 'Cotton Button-Down', '$15', 'white button down shirt', 'white shirt product'],
-      ['mid', 'Uniqlo', 'Premium Linen', '$50', 'linen shirt women white', 'white linen shirt product'],
-      ['lux', 'COS', 'Oversized Poplin', '$125', 'oversized poplin shirt', 'white poplin shirt product']
+      ['aff', 'SHEIN', 'Cotton Button-Down', '$15', 'white button down shirt women', 'white shirt product'],
+      ['mid', 'Uniqlo', 'Premium Linen Shirt', '$50', 'white linen shirt women', 'white linen shirt product'],
+      ['lux', 'COS', 'Oversized Poplin Shirt', '$125', 'oversized white poplin shirt women', 'white poplin shirt product']
     ]
   },
+
+  // ── DATE NIGHT ──
   {
-    keywords: ['date', 'date night', 'dinner'],
-    response: "Pick something you feel like *yourself* in — but elevated:\n\n• Satin slip dress + delicate gold + kitten heels.\n• High-waisted black trousers + soft knit + statement earrings.\n• Midi dress in your favorite color + tailored blazer + ankle boots.",
+    keywords: ['date night', 'date outfit', 'romantic dinner', 'dinner outfit', 'coffee date', 'date', 'dinner', 'romantic'],
+    response: "Pick something you feel like *yourself* in — but elevated:\n\n• Satin slip dress + delicate gold chain + kitten heels.\n• High-waisted black trousers + soft silk blouse + statement earrings.\n• Midi dress in a rich tone + tailored blazer + ankle boots.\n• Wrap dress + barely-there sandals + a small leather bag.",
     productRefs: [
-      ['aff', 'SHEIN', 'Satin Slip Dress', '$25', 'satin slip dress', 'satin slip dress product'],
-      ['mid', 'Mango', 'Lace Slip', '$89', 'lace slip dress', 'slip dress black product'],
-      ['lux', 'Reformation', 'Silk Slip Dress', '$248', 'silk slip dress', 'silk slip dress product']
+      ['aff', 'SHEIN', 'Satin Slip Dress', '$25', 'satin slip dress women elegant', 'satin slip dress product'],
+      ['mid', 'Mango', 'Lace-Trim Slip Dress', '$89', 'lace slip dress women date night', 'slip dress black product'],
+      ['lux', 'Reformation', 'Silk Slip Dress', '$248', 'silk slip dress women', 'silk slip dress product']
     ]
   },
+
+  // ── WORK / INTERVIEW ──
   {
-    keywords: ['interview', 'work', 'office', 'professional'],
-    response: "Lean into structure and neutrals:\n\n• Tailored trousers + silk blouse + low pumps.\n• Wrap dress in a solid color + simple gold studs + a leather tote.\n• Blazer over a tucked turtleneck + straight-leg pants.",
+    keywords: ['job interview', 'work outfit', 'office outfit', 'professional outfit', 'business casual', 'interview', 'work', 'office', 'professional'],
+    response: "Structure and confidence — here's how:\n\n• Tailored trousers + silk blouse + low pumps + leather tote.\n• Wrap dress in a solid color + gold studs — effortlessly polished.\n• Blazer over a tucked turtleneck + straight-leg pants.\n• Midi skirt + simple knit + pointed flats — understated authority.",
     productRefs: [
-      ['aff', 'H&M', 'Tailored Trousers', '$39', 'tailored trousers women', 'tailored trousers product'],
-      ['mid', 'Mango', 'Wool-Blend Blazer', '$129', 'wool blazer woman', 'wool blazer black product'],
-      ['lux', 'Massimo Dutti', 'Pure Wool Blazer', '$295', 'wool blazer', 'wool blazer woman product']
+      ['aff', 'H&M', 'Tailored Wide-Leg Trousers', '$39', 'tailored trousers women office', 'tailored trousers product'],
+      ['mid', 'Mango', 'Wool-Blend Blazer', '$129', 'wool blazer women office work', 'wool blazer product'],
+      ['lux', 'Massimo Dutti', 'Pure Wool Blazer', '$295', 'pure wool tailored blazer women', 'wool blazer woman product']
     ]
   },
+
+  // ── WINTER / COAT ──
   {
-    keywords: ['winter', 'cold', 'snow', 'coat'],
-    response: "Layers that look intentional, not bulky:\n\n• Long wool coat + chunky knit + straight-leg jeans + leather boots.\n• Puffer over hoodie + cargos + chunky sneakers — streetwear.\n• Teddy coat + turtleneck + midi skirt + tights — soft academia.",
+    keywords: ['winter outfit', 'winter coat', 'cold weather', 'winter look', 'winter', 'cold', 'coat', 'snow', 'layer', 'layering'],
+    response: "Layers that look intentional, not bulky:\n\n• Long wool coat + chunky knit + straight-leg jeans + leather boots.\n• Puffer over hoodie + cargos + chunky sneakers — streetwear winter.\n• Teddy coat + turtleneck + midi skirt + tights — cozy chic.\n• Double-breasted coat + scarf + loafers — old money winter.",
     productRefs: [
-      ['aff', 'H&M', 'Teddy Coat', '$70', 'teddy coat women', 'teddy coat product'],
-      ['mid', 'Mango', 'Wool Coat', '$179', 'wool coat', 'wool coat camel product'],
-      ['lux', 'COS', 'Long Wool Coat', '$295', 'long wool coat', 'long coat wool product']
+      ['aff', 'H&M', 'Teddy Bear Coat', '$70', 'teddy bear coat women winter', 'teddy coat product'],
+      ['mid', 'Mango', 'Wool-Blend Overcoat', '$179', 'wool overcoat women winter camel', 'wool coat product'],
+      ['lux', 'COS', 'Long Structured Coat', '$295', 'long structured wool coat women', 'long coat wool product']
     ]
   },
+
+  // ── SUMMER ──
   {
-    keywords: ['summer', 'hot', 'beach', 'warm'],
-    response: "Breathable fabrics — linen, cotton, silk:\n\n• Linen midi + leather sandals + straw bag.\n• High-waisted shorts + fitted tee + white sneakers.\n• Slip dress + denim jacket for cooler nights.",
+    keywords: ['summer outfit', 'summer look', 'hot weather', 'beach outfit', 'summer style', 'summer', 'hot', 'beach', 'warm', 'linen'],
+    response: "Breathable fabrics — linen, cotton, silk:\n\n• Linen midi + leather sandals + straw tote — Mediterranean chic.\n• High-waisted shorts + fitted crop tee + white sneakers.\n• Slip dress + denim jacket for cooler evenings.\n• Flowy sundress + flat sandals + minimal gold jewelry.",
     productRefs: [
-      ['aff', 'SHEIN', 'Linen-Blend Dress', '$22', 'linen midi dress', 'linen dress white product'],
-      ['mid', 'Mango', 'Linen Midi', '$79', 'linen midi dress', 'linen midi product'],
-      ['lux', 'Reformation', 'Linen Sundress', '$198', 'linen sundress', 'linen sundress product']
+      ['aff', 'SHEIN', 'Linen-Blend Midi Dress', '$22', 'linen midi dress women summer', 'linen dress white product'],
+      ['mid', 'Mango', 'Linen Midi Dress', '$79', 'linen midi dress women summer', 'linen midi product'],
+      ['lux', 'Reformation', 'Linen Sundress', '$198', 'linen sundress women summer', 'linen sundress product']
     ]
   },
+
+  // ── COLORS / COLOR MATCHING ──
   {
-    keywords: ['color', 'colors', 'match', 'matching'],
-    response: "A few rules:\n\n• Stick to one palette family per outfit (warm or cool).\n• Pair one statement color with two neutrals.\n• Tonal dressing always looks expensive.\n• Add one unexpected accent — a red lip with all-beige."
+    keywords: ['what colors go', 'color combinations', 'color palette', 'color matching', 'colors match', 'color theory', 'color', 'colors', 'matching', 'palette'],
+    response: "A few rules that never fail:\n\n• Stick to one palette family per outfit — warm (camel, rust, ivory) or cool (navy, grey, white).\n• Pair one statement color with two neutrals.\n• Tonal dressing — all one color family — always looks expensive.\n• Earth tones (terracotta, camel, olive, cream) work together effortlessly.\n• Add one unexpected accent — a red lip with all-beige."
   },
+
+  // ── MINIMALIST ──
   {
-    keywords: ['minimalist', 'minimal'],
-    response: "Build your wardrobe around:\n\n• 5-6 colors max — bone, taupe, oat, charcoal, white.\n• Quality basics: wool coat, cashmere knit, leather loafers, well-cut trousers.\n• Texture replaces print — linen, silk, wool.\n• One piece of fine jewelry worn daily.",
+    keywords: ['dress more minimalist', 'minimalist style', 'minimalist wardrobe', 'minimalist outfit', 'minimalist fashion', 'minimalist', 'minimal', 'capsule wardrobe basics'],
+    response: "Minimalism is about intention, not absence:\n\n• Build around 5-6 colors — bone, taupe, oat, charcoal, white, black.\n• Quality over quantity: wool coat, cashmere knit, leather loafers, well-cut trousers.\n• Texture replaces pattern — linen, silk, wool, ribbed cotton.\n• One piece of fine jewelry worn daily.\n• Every piece should work with at least 5 others.",
     productRefs: [
-      ['aff', 'Uniqlo', 'Cashmere Crew', '$99', 'cashmere crew sweater', 'cashmere sweater product'],
-      ['mid', 'Mango', 'Linen Trousers', '$69', 'linen trousers women', 'linen trousers product'],
-      ['lux', 'COS', 'Wool Coat', '$295', 'wool coat', 'wool coat beige product']
+      ['aff', 'Uniqlo', 'Ribbed Cashmere Crew', '$79', 'ribbed cashmere crew neck women', 'cashmere sweater product'],
+      ['mid', 'COS', 'Wide-Leg Linen Trousers', '$99', 'wide leg linen trousers women beige', 'linen trousers product'],
+      ['lux', 'Toteme', 'Oversized Wool Coat', '$895', 'toteme wool coat women', 'wool coat beige product']
     ]
   },
+
+  // ── STREETWEAR ──
   {
-    keywords: ['streetwear', 'street'],
-    response: "Commit to one bold piece and let everything else support it:\n\n• Statement sneakers + relaxed cargos + fitted tee.\n• Oversized hoodie + bike shorts + chunky sneakers + sling bag.\n• Graphic tee under a button-down + wide-leg jeans + Air Force 1s.",
+    keywords: ['streetwear outfit', 'streetwear look', 'streetwear style', 'urban style', 'hype outfit', 'streetwear', 'street style', 'hypebae', 'hype'],
+    response: "Commit to one bold piece and let everything else support it:\n\n• Statement sneakers + relaxed cargos + fitted tee + sling bag.\n• Oversized graphic hoodie + bike shorts + chunky sneakers.\n• Graphic tee under an open button-down + wide-leg jeans + Air Force 1s.\n• Tracksuit + clean sneakers + gold chain — effortless cool.",
     productRefs: [
-      ['aff', 'SHEIN', 'Oversized Hoodie', '$19', 'oversized hoodie', 'oversized hoodie product'],
-      ['mid', 'Pull&Bear', 'Cargo Pants', '$45', 'cargo pants', 'cargo pants product'],
-      ['lux', 'Nike', 'Air Force 1', '$115', 'air force 1', 'air force 1 product']
+      ['aff', 'SHEIN', 'Oversized Graphic Hoodie', '$19', 'oversized graphic hoodie women streetwear', 'oversized hoodie product'],
+      ['mid', 'Pull&Bear', 'Cargo Wide-Leg Pants', '$45', 'cargo wide leg pants women', 'cargo pants product'],
+      ['mid', 'Nike', 'Air Force 1 Low White', '$110', 'air force 1 low white women', 'air force 1 product'],
+      ['lux', 'Acne Studios', 'Oversized Logo Sweatshirt', '$280', 'acne studios oversized sweatshirt', 'acne studios product']
     ]
   },
+
+  // ── ACCESSORIES & JEWELRY ──
   {
-    keywords: ['accessories', 'jewelry', 'bag'],
-    response: "Accessories are where personality lives:\n\n• Pick one focal point — bold earrings or a statement bag, not both.\n• Mix metals only if you do it consistently.\n• Invest in a good leather bag in a neutral.\n• Pearls, gold hoops, and a watch outlive every trend.",
+    keywords: ['what accessories', 'accessories ideas', 'jewelry ideas', 'bag ideas', 'accessories', 'jewelry', 'handbag', 'bag'],
+    response: "Accessories are where personality lives:\n\n• Pick one focal point — bold earrings or a statement bag, not both.\n• Mix metals consistently (all gold or all silver).\n• Invest in one good leather bag in a neutral — it works forever.\n• Pearls, gold hoops, and a delicate watch outlive every trend.\n• A scarf can be worn as a hair tie, bag charm, or belt.",
     productRefs: [
-      ['aff', 'H&M', 'Gold Hoops', '$9', 'gold hoops', 'gold hoops product'],
-      ['mid', 'Mango', 'Leather Crossbody', '$89', 'leather crossbody', 'leather crossbody product'],
-      ['lux', 'Mejuri', 'Pearl Pendant', '$128', 'pearl pendant', 'pearl pendant product']
+      ['aff', 'H&M', 'Gold Hoop Earrings', '$9', 'gold hoop earrings women', 'gold hoops product'],
+      ['mid', 'Charles & Keith', 'Leather Crossbody Bag', '$75', 'leather crossbody bag women', 'leather crossbody product'],
+      ['lux', 'Mejuri', 'Pearl Drop Earrings', '$128', 'pearl drop earrings women gold', 'pearl pendant product']
     ]
   },
+
+  // ── BUDGET STYLE ──
   {
-    keywords: ['budget', 'cheap', 'affordable'],
-    response: "You don't need a big budget for great style:\n\n• Thrift staples: vintage Levis, wool coats, silk blouses.\n• Spend on shoes and bags — they wear hardest.\n• Three perfect basics > ten almost-right pieces.",
+    keywords: ['budget fashion', 'affordable outfits', 'cheap clothes', 'affordable style', 'budget wardrobe', 'budget', 'cheap', 'affordable', 'low budget', 'inexpensive'],
+    response: "You don't need a big budget for great style:\n\n• Thrift first for statement pieces: vintage Levis, wool coats, silk blouses.\n• Invest proportionally — spend on shoes and bags, they wear hardest.\n• Three perfect basics > ten almost-right pieces.\n• Uniqlo for quality basics that don't look cheap.\n• H&M and SHEIN for trendy seasonal items you'll wear a few times.",
     productRefs: [
-      ['aff', 'SHEIN', 'Tailored Blazer', '$26', 'tailored blazer', 'tailored blazer product'],
-      ['aff', 'H&M', 'Pleated Skirt', '$29', 'pleated skirt', 'pleated skirt product'],
-      ['aff', 'Uniqlo', 'Linen Shirt', '$40', 'linen shirt', 'linen shirt product']
+      ['aff', 'SHEIN', 'Tailored Blazer', '$26', 'tailored blazer women affordable', 'tailored blazer product'],
+      ['aff', 'H&M', 'Pleated Midi Skirt', '$29', 'pleated midi skirt women affordable', 'pleated skirt product'],
+      ['aff', 'Uniqlo', 'Premium Linen Shirt', '$40', 'linen shirt women uniqlo', 'linen shirt product']
     ]
   },
+
+  // ── HAIR ──
   {
-    keywords: ['hair', 'hairstyle'],
-    response: "A few easy, elevated hairstyles:\n\n• Sleek low bun with middle part — minimalist polish.\n• Soft claw-clip half-up — Korean coffee-shop chic.\n• Loose Hollywood waves — vintage romance.\n• Two pulled-back braids under a slick pony — streetwear edge."
+    keywords: ['hairstyle ideas', 'hair ideas', 'hair suggestions', 'hair for outfit', 'hair', 'hairstyle'],
+    response: "A few easy, elevated hairstyles:\n\n• Sleek low bun with middle part — minimalist polish.\n• Soft claw-clip half-up — Korean coffee-shop chic.\n• Loose Hollywood waves — vintage romance.\n• Two pulled-back braids under a slick pony — streetwear edge.\n• Ribbon-tied low pony — soft girl elegance."
   },
+
+  // ── PERFUME / FRAGRANCE ──
   {
-    keywords: ['perfume', 'scent', 'fragrance'],
-    response: "Fragrance is invisible style:\n\n• Classic and polished: Chanel No.5, Chloe Eau de Parfum.\n• Soft and romantic: Glossier You, Marc Jacobs Daisy.\n• Warm and smoky: Tom Ford Tobacco Vanille, Le Labo Santal 33.\n• Fresh and modern: Aesop Hwyl.",
+    keywords: ['perfume recommendations', 'what perfume', 'fragrance ideas', 'scent suggestions', 'romantic perfume', 'best perfumes', 'perfume', 'scent', 'fragrance'],
+    response: "Fragrance is invisible style — pick a signature:\n\n• Classic and polished: Chanel No.5, Chloe Eau de Parfum.\n• Soft and romantic: Glossier You, Marc Jacobs Daisy.\n• Warm and smoky: Tom Ford Tobacco Vanille, Le Labo Santal 33.\n• Fresh and modern: Maison Margiela Replica Beach Walk.\n• Playful and Y2K: Viktor & Rolf Flowerbomb.",
     productRefs: [
-      ['aff', 'Sephora', 'Glossier You', '$70', 'glossier you', 'glossier you perfume product'],
-      ['mid', 'Sephora', 'Marc Jacobs Daisy', '$82', 'marc jacobs daisy', 'marc jacobs daisy product'],
-      ['lux', 'Sephora', 'Le Labo Santal 33', '$220', 'le labo santal 33', 'le labo santal 33 product']
+      ['aff', 'Sephora', 'Glossier You EDP', '$70', 'glossier you perfume women', 'glossier you perfume product'],
+      ['mid', 'Sephora', 'Marc Jacobs Daisy EDP', '$82', 'marc jacobs daisy perfume women', 'marc jacobs daisy product'],
+      ['lux', 'Sephora', 'Le Labo Santal 33', '$220', 'le labo santal 33 perfume', 'le labo santal 33 product']
+    ]
+  },
+
+  // ── ELEGANT / QUIET LUXURY ──
+  {
+    keywords: ['elegant style', 'quiet luxury', 'old money style', 'elegant look', 'classy outfit', 'sophisticated', 'elegant', 'classy', 'luxury style', 'old money'],
+    response: "Quiet luxury is about restraint and quality:\n\n• Monochrome tonal outfits in cream, camel, or grey.\n• Investment pieces: cashmere knit, leather loafers, tailored trousers.\n• Let fabric do the talking — no logos, no loud prints.\n• Silk blouse + wide-leg trousers + simple gold jewelry.\n• A single great coat over anything = instant polish.",
+    productRefs: [
+      ['aff', 'H&M', 'Satin Slip Blouse', '$35', 'satin blouse women elegant', 'satin blouse product'],
+      ['mid', 'Mango', 'Pleated Wide-Leg Trousers', '$99', 'pleated wide leg trousers women elegant', 'wide leg trousers product'],
+      ['lux', 'Toteme', 'Cashmere Turtleneck', '$395', 'toteme cashmere turtleneck women', 'cashmere turtleneck product']
+    ]
+  },
+
+  // ── KOREAN AESTHETIC ──
+  {
+    keywords: ['korean style', 'k-fashion', 'kpop style', 'korean aesthetic', 'korean fashion', 'korean outfit', 'korean', 'kpop', 'k-pop'],
+    response: "Korean fashion = effortless softness with clean proportions:\n\n• Oversized cardigan + pleated mini skirt + white sneakers.\n• Cropped knit + high-waist wide-leg trousers + platform loafers.\n• Pastel blazer + simple white tee + straight jeans.\n• Soft blouse + soft denim skirt + Mary Janes + knee socks.",
+    productRefs: [
+      ['aff', 'YesStyle', 'Oversized Knit Cardigan', '$29', 'oversized knit cardigan korean women', 'oversized cardigan product'],
+      ['mid', 'Uniqlo', 'Pleated Wide-Leg Trousers', '$59', 'pleated wide leg trousers women korean', 'pleated trousers product'],
+      ['lux', 'Acne Studios', 'Ribbed Merino Knit', '$290', 'ribbed merino knit women', 'merino knit product']
+    ]
+  },
+
+  // ── Y2K ──
+  {
+    keywords: ['y2k style', 'y2k aesthetic', 'y2k fashion', 'y2k outfit', 'y2k look', 'y2k', '2000s fashion', '2000s style', 'low rise'],
+    response: "Y2K is nostalgia done right:\n\n• Baby tee + low-rise flare jeans + chunky platform sneakers.\n• Mini skirt + cropped cardigan + platform Mary Janes.\n• Velour set + chunky sneakers + tinted sunglasses.\n• Mesh top + denim mini + butterfly clips in the hair.",
+    productRefs: [
+      ['aff', 'SHEIN', 'Baby Tee Crop Top', '$12', 'baby tee y2k women', 'baby tee product'],
+      ['mid', 'ASOS', 'Low-Rise Flare Jeans', '$55', 'low rise flare jeans women y2k', 'flare jeans product'],
+      ['mid', 'Urban Outfitters', 'Platform Mary Janes', '$89', 'platform mary jane shoes women y2k', 'platform mary jane product']
+    ]
+  },
+
+  // ── VINTAGE / RETRO ──
+  {
+    keywords: ['vintage style', 'retro look', 'vintage aesthetic', 'vintage outfit', 'vintage fashion', 'thrift style', 'vintage', 'retro', 'thrift', '70s', '90s'],
+    response: "Vintage dressing is about character:\n\n• High-waist flare jeans + printed blouse + wedge mules — 70s.\n• Corduroy skirt + turtleneck + loafers + a great coat — 90s.\n• Prairie dress + cowboy boots + stacked jewelry — timeless boho.\n• Vintage Levis + shrunken blazer + vintage tee — effortless cool.",
+    productRefs: [
+      ['aff', 'Depop', 'Vintage High-Waist Flares', '$35', 'vintage high waist flare jeans women', 'flare jeans vintage product'],
+      ['mid', 'Urban Outfitters', 'Corduroy Mini Skirt', '$59', 'corduroy mini skirt women vintage', 'corduroy skirt product'],
+      ['mid', 'Dr. Martens', '1460 Pascal Boots', '$165', 'dr martens 1460 pascal leather boots women', 'dr martens boots product']
+    ]
+  },
+
+  // ── SOFT GIRL / COQUETTE ──
+  {
+    keywords: ['soft girl', 'softgirl', 'coquette', 'feminine style', 'romantic style', 'girly outfit', 'bow aesthetic', 'cottagecore', 'soft aesthetic', 'feminine'],
+    response: "Soft girl is sweetness with intention:\n\n• Floral mini dress + white platform Mary Janes + bow hair clip.\n• Pastel cardigan + pleated mini skirt + ballet flats.\n• Lace-trim blouse + ribbon skirt + pearl jewelry.\n• Cami dress + sheer cardigan over + kitten heels.",
+    productRefs: [
+      ['aff', 'SHEIN', 'Floral Mini Dress', '$22', 'floral mini dress women soft girl', 'floral dress product'],
+      ['mid', 'Brandy Melville', 'Pastel Knit Cardigan', '$48', 'pastel knit cardigan women soft girl', 'pastel cardigan product'],
+      ['mid', 'Charles & Keith', 'Ballet Flat Shoes', '$55', 'ballet flat shoes women', 'ballet flats product']
+    ]
+  },
+
+  // ── BOOTS ──
+  {
+    keywords: ['elegant boots', 'black boots', 'ankle boots', 'knee high boots', 'boots outfit', 'wear boots', 'boots'],
+    response: "Boots change the entire energy of a look:\n\n• Elegant black ankle boots + midi skirt + cashmere knit — refined.\n• Combat boots + mini dress — unexpected contrast.\n• Knee-high boots + straight-leg jeans + long coat — editorial.\n• Square-toe boots + tailored trousers — modern minimalist.",
+    productRefs: [
+      ['aff', 'SHEIN', 'Black Ankle Boots Pointed', '$45', 'black ankle boots pointed toe women elegant', 'black boots product'],
+      ['mid', 'Mango', 'Leather Ankle Boots', '$119', 'leather ankle boots women elegant black', 'leather ankle boots product'],
+      ['lux', 'Acne Studios', 'Leather Square-Toe Boots', '$650', 'acne studios leather boots women', 'acne studios boots product']
+    ]
+  },
+
+  // ── MIDI DRESS ──
+  {
+    keywords: ['midi dress', 'midi skirt outfit', 'long dress', 'maxi dress', 'dress ideas', 'midi'],
+    response: "The midi length is endlessly wearable:\n\n• Floral midi + denim jacket + white sneakers — casual.\n• Satin midi + gold jewelry + heels — evening.\n• Knit midi + ankle boots + structured bag — autumn.\n• Linen midi + flat sandals + straw bag — summer.",
+    productRefs: [
+      ['aff', 'SHEIN', 'Satin Midi Dress', '$28', 'satin midi dress women elegant', 'satin midi dress product'],
+      ['mid', 'Mango', 'Knit Midi Dress', '$89', 'knit midi dress women autumn', 'knit midi dress product'],
+      ['lux', 'Reformation', 'Floral Midi Dress', '$228', 'floral midi dress women elegant', 'floral midi dress product']
+    ]
+  },
+
+  // ── WIDE LEG PANTS ──
+  {
+    keywords: ['wide leg pants', 'wide leg trousers', 'palazzo pants', 'flowy pants', 'wide leg', 'wide-leg'],
+    response: "Wide-leg trousers are the most versatile silhouette right now:\n\n• High-waisted wide-leg + fitted turtleneck + loafers — classic.\n• Linen wide-leg + crop tank + flat sandals — summer ease.\n• Wide-leg cargos + fitted tee + chunky sneakers — street.\n• Belted wide-leg + silk blouse + kitten heels — elegant.",
+    productRefs: [
+      ['aff', 'SHEIN', 'High-Waist Wide-Leg Trousers', '$25', 'high waist wide leg trousers women', 'wide leg trousers product'],
+      ['mid', 'Mango', 'Pleated Wide-Leg Trousers', '$89', 'pleated wide leg trousers women', 'wide leg pants product'],
+      ['lux', 'COS', 'Wide-Leg Tailored Trousers', '$145', 'wide leg tailored trousers women cos', 'wide leg trousers cos product']
+    ]
+  },
+
+  // ── LEATHER PANTS ──
+  {
+    keywords: ['leather pants', 'leather trousers', 'leather leggings', 'faux leather', 'leather bottoms'],
+    response: "Leather pants are a season-less power move:\n\n• Camel knit + leather trousers + loafers — quiet luxury.\n• White tee + leather pants + white sneakers — minimal cool.\n• Blazer + leather trousers + heeled boots — evening edge.\n• Oversized hoodie + leather leggings + chunky sneakers — street.",
+    productRefs: [
+      ['aff', 'SHEIN', 'Faux Leather Straight Pants', '$29', 'faux leather straight leg pants women', 'faux leather pants product'],
+      ['mid', 'Zara', 'Faux Leather Wide-Leg', '$79', 'faux leather wide leg trousers women', 'leather trousers product'],
+      ['lux', 'Toteme', 'Slim Leather Trousers', '$490', 'toteme leather trousers women', 'leather pants product']
+    ]
+  },
+
+  // ── BLAZER ──
+  {
+    keywords: ['blazer outfit', 'how to wear blazer', 'style a blazer', 'blazer look', 'blazer'],
+    response: "The blazer is the ultimate transformer:\n\n• Oversized blazer + cycling shorts + white tee + sneakers — street.\n• Fitted blazer + silk cami + straight jeans + heeled mules — chic.\n• Boxy blazer + midi dress underneath — layering genius.\n• Monochrome blazer set (jacket + matching trousers) — power dressing.",
+    productRefs: [
+      ['aff', 'H&M', 'Single-Breasted Blazer', '$49', 'single breasted blazer women', 'blazer product'],
+      ['mid', 'Mango', 'Structured Linen Blazer', '$119', 'structured linen blazer women', 'linen blazer product'],
+      ['lux', 'Massimo Dutti', 'Pure Wool Blazer', '$295', 'pure wool blazer women tailored', 'wool blazer product']
+    ]
+  },
+
+  // ── TURTLENECK ──
+  {
+    keywords: ['turtleneck outfit', 'turtleneck look', 'how to wear turtleneck', 'polo neck', 'turtleneck', 'polo neck'],
+    response: "The turtleneck is quiet confidence:\n\n• Ribbed turtleneck + wide-leg trousers + loafers — Parisian.\n• Slim turtleneck under a blazer + straight jeans — layered.\n• Chunky turtleneck + leather trousers + ankle boots — editorial.\n• Cashmere turtleneck + midi skirt + pearl studs — elegant.",
+    productRefs: [
+      ['aff', 'Uniqlo', 'Ribbed Mock Neck', '$29', 'ribbed mock neck turtleneck women', 'turtleneck product'],
+      ['mid', 'COS', 'Merino Turtleneck', '$89', 'merino wool turtleneck women', 'merino turtleneck product'],
+      ['lux', 'Toteme', 'Cashmere Turtleneck Sweater', '$395', 'cashmere turtleneck sweater women', 'cashmere turtleneck product']
+    ]
+  },
+
+  // ── WEDDING GUEST ──
+  {
+    keywords: ['wedding guest', 'wedding outfit', 'guest at wedding', 'formal event', 'formal outfit', 'wedding'],
+    response: "Wedding guest dressing has one rule: don't upstage, but don't underwhelm:\n\n• Floral midi dress + strappy heels + small clutch — timeless.\n• Linen suit (blazer + trousers) + simple cami + kitten heels.\n• Wrap dress in a jewel tone + gold jewelry + nude heels.\n• Pleated maxi dress + low block heels — modern and floaty.",
+    productRefs: [
+      ['aff', 'SHEIN', 'Floral Wrap Midi Dress', '$35', 'floral wrap midi dress women wedding guest', 'floral midi dress product'],
+      ['mid', 'Mango', 'Chiffon Midi Dress', '$99', 'chiffon midi dress women wedding guest', 'chiffon dress product'],
+      ['lux', 'Reformation', 'Floral Midi Wedding Guest', '$248', 'floral midi dress wedding guest elegant', 'reformation wedding dress product']
+    ]
+  },
+
+  // ── NIGHT OUT ──
+  {
+    keywords: ['night out', 'club outfit', 'going out', 'party outfit', 'evening look', 'girls night', 'going out look'],
+    response: "For a night out, be the energy:\n\n• Fitted mini dress + strappy heels + small shoulder bag.\n• High-waisted leather shorts + cami + heeled boots.\n• Slip dress + leather jacket + chunky mules.\n• Strapless corset top + wide-leg trousers + pointed heels.",
+    productRefs: [
+      ['aff', 'SHEIN', 'Satin Mini Dress', '$22', 'satin mini dress women night out party', 'satin mini dress product'],
+      ['mid', 'ASOS', 'Fitted Mini Going Out Dress', '$65', 'fitted mini dress women night out', 'mini dress product'],
+      ['mid', 'Zara', 'Faux Leather Mini Skirt', '$49', 'faux leather mini skirt women night out', 'leather mini skirt product']
+    ]
+  },
+
+  // ── BRUNCH ──
+  {
+    keywords: ['brunch outfit', 'weekend brunch', 'brunch look', 'casual chic', 'brunch'],
+    response: "Brunch is effortlessly chic with the right pieces:\n\n• Linen trousers + stripe tee + loafers + tote bag.\n• Floral midi dress + denim jacket + sneakers.\n• High-waist jeans + knit top + mules + sunglasses.\n• Linen shorts + a nice blouse + flat sandals.",
+    productRefs: [
+      ['aff', 'H&M', 'Linen-Blend Trousers', '$35', 'linen blend trousers women casual', 'linen trousers product'],
+      ['mid', 'Mango', 'Knit Stripe Top', '$49', 'knit stripe top women casual', 'stripe top product'],
+      ['mid', 'Zara', 'Leather Mule Sandals', '$69', 'leather mule sandals women', 'mule sandals product']
+    ]
+  },
+
+  // ── TRAVEL ──
+  {
+    keywords: ['travel outfit', 'airport outfit', 'travel style', 'comfortable travel', 'what to pack', 'travel', 'airport', 'vacation'],
+    response: "Travel in style — comfort and chic aren't opposites:\n\n• Wide-leg trousers + fitted knit + loafers + long coat.\n• Linen wide-leg pants + simple tee + sneakers + tote.\n• Matching tracksuit set + white tee + clean sneakers.\n• Maxi skirt + fitted top + slides — ideal for warm destinations.",
+    productRefs: [
+      ['aff', 'SHEIN', 'Matching Tracksuit Set', '$35', 'matching tracksuit set women travel comfortable', 'tracksuit product'],
+      ['mid', 'COS', 'Wide-Leg Crepe Trousers', '$99', 'wide leg crepe trousers women travel', 'wide leg trousers product'],
+      ['mid', 'Uniqlo', 'Airism Wide-Leg Pants', '$49', 'uniqlo airism wide leg pants women', 'wide leg pants product']
+    ]
+  },
+
+  // ── GYM / ATHLEISURE ──
+  {
+    keywords: ['gym outfit', 'workout outfit', 'athleisure', 'gym wear', 'sporty look', 'gym', 'workout', 'athletic'],
+    response: "Athleisure that works from the gym to the street:\n\n• Matching set (sports bra + high-waist leggings) + oversized hoodie.\n• Wide-leg sweatpants + crop tee + chunky sneakers.\n• Biker shorts + longline tee + slides.\n• Tennis skirt + fitted top + platform sneakers — cute and sporty.",
+    productRefs: [
+      ['aff', 'SHEIN', 'Seamless Gym Set', '$29', 'seamless gym set sports bra leggings women', 'gym set product'],
+      ['mid', 'Nike', 'High-Waist Leggings', '$65', 'nike high waist leggings women', 'nike leggings product'],
+      ['mid', 'Adidas', 'Matching Sweat Set', '$85', 'adidas matching sweat set women', 'adidas sweat set product']
+    ]
+  },
+
+  // ── GREEN OUTFITS ──
+  {
+    keywords: ['green outfit', 'olive outfit', 'green color', 'green clothes', 'khaki outfit', 'green'],
+    response: "Green is one of the most wearable non-neutral shades:\n\n• Olive cargos + cream knit + white sneakers — casual.\n• Forest green midi dress + gold jewelry + nude heels — evening.\n• Sage linen trousers + white tee + loafers — minimal summer.\n• Hunter green coat + camel scarf + brown boots — winter.",
+    productRefs: [
+      ['aff', 'H&M', 'Olive Cargo Trousers', '$39', 'olive cargo trousers women', 'olive cargo pants product'],
+      ['mid', 'Mango', 'Forest Green Midi Dress', '$79', 'forest green midi dress women', 'green dress product'],
+      ['mid', 'Zara', 'Sage Linen Trousers', '$59', 'sage linen trousers women', 'sage trousers product']
+    ]
+  },
+
+  // ── RED OUTFITS ──
+  {
+    keywords: ['red outfit', 'red dress', 'wearing red', 'red clothes', 'red look', 'red'],
+    response: "Red is a statement — let it be the hero:\n\n• Red midi dress + nude heels + minimal gold jewelry.\n• Red trousers + white shirt + black loafers — bold but clean.\n• Red coat + all-black under it — the classic contrast.\n• Deep red blouse + straight-leg jeans + ankle boots.",
+    productRefs: [
+      ['aff', 'SHEIN', 'Red Satin Midi Dress', '$28', 'red satin midi dress women', 'red dress product'],
+      ['mid', 'Mango', 'Red Tailored Trousers', '$79', 'red tailored trousers women', 'red trousers product'],
+      ['mid', 'Zara', 'Red Wool Coat', '$129', 'red wool coat women', 'red coat product']
+    ]
+  },
+
+  // ── CAPSULE WARDROBE ──
+  {
+    keywords: ['capsule wardrobe', 'wardrobe basics', 'wardrobe essentials', 'build wardrobe', 'wardrobe from scratch', 'capsule', 'essentials', 'basics'],
+    response: "A capsule wardrobe built to last:\n\n• 2-3 pairs of trousers (black, camel, white or beige)\n• 1 tailored blazer in a neutral\n• 2-3 simple tees and a great white shirt\n• 1 quality denim in a clean wash\n• 1 knit sweater (cashmere if budget allows)\n• 1 wool coat\n• 1 versatile dress (midi or wrap)\n• Leather loafers, white sneakers, ankle boots\n\nStick to one color story — everything works with everything.",
+    productRefs: [
+      ['aff', 'Uniqlo', 'Ribbed Crew-Neck Knit', '$39', 'ribbed crew neck knit women', 'crew neck product'],
+      ['mid', 'COS', 'Tailored Wide-Leg Trousers', '$99', 'tailored wide leg trousers women neutral', 'wide leg trousers product'],
+      ['lux', 'Toteme', 'Classic Trench Coat', '$695', 'toteme trench coat women', 'trench coat product']
+    ]
+  },
+
+  // ── DARK ACADEMIA ──
+  {
+    keywords: ['dark academia', 'dark academia style', 'bookish aesthetic', 'gothic academia', 'academic aesthetic'],
+    response: "Dark academia is romance through structure:\n\n• Plaid mini skirt + turtleneck knit + knee-high socks + loafers.\n• Knit vest + white collared shirt + high-waist trousers + oxfords.\n• Oversized tweed blazer + straight jeans + Chelsea boots.\n• Long maxi skirt + fitted cardigan + corset top layer.",
+    productRefs: [
+      ['aff', 'SHEIN', 'Plaid Pleated Mini Skirt', '$19', 'plaid pleated mini skirt women dark academia', 'plaid skirt product'],
+      ['mid', 'Urban Outfitters', 'Knit Vest Sweater', '$55', 'knit vest sweater women dark academia', 'knit vest product'],
+      ['mid', 'Dr. Martens', 'Oxford Shoes Women', '$130', 'dr martens oxford shoes women', 'oxford shoes product']
+    ]
+  },
+
+  // ── LOAFERS ──
+  {
+    keywords: ['loafers outfit', 'how to wear loafers', 'leather loafers', 'loafer shoes', 'loafers'],
+    response: "Loafers are the most versatile shoe in 2025:\n\n• With a pleated midi skirt + knit — elegant day.\n• With straight-leg jeans + oversized blazer — Parisian cool.\n• With shorts + a crisp shirt — summer prep.\n• Platform loafers + mini skirt + fitted top — Korean chic.",
+    productRefs: [
+      ['aff', 'SHEIN', 'Platform Loafer Shoes', '$35', 'platform loafer shoes women', 'loafer shoes product'],
+      ['mid', 'Mango', 'Leather Loafer Shoes', '$89', 'leather loafer shoes women', 'leather loafer product'],
+      ['lux', 'COS', 'Chunky Sole Loafers', '$185', 'chunky sole leather loafers women', 'chunky loafers product']
+    ]
+  },
+
+  // ── SNEAKER OUTFITS ──
+  {
+    keywords: ['sneaker outfit', 'outfit with sneakers', 'white sneakers outfit', 'how to wear sneakers', 'sneakers', 'trainers'],
+    response: "Sneakers elevate or ground a look — your choice:\n\n• White sneakers + midi dress — the simplest, chicest combination.\n• Chunky sneakers + flare jeans + crop top — Y2K energy.\n• Clean white sneakers + tailored trousers + tee — Parisian off-duty.\n• Air Force 1s + cargos + graphic tee — streetwear staple.",
+    productRefs: [
+      ['aff', 'H&M', 'White Canvas Sneakers', '$25', 'white canvas sneakers women', 'white sneakers product'],
+      ['mid', 'Adidas', 'Stan Smith White Sneakers', '$90', 'adidas stan smith white sneakers women', 'adidas stan smith product'],
+      ['mid', 'Nike', 'Air Force 1 White', '$110', 'nike air force 1 white women', 'air force 1 product']
+    ]
+  },
+
+  // ── SKIRT OUTFITS ──
+  {
+    keywords: ['mini skirt outfit', 'skirt ideas', 'how to style a skirt', 'skirt outfits', 'skirt', 'mini skirt', 'maxi skirt'],
+    response: "Skirts are the most feminine-feeling yet endlessly versatile piece:\n\n• Pleated midi + fitted knit + loafers — polished.\n• Denim mini + fitted tee + white sneakers — classic casual.\n• Maxi floral skirt + simple top + flat sandals — summer.\n• Leather mini + oversized blazer + ankle boots — edge.",
+    productRefs: [
+      ['aff', 'SHEIN', 'Pleated Midi Skirt', '$18', 'pleated midi skirt women', 'pleated midi skirt product'],
+      ['mid', 'Zara', 'Satin Midi Skirt', '$59', 'satin midi skirt women elegant', 'satin midi skirt product'],
+      ['mid', 'Mango', 'Faux Leather Mini Skirt', '$49', 'faux leather mini skirt women', 'leather mini skirt product']
+    ]
+  },
+
+  // ── TRANSITIONAL OUTFITS (SPRING/FALL) ──
+  {
+    keywords: ['spring outfit', 'autumn outfit', 'fall outfit', 'transitional outfit', 'in between weather', 'spring', 'autumn', 'fall'],
+    response: "Transitional dressing = mastered layering:\n\n• Linen trousers + long-sleeve tee + light trench coat + loafers.\n• Midi dress + ribbed cardigan + ankle boots.\n• Straight-leg jeans + tucked knit + leather jacket.\n• Light blazer + simple tee + wide-leg trousers + mules.",
+    productRefs: [
+      ['aff', 'H&M', 'Ribbed Cardigan', '$35', 'ribbed cardigan women transitional', 'cardigan product'],
+      ['mid', 'Mango', 'Fitted Leather Jacket', '$149', 'fitted leather jacket women', 'leather jacket product'],
+      ['mid', 'Zara', 'Light Trench Coat', '$119', 'light trench coat women spring', 'trench coat product']
+    ]
+  },
+
+  // ── JEWELRY STACKING ──
+  {
+    keywords: ['stack jewelry', 'layer necklaces', 'necklace layers', 'jewelry stacking', 'gold jewelry', 'layer jewelry'],
+    response: "Jewelry layering rules:\n\n• Vary chain lengths — choker (14\"), collar (16\"), medium (18\"), long (24\").\n• Mix textures: thin chains with thicker ones, pendants with plain.\n• Stick to one metal for a polished result.\n• For earrings: ear cuff + small stud + hoop in one ear — maximalist chic.\n• Less is more with bold earrings — skip necklaces.",
+    productRefs: [
+      ['aff', 'H&M', 'Layered Gold Chains Set', '$12', 'layered gold chain necklace set women', 'gold chain necklace product'],
+      ['mid', 'Mejuri', 'Gold Demi-Fine Necklace', '$78', 'gold demi fine necklace women', 'gold necklace product'],
+      ['lux', 'Tiffany & Co.', 'Gold Chain Necklace', '$350', 'tiffany gold chain necklace women', 'tiffany necklace product']
+    ]
+  },
+
+  // ── BAGS ──
+  {
+    keywords: ['what bag', 'bag outfit', 'handbag ideas', 'shoulder bag', 'tote bag', 'crossbody bag', 'mini bag', 'purse'],
+    response: "The right bag pulls everything together:\n\n• Structured leather tote — polished, office, everything.\n• Mini crossbody — dinner, casual daytime, effortless.\n• Woven or straw tote — summer, beach, market runs.\n• Clutch — evening, weddings, anything cocktail.\n• Baguette — the most editorial silhouette right now.",
+    productRefs: [
+      ['aff', 'Charles & Keith', 'Structured Shoulder Bag', '$59', 'structured shoulder bag women', 'shoulder bag product'],
+      ['mid', 'JW PEI', 'Woven Tote Bag', '$68', 'woven tote bag women', 'woven tote product'],
+      ['lux', 'Polène', 'Numéro Un Mini Bag', '$295', 'polene bag women leather', 'polene bag product']
     ]
   }
+
 ];
 
 const AI_FALLBACKS = [
