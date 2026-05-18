@@ -167,9 +167,11 @@
 </script>
 <script>
 function navAuthClick() { window.location.href = 'settings.html'; }
+function isGuest() { return sessionStorage.getItem('aura_guest') === '1'; }
 firebase.auth().onAuthStateChanged(function(user) {
   var btn = document.getElementById('nav-auth-btn');
   if (btn) btn.textContent = 'Account';
+  if (!user && !isGuest()) { window.location.replace('login.html'); }
 });
 </script>
 

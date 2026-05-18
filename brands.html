@@ -928,7 +928,7 @@
 </footer>
 
 <script src="js/data.js?v=5"></script>
-<script src="js/main.js?v=3"></script>
+<script src="js/main.js?v=4"></script>
 <script src="js/animations.js?v=12"></script>
 <script>
 (function() {
@@ -967,9 +967,11 @@
 <script src="js/firebase.js"></script>
 <script>
 function navAuthClick() { window.location.href = 'settings.html'; }
+function isGuest() { return sessionStorage.getItem('aura_guest') === '1'; }
 firebase.auth().onAuthStateChanged(function(user) {
   var btn = document.getElementById('nav-auth-btn');
   if (btn) btn.textContent = 'Account';
+  if (!user && !isGuest()) { window.location.replace('login.html'); }
 });
 </script>
 
