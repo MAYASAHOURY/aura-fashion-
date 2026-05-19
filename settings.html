@@ -72,24 +72,35 @@
   margin-bottom: 16px;
 }
 .s-avatar-img {
-  width: 80px;
-  height: 80px;
+  width: 88px;
+  height: 88px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid rgba(10,10,10,0.12);
+  border: 2px solid rgba(244,143,177,0.35);
+  box-shadow: 0 4px 24px rgba(244,143,177,0.25);
 }
 .s-avatar-initial {
-  width: 80px;
-  height: 80px;
+  width: 88px;
+  height: 88px;
   border-radius: 50%;
-  background: #edeae5;
-  border: 2px solid rgba(10,10,10,0.1);
+  background: radial-gradient(circle at 36% 32%, #fde8f0, #f4a0be 55%, #e8729a);
+  border: none;
+  box-shadow:
+    0 0 0 5px rgba(253,232,240,0.55),
+    0 0 0 10px rgba(244,160,190,0.18),
+    0 8px 32px rgba(232,114,154,0.28);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Playfair Display', serif;
-  font-size: 28px;
-  color: #0a0a0a;
+  position: relative;
+}
+.s-avatar-initial::after {
+  content: '';
+  position: absolute;
+  inset: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, rgba(255,255,255,0.55), transparent 65%);
+  pointer-events: none;
 }
 
 /* ── Name & email ── */
@@ -307,7 +318,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
       img.style.display = 'block';
       document.getElementById('s-initial').style.display = 'none';
     } else {
-      document.getElementById('s-initial').textContent = name.charAt(0).toUpperCase();
+      document.getElementById('s-initial').textContent = '';
     }
 
     try {
