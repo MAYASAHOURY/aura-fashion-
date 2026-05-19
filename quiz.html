@@ -138,6 +138,20 @@
     const auraColor  = AURA_COLORS[result.id]  || '#c8b49a';
     const mantra     = AURA_MANTRAS[result.id] || 'Your style is your signature.';
 
+    /* ── Flood the entire page with this aesthetic's color ── */
+    const quizSection = document.querySelector('.quiz-page');
+    quizSection.style.transition = 'background 1.6s cubic-bezier(.4,0,.2,1)';
+    quizSection.style.minHeight = '100vh';
+    quizSection.style.background = [
+      'radial-gradient(ellipse 100% 60% at 50% -10%, ' + auraColor + '88 0%, transparent 65%)',
+      'radial-gradient(ellipse 70% 80% at 10% 90%, '   + auraColor + '55 0%, transparent 55%)',
+      'radial-gradient(ellipse 60% 70% at 90% 80%, '   + auraColor + '44 0%, transparent 55%)',
+      'radial-gradient(ellipse 40% 40% at 50% 50%, '   + auraColor + '22 0%, transparent 70%)',
+      '#f7f4f0'
+    ].join(',');
+    document.body.style.transition = 'background 1.6s cubic-bezier(.4,0,.2,1)';
+    document.body.style.background = 'radial-gradient(ellipse 120% 50% at 50% 0%, ' + auraColor + '33 0%, #f7f4f0 60%)';
+
     /* Top-3 aesthetic breakdown */
     const tally = {};
     answers.forEach(t => { if (t) tally[t] = (tally[t] || 0) + 1; });
@@ -156,42 +170,45 @@
     ).join('');
 
     container.innerHTML =
-      '<div class="qr-cinema" id="qr-cinema">' +
-        /* orb */
-        '<div class="qr-orb-wrap">' +
-          '<div class="qr-orb" style="background:radial-gradient(circle at 38% 35%,' + auraColor + 'cc,' + auraColor + ');box-shadow:0 0 80px ' + auraColor + '66,0 0 160px ' + auraColor + '22"></div>' +
-          '<div class="qr-orb-ring" style="border-color:' + auraColor + '55"></div>' +
+      '<div class="qr-cinema" id="qr-cinema" style="background:transparent">' +
+        /* orb — larger, two rings */
+        '<div class="qr-orb-wrap" style="width:220px;height:220px;margin-bottom:8px">' +
+          '<div class="qr-orb" style="width:160px;height:160px;border-radius:50%;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);\
+background:radial-gradient(circle at 36% 32%,' + auraColor + 'dd,' + auraColor + ');\
+box-shadow:0 0 60px ' + auraColor + 'aa,0 0 120px ' + auraColor + '66,0 0 220px ' + auraColor + '33"></div>' +
+          '<div class="qr-orb-ring" style="width:190px;height:190px;border-radius:50%;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border:1.5px solid ' + auraColor + '77"></div>' +
+          '<div class="qr-orb-ring" style="width:220px;height:220px;border-radius:50%;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border:1px solid ' + auraColor + '33"></div>' +
         '</div>' +
         /* name */
         '<div class="qr-name-wrap">' +
-          '<span class="qr-eyebrow">Your aesthetic is</span>' +
-          '<div class="qr-name">' + letters + '</div>' +
-          '<p class="qr-mantra">&ldquo;' + mantra + '&rdquo;</p>' +
+          '<span class="qr-eyebrow" style="color:' + auraColor + 'bb;letter-spacing:0.22em">Your aesthetic is</span>' +
+          '<div class="qr-name" style="color:#1a1209">' + letters + '</div>' +
+          '<p class="qr-mantra" style="color:#7a6a60">&ldquo;' + mantra + '&rdquo;</p>' +
         '</div>' +
         /* aura color chip */
-        '<div class="qr-color-chip">' +
-          '<span class="qr-color-swatch" style="background:' + auraColor + '"></span>' +
+        '<div class="qr-color-chip" style="background:rgba(255,255,255,0.55);border:1px solid rgba(0,0,0,0.08);backdrop-filter:blur(8px)">' +
+          '<span class="qr-color-swatch" style="background:' + auraColor + ';box-shadow:0 0 12px ' + auraColor + '88"></span>' +
           '<div>' +
-            '<span class="qr-color-label">Your Aura Color</span>' +
-            '<span class="qr-color-hex">' + auraColor.toUpperCase() + '</span>' +
+            '<span class="qr-color-label" style="color:#aaa">Your Aura Color</span>' +
+            '<span class="qr-color-hex" style="color:#1a1209">' + auraColor.toUpperCase() + '</span>' +
           '</div>' +
         '</div>' +
         /* breakdown bars */
         '<div class="qr-breakdown">' +
           top3.map((s, i) =>
             '<div class="qr-bar-row" style="animation-delay:' + (0.6 + i * 0.18) + 's">' +
-              '<span class="qr-bar-label">' + s.name + '</span>' +
-              '<div class="qr-bar-track">' +
-                '<div class="qr-bar-fill" style="--pct:' + s.pct + '%;background:' + (s.primary ? auraColor : 'var(--beige-dark)') + '"></div>' +
+              '<span class="qr-bar-label" style="color:#3a3028">' + s.name + '</span>' +
+              '<div class="qr-bar-track" style="background:rgba(0,0,0,0.08)">' +
+                '<div class="qr-bar-fill" style="--pct:' + s.pct + '%;background:' + (s.primary ? auraColor : 'rgba(0,0,0,0.14)') + '"></div>' +
               '</div>' +
-              '<span class="qr-bar-pct">' + s.pct + '%</span>' +
+              '<span class="qr-bar-pct" style="color:#3a3028">' + s.pct + '%</span>' +
             '</div>'
           ).join('') +
         '</div>' +
         /* actions */
         '<div class="qr-actions">' +
-          '<a href="style.html#' + result.id + '" class="btn">Explore your style →</a>' +
-          '<button id="retake" class="btn btn-outline" style="border-color:rgba(255,255,255,0.3);color:#fff">Retake quiz</button>' +
+          '<a href="style.html#' + result.id + '" class="btn" style="background:' + auraColor + ';color:#fff;border:none;box-shadow:0 4px 24px ' + auraColor + '66">Explore your style →</a>' +
+          '<button id="retake" class="btn btn-outline" style="border-color:rgba(0,0,0,0.18);color:#3a3028;background:rgba(255,255,255,0.5)">Retake quiz</button>' +
         '</div>' +
       '</div>';
 
@@ -209,6 +226,8 @@
     });
 
     document.getElementById('retake').addEventListener('click', () => {
+      quizSection.style.background = '';
+      document.body.style.background = '';
       stepIndex = 0; answers = []; render();
     });
 
