@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Settings ג€” AURA</title>
+<title>Settings — AURA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
@@ -40,7 +40,7 @@
 }
 .settings-title em { font-style: italic; color: #c084a0; }
 
-/* ג”€ג”€ THE BIG CIRCLE ג”€ג”€ */
+/* ── THE BIG CIRCLE ── */
 .settings-circle {
   width: 560px;
   height: 560px;
@@ -67,7 +67,7 @@
   pointer-events: none;
 }
 
-/* ג”€ג”€ Avatar ג”€ג”€ */
+/* ── Avatar ── */
 .s-avatar-wrap {
   margin-bottom: 16px;
 }
@@ -92,7 +92,7 @@
   color: #0a0a0a;
 }
 
-/* ג”€ג”€ Name & email ג”€ג”€ */
+/* ── Name & email ── */
 .s-name {
   font-family: 'Playfair Display', Georgia, serif;
   font-size: 22px;
@@ -107,7 +107,7 @@
   margin-bottom: 24px;
 }
 
-/* ג”€ג”€ Info rows ג”€ג”€ */
+/* ── Info rows ── */
 .s-rows {
   width: 100%;
   margin-bottom: 24px;
@@ -132,7 +132,7 @@
   color: #0a0a0a;
 }
 
-/* ג”€ג”€ Buttons ג”€ג”€ */
+/* ── Buttons ── */
 .s-actions {
   display: flex;
   flex-direction: column;
@@ -160,7 +160,7 @@
 .s-btn-signout { background: transparent; color: #c084a0; border: 1px solid rgba(192,132,160,0.35); }
 .s-btn-signout:hover { background: #c084a0; color: #fff; border-color: #c084a0; }
 
-/* ג”€ג”€ Guest state ג”€ג”€ */
+/* ── Guest state ── */
 .s-guest-msg {
   font-size: 13px;
   color: #999;
@@ -168,10 +168,10 @@
   margin-bottom: 24px;
 }
 
-/* ג”€ג”€ Loading ג”€ג”€ */
+/* ── Loading ── */
 .s-loading { font-size: 13px; color: #bbb; }
 
-/* ג”€ג”€ Mobile ג”€ג”€ */
+/* ── Mobile ── */
 @media (max-width: 620px) {
   .settings-circle {
     width: 92vw;
@@ -209,44 +209,44 @@
   <div class="settings-circle">
 
     <!-- LOADING -->
-    <div id="state-loading" class="s-loading">Loadingג€¦</div>
+    <div id="state-loading" class="s-loading">Loading…</div>
 
     <!-- SIGNED IN -->
     <div id="state-signedin" style="display:none; width:100%; flex-direction:column; align-items:center;">
 
       <div class="s-avatar-wrap">
         <img class="s-avatar-img" id="s-avatar" src="" alt="" style="display:none">
-        <div class="s-avatar-initial" id="s-initial">ג€”</div>
+        <div class="s-avatar-initial" id="s-initial">—</div>
       </div>
 
-      <p class="s-name" id="s-name">ג€”</p>
-      <p class="s-email" id="s-email">ג€”</p>
+      <p class="s-name" id="s-name">—</p>
+      <p class="s-email" id="s-email">—</p>
 
       <div class="s-rows">
         <div class="s-row">
           <span class="s-row-label">Name</span>
-          <span class="s-row-value" id="r-name">ג€”</span>
+          <span class="s-row-value" id="r-name">—</span>
         </div>
         <div class="s-row">
           <span class="s-row-label">Email</span>
-          <span class="s-row-value" id="r-email">ג€”</span>
+          <span class="s-row-value" id="r-email">—</span>
         </div>
         <div class="s-row">
           <span class="s-row-label">Provider</span>
-          <span class="s-row-value" id="r-provider">ג€”</span>
+          <span class="s-row-value" id="r-provider">—</span>
         </div>
         <div class="s-row">
           <span class="s-row-label">Aesthetic</span>
-          <span class="s-row-value" id="r-aesthetic">ג€”</span>
+          <span class="s-row-value" id="r-aesthetic">—</span>
         </div>
         <div class="s-row">
           <span class="s-row-label">Moodboard</span>
-          <span class="s-row-value" id="r-moodboard">ג€”</span>
+          <span class="s-row-value" id="r-moodboard">—</span>
         </div>
       </div>
 
       <div class="s-actions">
-        <a href="moodboard.html" class="s-btn s-btn-primary">View Moodboard ג†’</a>
+        <a href="moodboard.html" class="s-btn s-btn-primary">View Moodboard →</a>
         <a href="index.html" class="s-btn s-btn-outline">Back to Homepage</a>
         <button class="s-btn s-btn-signout" id="signout-btn">Sign Out</button>
       </div>
@@ -257,7 +257,7 @@
     <div id="state-guest" style="display:none; width:100%; flex-direction:column; align-items:center;">
       <p class="s-guest-msg">You're browsing as a guest.<br>Sign in to save your moodboard<br>and access your profile.</p>
       <div class="s-actions">
-        <a href="login.html" class="s-btn s-btn-primary">Sign In / Create Account ג†’</a>
+        <a href="login.html" class="s-btn s-btn-primary">Sign In / Create Account →</a>
         <a href="index.html" class="s-btn s-btn-outline">Back to Homepage</a>
       </div>
     </div>
@@ -289,7 +289,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
     if (btn) btn.textContent = 'Account';
 
     var name     = user.displayName || user.email.split('@')[0];
-    var email    = user.email || 'ג€”';
+    var email    = user.email || '—';
     var photo    = user.photoURL;
     var provider = user.providerData[0]
       ? (user.providerData[0].providerId === 'google.com' ? 'Google' : 'Email / Password')
@@ -315,7 +315,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
       document.getElementById('r-moodboard').textContent =
         items.length + ' saved ' + (items.length === 1 ? 'look' : 'looks');
     } catch(e) {
-      document.getElementById('r-moodboard').textContent = 'ג€”';
+      document.getElementById('r-moodboard').textContent = '—';
     }
 
     try {
@@ -324,7 +324,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
       document.getElementById('r-aesthetic').textContent =
         quizResult ? quizResult.name : 'Not taken yet';
     } catch(e) {
-      document.getElementById('r-aesthetic').textContent = 'ג€”';
+      document.getElementById('r-aesthetic').textContent = '—';
     }
 
     show('state-signedin', true);

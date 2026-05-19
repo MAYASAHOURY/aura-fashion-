@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Stylist ג€” AURA</title>
+<title>AI Stylist — AURA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
@@ -25,13 +25,13 @@
   <div class="nav-burger" aria-label="Open menu" role="button" tabindex="0"><span></span><span></span><span></span></div>
 </nav>
 
-<!-- ג•ג• ATELIER LAYOUT ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג•ג• -->
+<!-- ══ ATELIER LAYOUT ══════════════════════════════════════ -->
 <div class="atelier-wrap">
 
-  <!-- LEFT ג”€ג”€ editorial studio panel -->
+  <!-- LEFT ── editorial studio panel -->
   <aside class="atelier-panel" aria-label="AI Stylist panel">
 
-    <!-- Background image ג€” updates with conversation topic -->
+    <!-- Background image — updates with conversation topic -->
     <div class="atelier-panel-bg">
       <img id="atelier-panel-img" class="atelier-panel-img"
            src="images/elegant/hero.jpg"
@@ -55,25 +55,25 @@
       <div class="atelier-panel-mid">
         <p class="atelier-panel-kicker">Your personal</p>
         <h2 class="atelier-panel-headline"><em>style universe.</em></h2>
-        <p class="atelier-panel-sub">Describe the occasion, vibe, or wardrobe challenge ג€” I'll build the look with shoppable picks at every budget.</p>
+        <p class="atelier-panel-sub">Describe the occasion, vibe, or wardrobe challenge — I'll build the look with shoppable picks at every budget.</p>
         <div class="atelier-panel-divider"></div>
         <div class="atelier-panel-meta">
-          <div class="atelier-meta-pill">ג¦ Visual Mood</div>
-          <div class="atelier-meta-pill">ג¦ Shoppable</div>
-          <div class="atelier-meta-pill">ג¦ All Budgets</div>
+          <div class="atelier-meta-pill">✦ Visual Mood</div>
+          <div class="atelier-meta-pill">✦ Shoppable</div>
+          <div class="atelier-meta-pill">✦ All Budgets</div>
         </div>
       </div>
 
       <!-- Bottom: quick asks -->
       <div class="atelier-panel-bottom">
-        <p class="atelier-chips-label">ג€” Try asking</p>
+        <p class="atelier-chips-label">— Try asking</p>
         <div class="atelier-chips" id="atelier-chips"></div>
       </div>
 
     </div>
   </aside>
 
-  <!-- RIGHT ג”€ג”€ conversation -->
+  <!-- RIGHT ── conversation -->
   <div class="atelier-chat">
 
     <!-- Message feed -->
@@ -83,7 +83,7 @@
     <div class="atelier-input-area">
       <form class="atelier-form" id="stylist-form" autocomplete="off">
         <input type="text" id="stylist-input"
-               placeholder="Ask anything ג€” outfits, colors, occasionsג€¦"
+               placeholder="Ask anything — outfits, colors, occasions…"
                autocomplete="off" spellcheck="false">
         <button type="submit" class="atelier-send" aria-label="Send message">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
@@ -107,9 +107,9 @@
       <div><div class="footer-brand">AUR<span>A</span></div><p class="footer-tagline">A curated fashion universe.</p></div>
       <div class="footer-col"><h4>Discover</h4><ul><li><a href="quiz.html">Style quiz</a></li><li><a href="index.html#styles">All aesthetics</a></li><li><a href="stylist.html">AI stylist</a></li><li><a href="moodboard.html">Moodboard</a></li><li><a href="brands.html">Partners</a></li></ul></div>
       <div class="footer-col"><h4>Aesthetics</h4><ul><li><a href="style.html#classic">Classic</a></li><li><a href="style.html#minimalist">Minimalist</a></li><li><a href="style.html#korean">Korean</a></li><li><a href="style.html#elegant">Elegant</a></li></ul></div>
-      <div class="footer-col"><h4>Shop partners</h4><ul><li>Zara ֲ· COS ֲ· Mango</li><li>H&M ֲ· Uniqlo ֲ· ASOS</li><li>SHEIN ֲ· Bershka ֲ· Pull&Bear</li><li>Nike ֲ· Adidas ֲ· Sephora</li></ul></div>
+      <div class="footer-col"><h4>Shop partners</h4><ul><li>Zara · COS · Mango</li><li>H&M · Uniqlo · ASOS</li><li>SHEIN · Bershka · Pull&Bear</li><li>Nike · Adidas · Sephora</li></ul></div>
     </div>
-    <div class="footer-bottom"><span>ֲ© 2026 AURA Fashion</span><span>Designed with care, dressed with intention.</span></div>
+    <div class="footer-bottom"><span>© 2026 AURA Fashion</span><span>Designed with care, dressed with intention.</span></div>
   </div>
 </footer>
 
@@ -126,7 +126,7 @@
   const panelImg   = document.getElementById('atelier-panel-img');
   const chipsEl    = document.getElementById('atelier-chips');
 
-  /* ג”€ג”€ Quick asks ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ */
+  /* ── Quick asks ────────────────────────────────────────── */
   const QUICK_ASKS = [
     'What should I wear with beige pants?',
     'Outfit ideas for a coffee date',
@@ -150,7 +150,7 @@
     chipsEl.appendChild(btn);
   });
 
-  /* ג”€ג”€ Panel image update ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ */
+  /* ── Panel image update ────────────────────────────────── */
   const MOOD_QUERIES = {
     beige:       'beige fashion outfit neutral tones woman',
     black:       'black jeans outfit fashion editorial',
@@ -201,7 +201,7 @@
     }, 420);
   }
 
-  /* ג”€ג”€ Render messages ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ */
+  /* ── Render messages ────────────────────────────────────── */
   function appendMessage(text, who, products, moodImg) {
     const row = document.createElement('div');
     row.className = 'atelier-msg atelier-msg-' + who;
@@ -227,7 +227,7 @@
       bubble.insertAdjacentHTML('beforeend',
         '<div class="atelier-mood">' +
           '<img src="' + moodImg + '" alt="Mood board" loading="lazy">' +
-          '<span class="atelier-mood-tag">Mood ג¦</span>' +
+          '<span class="atelier-mood-tag">Mood ✦</span>' +
         '</div>'
       );
       updatePanelBg(moodImg);
@@ -257,7 +257,7 @@
     messagesEl.scrollTop = messagesEl.scrollHeight;
   }
 
-  /* ג”€ג”€ Typing indicator ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ */
+  /* ── Typing indicator ───────────────────────────────────── */
   function showTyping() {
     const row = document.createElement('div');
     row.className = 'atelier-msg atelier-msg-ai';
@@ -276,7 +276,7 @@
     if (t) t.remove();
   }
 
-  /* ג”€ג”€ Ask ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ */
+  /* ── Ask ────────────────────────────────────────────────── */
   function ask(question) {
     if (!question.trim()) return;
     appendMessage(question, 'user');
@@ -290,7 +290,7 @@
     }, delay);
   }
 
-  /* ג”€ג”€ Form submit ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ */
+  /* ── Form submit ────────────────────────────────────────── */
   formEl.addEventListener('submit', e => {
     e.preventDefault();
     const v = inputEl.value.trim();
@@ -299,9 +299,9 @@
     ask(v);
   });
 
-  /* ג”€ג”€ Welcome message ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ */
+  /* ── Welcome message ────────────────────────────────────── */
   appendMessage(
-    'Hi ג€” I\'m AURA, your personal stylist. Tell me what you\'re working with: the occasion, what\'s already in your closet, the weather, the vibe. I\'ll build the look ג€” visual mood + shoppable products at every budget. ג¦',
+    'Hi — I\'m AURA, your personal stylist. Tell me what you\'re working with: the occasion, what\'s already in your closet, the weather, the vibe. I\'ll build the look — visual mood + shoppable products at every budget. ✦',
     'ai'
   );
 

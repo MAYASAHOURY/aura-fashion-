@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Style Quiz ג€” AURA</title>
+<title>Style Quiz — AURA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
@@ -35,9 +35,9 @@
       <div><div class="footer-brand">AUR<span>A</span></div><p class="footer-tagline">A curated fashion universe.</p></div>
       <div class="footer-col"><h4>Discover</h4><ul><li><a href="quiz.html">Style quiz</a></li><li><a href="index.html#styles">All aesthetics</a></li><li><a href="stylist.html">AI stylist</a></li><li><a href="moodboard.html">Moodboard</a></li><li><a href="brands.html">Partners</a></li></ul></div>
       <div class="footer-col"><h4>Aesthetics</h4><ul><li><a href="style.html#classic">Classic</a></li><li><a href="style.html#minimalist">Minimalist</a></li><li><a href="style.html#korean">Korean</a></li><li><a href="style.html#elegant">Elegant</a></li></ul></div>
-      <div class="footer-col"><h4>Shop partners</h4><ul><li>Zara ֲ· COS ֲ· Mango</li><li>H&M ֲ· Uniqlo ֲ· ASOS</li><li>SHEIN ֲ· Bershka ֲ· Pull&Bear</li><li>Nike ֲ· Adidas ֲ· Sephora</li></ul></div>
+      <div class="footer-col"><h4>Shop partners</h4><ul><li>Zara · COS · Mango</li><li>H&M · Uniqlo · ASOS</li><li>SHEIN · Bershka · Pull&Bear</li><li>Nike · Adidas · Sephora</li></ul></div>
     </div>
-    <div class="footer-bottom"><span>ֲ© 2026 AURA Fashion</span><span>Designed with care, dressed with intention.</span></div>
+    <div class="footer-bottom"><span>© 2026 AURA Fashion</span><span>Designed with care, dressed with intention.</span></div>
   </div>
 </footer>
 
@@ -73,8 +73,8 @@
     });
     html += '</div>';
     html += '<div class="quiz-nav">';
-    html += '<button id="prev-btn"' + (stepIndex === 0 ? ' disabled' : '') + '>ג† Back</button>';
-    html += '<button id="next-btn"' + (!answers[stepIndex] ? ' disabled' : '') + '>' + (stepIndex === QUIZ.length - 1 ? 'See result ג†’' : 'Next ג†’') + '</button>';
+    html += '<button id="prev-btn"' + (stepIndex === 0 ? ' disabled' : '') + '>← Back</button>';
+    html += '<button id="next-btn"' + (!answers[stepIndex] ? ' disabled' : '') + '>' + (stepIndex === QUIZ.length - 1 ? 'See result →' : 'Next →') + '</button>';
     html += '</div>';
     html += '</div>';
 
@@ -115,7 +115,7 @@
     return STYLES[bestTag];
   }
 
-  /* ג”€ג”€ Aura identity data ג”€ג”€ */
+  /* ── Aura identity data ── */
   const AURA_COLORS = {
     classic:    '#c4a882', minimalist: '#aeaaa4', korean:  '#f2b8c6',
     elegant:    '#a08070', y2k:        '#c084fc', streetwear: '#7c8794',
@@ -190,7 +190,7 @@
         '</div>' +
         /* actions */
         '<div class="qr-actions">' +
-          '<a href="style.html#' + result.id + '" class="btn">Explore your style ג†’</a>' +
+          '<a href="style.html#' + result.id + '" class="btn">Explore your style →</a>' +
           '<button id="retake" class="btn btn-outline" style="border-color:rgba(255,255,255,0.3);color:#fff">Retake quiz</button>' +
         '</div>' +
       '</div>';

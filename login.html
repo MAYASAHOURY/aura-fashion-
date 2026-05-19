@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -23,14 +23,14 @@
 
 body { font-family: var(--font-sans); background: #0a0a0a; overflow: hidden; height: 100vh; }
 
-/* ג”€ג”€ Layout ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ */
+/* ── Layout ─────────────────────────────────────────────────── */
 .auth-wrap {
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 100vh;
 }
 
-/* ג”€ג”€ LEFT: photo panel ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ */
+/* ── LEFT: photo panel ──────────────────────────────────────── */
 .auth-photo {
   position: relative;
   overflow: hidden;
@@ -64,7 +64,7 @@ body { font-family: var(--font-sans); background: #0a0a0a; overflow: hidden; hei
   color: rgba(255,255,255,0.45);
 }
 
-/* ג”€ג”€ RIGHT: form panel ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ */
+/* ── RIGHT: form panel ──────────────────────────────────────── */
 .auth-form-panel {
   background: #0d0d0d;
   display: flex;
@@ -109,7 +109,7 @@ body { font-family: var(--font-sans); background: #0a0a0a; overflow: hidden; hei
   line-height: 1.6;
 }
 
-/* ג”€ג”€ Tabs (Join / Sign In) ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ */
+/* ── Tabs (Join / Sign In) ──────────────────────────────────── */
 .auth-tabs {
   display: flex;
   gap: 0;
@@ -141,7 +141,7 @@ body { font-family: var(--font-sans); background: #0a0a0a; overflow: hidden; hei
   background: #fff;
 }
 
-/* ג”€ג”€ Form ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ */
+/* ── Form ───────────────────────────────────────────────────── */
 .auth-fields { display: flex; flex-direction: column; gap: 0; }
 .auth-field {
   position: relative;
@@ -162,7 +162,7 @@ body { font-family: var(--font-sans); background: #0a0a0a; overflow: hidden; hei
 }
 .auth-field input::placeholder { color: rgba(255,255,255,0.3); }
 
-/* ג”€ג”€ Buttons ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ */
+/* ── Buttons ────────────────────────────────────────────────── */
 .auth-cta {
   margin-top: 32px;
   width: 100%;
@@ -245,7 +245,7 @@ body { font-family: var(--font-sans); background: #0a0a0a; overflow: hidden; hei
   text-underline-offset: 3px;
 }
 
-/* ג”€ג”€ Signed-in state ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ */
+/* ── Signed-in state ────────────────────────────────────────── */
 .auth-user { display: none; flex-direction: column; align-items: center; gap: 16px; text-align: center; }
 .auth-avatar { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.2); }
 .auth-user-name { font-family: var(--font-display); font-size: 22px; color: #fff; }
@@ -265,13 +265,13 @@ body { font-family: var(--font-sans); background: #0a0a0a; overflow: hidden; hei
 }
 .auth-signout:hover { border-color: rgba(255,255,255,0.35); color: rgba(255,255,255,0.7); }
 
-/* ג”€ג”€ Error ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ */
+/* ── Error ──────────────────────────────────────────────────── */
 .auth-error {
   font-size: 12px; color: #f87171;
   margin-top: 12px; display: none;
 }
 
-/* ג”€ג”€ Mobile ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ */
+/* ── Mobile ─────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   body { overflow: auto; }
   .auth-wrap { grid-template-columns: 1fr; height: auto; min-height: 100vh; }
@@ -289,7 +289,7 @@ body { font-family: var(--font-sans); background: #0a0a0a; overflow: hidden; hei
   <div class="auth-photo">
     <img src="signin-bg.jpg" alt="AURA Fashion">
     <div class="auth-photo-veil"></div>
-    <div class="auth-photo-top">AURA &nbsp;ֲ·&nbsp; 2026</div>
+    <div class="auth-photo-top">AURA &nbsp;·&nbsp; 2026</div>
     <div class="auth-photo-bottom">
       <span class="auth-photo-tag">Style</span>
       <span class="auth-photo-tag">Identity</span>
@@ -376,7 +376,7 @@ body { font-family: var(--font-sans); background: #0a0a0a; overflow: hidden; hei
   const formsEl   = document.getElementById('auth-forms');
   const userEl    = document.getElementById('auth-user');
 
-  /* ג”€ג”€ Tab switch ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ */
+  /* ── Tab switch ─────────────────────────────────────────── */
   let mode = 'join';
   document.getElementById('tab-join').addEventListener('click', () => setMode('join'));
   document.getElementById('tab-signin').addEventListener('click', () => setMode('signin'));
@@ -394,14 +394,14 @@ body { font-family: var(--font-sans); background: #0a0a0a; overflow: hidden; hei
     document.getElementById('switch-btn').addEventListener('click', () => setMode(mode === 'join' ? 'signin' : 'join'));
   }
 
-  /* ג”€ג”€ Guest flag ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ */
+  /* ── Guest flag ─────────────────────────────────────────── */
   document.getElementById('guest-link').addEventListener('click', function(e) {
     e.preventDefault();
     sessionStorage.setItem('aura_guest', '1'); // clears automatically when tab closes
     window.location.href = 'index.html';
   });
 
-  /* ג”€ג”€ Auth state ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ */
+  /* ── Auth state ─────────────────────────────────────────── */
   auth.onAuthStateChanged(user => {
     if (user) {
       sessionStorage.removeItem('aura_guest'); // clear guest flag when properly signed in
@@ -412,7 +412,7 @@ body { font-family: var(--font-sans); background: #0a0a0a; overflow: hidden; hei
     }
   });
 
-  /* ג”€ג”€ Create account ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ */
+  /* ── Create account ─────────────────────────────────────── */
   document.getElementById('join-btn').addEventListener('click', async () => {
     const name  = document.getElementById('join-name').value.trim();
     const email = document.getElementById('join-email').value.trim();
@@ -426,7 +426,7 @@ body { font-family: var(--font-sans); background: #0a0a0a; overflow: hidden; hei
     } catch(e) { showErr(errEl, friendlyErr(e.code)); }
   });
 
-  /* ג”€ג”€ Sign in ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ */
+  /* ── Sign in ────────────────────────────────────────────── */
   document.getElementById('si-btn').addEventListener('click', async () => {
     const email = document.getElementById('si-email').value.trim();
     const pass  = document.getElementById('si-pass').value;
@@ -437,8 +437,8 @@ body { font-family: var(--font-sans); background: #0a0a0a; overflow: hidden; hei
     } catch(e) { showErr(errEl, friendlyErr(e.code)); }
   });
 
-  /* ג”€ג”€ Google ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ */
-  /* Mobile browsers block popups ג€” use redirect on phones/tablets */
+  /* ── Google ─────────────────────────────────────────────── */
+  /* Mobile browsers block popups — use redirect on phones/tablets */
   var isMobile = /iPhone|iPad|iPod|Android|Mobile/i.test(navigator.userAgent);
 
   /* Handle the return from a redirect sign-in */
@@ -463,7 +463,7 @@ body { font-family: var(--font-sans); background: #0a0a0a; overflow: hidden; hei
     }
   });
 
-  /* ג”€ג”€ Sign out ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ */
+  /* ── Sign out ───────────────────────────────────────────── */
   document.getElementById('signout-btn').addEventListener('click', () => auth.signOut());
 
   function showErr(el, msg) { el.textContent = msg; el.style.display = 'block'; }
