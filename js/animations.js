@@ -391,15 +391,20 @@
     var raf = 0;
 
     function loop() {
-      rx += (mx - rx) * 0.14;
-      ry += (my - ry) * 0.14;
+      var dx = mx - rx;
+      var dy = my - ry;
+      rx += dx * 0.14;
+      ry += dy * 0.14;
       dot.style.transform  = 'translate3d(' + mx + 'px,' + my + 'px,0) translate(-50%,-50%)';
       ring.style.transform = 'translate3d(' + rx + 'px,' + ry + 'px,0) translate(-50%,-50%)';
-      raf = requestAnimationFrame(loop);
+      /* Stop the rAF loop once the ring has caught up — restart on next mousemove */
+      raf = (Math.abs(dx) > 0.3 || Math.abs(dy) > 0.3) ? requestAnimationFrame(loop) : 0;
     }
-    loop();
 
-    document.addEventListener('mousemove', function (e) { mx = e.clientX; my = e.clientY; }, { passive: true });
+    document.addEventListener('mousemove', function (e) {
+      mx = e.clientX; my = e.clientY;
+      if (!raf) raf = requestAnimationFrame(loop);
+    }, { passive: true });
     document.addEventListener('mousedown', function () { document.body.classList.add('cursor-clicking'); });
     document.addEventListener('mouseup',   function () { document.body.classList.remove('cursor-clicking'); });
 
@@ -453,6 +458,104 @@
     }, 5000);
   }
 
+  /* ───────────────────────────────────────────────────────────
+     14. EDITORIAL QUOTE SPOTLIGHT
+         Single cycling quote on the dark stage between the
+         aesthetic grid and the footer. Crossfades every 6 s.
+  ─────────────────────────────────────────────────────────── */
+  function initQuoteSpotlight() {
+    var stage = document.getElementById('qsp-stage');
+    if (!stage) return;
+
+    var authorEl  = document.getElementById('qsp-author');
+    var fillEl    = document.getElementById('qsp-progress');
+    var counterEl = document.getElementById('qsp-counter');
+    var dotsEl    = document.getElementById('qsp-dots');
+
+    var QUOTES = [
+      { text: 'Fashion fades, only style remains.',                           author: '— Coco Chanel'       },
+      { text: 'Style is a way to say who you are without having to speak.',   author: '— Rachel Zoe'        },
+      { text: 'I don\'t design clothes. I design dreams.',                    author: '— Ralph Lauren'      },
+      { text: 'Simplicity is the ultimate sophistication.',                   author: '— Leonardo da Vinci' },
+      { text: 'In order to be irreplaceable, one must always be different.',  author: '— Coco Chanel'       },
+      { text: 'Clothes mean nothing until someone lives in them.',            author: '— Marc Jacobs'       },
+      { text: 'Elegance is when the inside is as beautiful as the outside.',  author: '— Coco Chanel'       },
+      { text: 'Trendy is the last stage before tacky.',                       author: '— Karl Lagerfeld'    }
+    ];
+
+    var INTERVAL = 6000;
+    var current  = 0;
+    var items    = [];
+    var dots     = [];
+    var timer    = null;
+
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+    /* Build quote elements */
+    QUOTES.forEach(function (q, i) {
+      var el = document.createElement('div');
+      el.className = 'qsp-item' + (i === 0 ? ' is-active' : '');
+      el.innerHTML = '<p class="qsp-text">' + q.text + '</p>';
+      stage.appendChild(el);
+      items.push(el);
+    });
+
+    /* Build dot buttons */
+    if (dotsEl) {
+      QUOTES.forEach(function (_, i) {
+        var dot = document.createElement('button');
+        dot.className = 'qsp-dot' + (i === 0 ? ' is-active' : '');
+        dot.setAttribute('aria-label', 'Quote ' + (i + 1));
+        dot.addEventListener('click', function () { goTo(i); resetTimer(); });
+        dotsEl.appendChild(dot);
+        dots.push(dot);
+      });
+    }
+
+    function updateMeta() {
+      if (authorEl)  authorEl.textContent  = QUOTES[current].author;
+      if (counterEl) counterEl.textContent = pad(current + 1) + ' / ' + pad(QUOTES.length);
+      dots.forEach(function (d, i) { d.classList.toggle('is-active', i === current); });
+    }
+
+    function startProgress() {
+      if (!fillEl) return;
+      fillEl.style.transition = 'none';
+      fillEl.style.width = '0%';
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          fillEl.style.transition = 'width ' + (INTERVAL / 1000) + 's linear';
+          fillEl.style.width = '100%';
+        });
+      });
+    }
+
+    function goTo(next) {
+      if (next === current) return;
+      var prev = current;
+      current  = next;
+
+      items[prev].classList.remove('is-active');
+      items[prev].classList.add('is-exit');
+      var exitPrev = prev;
+      setTimeout(function () { items[exitPrev].classList.remove('is-exit'); }, 700);
+
+      items[current].classList.add('is-active');
+      updateMeta();
+      startProgress();
+    }
+
+    function resetTimer() {
+      clearInterval(timer);
+      timer = setInterval(function () { goTo((current + 1) % QUOTES.length); }, INTERVAL);
+    }
+
+    /* Kick off */
+    updateMeta();
+    startProgress();
+    timer = setInterval(function () { goTo((current + 1) % QUOTES.length); }, INTERVAL);
+  }
+
   function init() {
     initScrollBar();
     initWordReveal();        // Splits words — actual animation fires via revealHomepage()
@@ -467,6 +570,7 @@
     initImageParallax();
     initCustomCursor();
     initQuoteStrip();
+    initQuoteSpotlight();
 
     // Listen for auth gate or intro to signal ready
     window.addEventListener('aura:homepage-reveal', revealHomepage, { once: true });

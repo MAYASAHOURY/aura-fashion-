@@ -123,41 +123,21 @@
   <div class="styles-grid" id="styles-grid"></div>
 </section>
 
-<!-- FLOATING FASHION QUOTES — final emotional moment -->
-<section class="quotes-cloud reveal">
-  <div class="quotes-cloud-stage">
-    <article class="quote-bubble qb-1">
-      <p class="quote-text">Fashion fades, only style remains.</p>
-      <p class="quote-author">— Coco Chanel</p>
-    </article>
-    <article class="quote-bubble qb-2">
-      <p class="quote-text">Style is a way to say who you are without having to speak.</p>
-      <p class="quote-author">— Rachel Zoe</p>
-    </article>
-    <article class="quote-bubble qb-3">
-      <p class="quote-text">I don't design clothes. I design dreams.</p>
-      <p class="quote-author">— Ralph Lauren</p>
-    </article>
-    <article class="quote-bubble qb-4">
-      <p class="quote-text">Simplicity is the ultimate sophistication.</p>
-      <p class="quote-author">— Leonardo da Vinci</p>
-    </article>
-    <article class="quote-bubble qb-5">
-      <p class="quote-text">In order to be irreplaceable, one must always be different.</p>
-      <p class="quote-author">— Coco Chanel</p>
-    </article>
-    <article class="quote-bubble qb-6">
-      <p class="quote-text">Clothes mean nothing until someone lives in them.</p>
-      <p class="quote-author">— Marc Jacobs</p>
-    </article>
-    <article class="quote-bubble qb-7">
-      <p class="quote-text">Elegance is when the inside is as beautiful as the outside.</p>
-      <p class="quote-author">— Coco Chanel</p>
-    </article>
-    <article class="quote-bubble qb-8">
-      <p class="quote-text">Trendy is the last stage before tacky.</p>
-      <p class="quote-author">— Karl Lagerfeld</p>
-    </article>
+<!-- EDITORIAL QUOTE SPOTLIGHT -->
+<section class="qsp-section">
+  <div class="qsp-inner">
+    <span class="qsp-mark" aria-hidden="true">"</span>
+    <div class="qsp-stage" id="qsp-stage" aria-live="polite"></div>
+    <div class="qsp-footer">
+      <p class="qsp-author" id="qsp-author"></p>
+      <div class="qsp-progress-wrap">
+        <div class="qsp-progress" id="qsp-progress"></div>
+      </div>
+      <div class="qsp-bottom-row">
+        <p class="qsp-counter" id="qsp-counter">01 / 08</p>
+        <div class="qsp-dots" id="qsp-dots"></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -177,7 +157,7 @@
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-<script src="js/data.js?v=5"></script>
+<script src="js/data.js?v=6"></script>
 <script src="js/main.js?v=4"></script>
 <script src="js/firebase.js"></script>
 <script src="js/animations.js?v=12"></script>
@@ -229,34 +209,66 @@ function _introIsPlaying() {
 }
 
 /* ── Main auth listener ────────────────────────────────────── */
+/*
+   FIX: onAuthStateChanged can fire twice on page load — once with null
+   (before Firebase finishes reading the persisted session from IndexedDB)
+   and again with the real user. The old code added a new event listener
+   each time, so both _goToLogin and _revealPage ended up registered on
+   aura:homepage-reveal. When the intro ended, the redirect won.
+
+   Fix: register the intro-end listener only once (_introHooked flag) and
+   have it read _authPending at fire-time so the last state wins. For the
+   no-intro case, delay the redirect 600 ms to let Firebase finish loading.
+*/
+var _authPending = 'loading'; /* 'authed' | 'anon' */
+var _introHooked = false;
+var _loginTimer  = null;
+
+function _onIntroEnd() {
+  if (_authPending === 'authed') _revealPage();
+  else _goToLogin();
+}
+
 firebase.auth().onAuthStateChanged(function(user) {
+  clearTimeout(_loginTimer);
   var btn = document.getElementById('nav-auth-btn');
+  if (btn) btn.textContent = 'Account';
 
   if (user || isGuest()) {
     /* ── Authenticated or guest: show the homepage ── */
-    if (btn) btn.textContent = 'Account';
+    _authPending = 'authed';
 
     if (_introIsPlaying()) {
-      /* Intro is running → reveal page once it fires homepage-reveal
-         (that's after the intro fades to cream, i.e. seamless) */
-      window.addEventListener('aura:homepage-reveal', _revealPage, { once: true });
+      /* Intro running → hook its end event once; _onIntroEnd reads current state */
+      if (!_introHooked) {
+        _introHooked = true;
+        window.addEventListener('aura:homepage-reveal', _onIntroEnd, { once: true });
+      }
     } else {
-      /* No intro (return visit or already seen) → reveal immediately */
       _revealPage();
     }
 
   } else {
-    /* ── Not authenticated: send to login ── */
+    /* ── Not authenticated ── */
+    _authPending = 'anon';
+
     if (_introIsPlaying()) {
-      /* Let intro finish, then navigate while veil covers the page */
-      window.addEventListener('aura:homepage-reveal', _goToLogin, { once: true });
-      /* Safety net: if the event never fires within 14 s */
-      setTimeout(function() {
-        if (window.location.pathname.indexOf('login') === -1) _goToLogin();
-      }, 14000);
+      /* Hook intro end once; safety-net timeout fires if event never arrives */
+      if (!_introHooked) {
+        _introHooked = true;
+        window.addEventListener('aura:homepage-reveal', _onIntroEnd, { once: true });
+        setTimeout(function() {
+          if (window.location.pathname.indexOf('login') === -1 && _authPending === 'anon') {
+            _goToLogin();
+          }
+        }, 14000);
+      }
     } else {
-      /* No intro → navigate now (veil is opaque, nothing visible) */
-      _goToLogin();
+      /* Delay 600 ms — Firebase's initial null can arrive before IndexedDB
+         finishes restoring the persisted session. Re-check before redirecting. */
+      _loginTimer = setTimeout(function() {
+        if (!firebase.auth().currentUser && !isGuest()) _goToLogin();
+      }, 600);
     }
   }
 });

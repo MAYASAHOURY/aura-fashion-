@@ -210,7 +210,7 @@ const STORE_URLS = {
   'Levis':           q => `https://www.levi.com/US/en_US/search/?q=${encodeURIComponent(q)}`,
   'Brandy Melville': q => `https://www.brandymelville.com/search?q=${encodeURIComponent(q)}`,
   'Princess Polly':  q => `https://us.princesspolly.com/search?q=${encodeURIComponent(q)}`,
-  'Mejuri':          q => `https://mejuri.com/search?q=${encodeURIComponent(q)}`,
+  'Mejuri':          q => `https://mejuri.com/search?q=${encodeURIComponent(q)}&type=product`,
   'Dr. Martens':     q => `https://www.drmartens.com/us/en_us/search?q=${encodeURIComponent(q)}`,
   'Glossier':        q => `https://www.glossier.com/search?query=${encodeURIComponent(q)}`,
   'Beyond Retro':    q => `https://www.beyondretro.com/search?type=product&q=${encodeURIComponent(q)}`,
@@ -222,19 +222,19 @@ const STORE_URLS = {
   'AliExpress':      q => `https://www.aliexpress.com/wholesale?SearchText=${encodeURIComponent(q)}`,
   'Aritzia':         q => `https://www.aritzia.com/us/en/search?q=${encodeURIComponent(q)}`,
   'Charles & Keith': q => `https://www.charleskeith.com/us/search?q=${encodeURIComponent(q)}`,
-  'Cider':           q => `https://www.shopcider.com/search?keyword=${encodeURIComponent(q)}`,
+  'Cider':           q => `https://www.cider.com/collections/all?search=${encodeURIComponent(q)}`,
   'Converse':        q => `https://www.converse.com/c/search?q=${encodeURIComponent(q)}`,
   'Free People':     q => `https://www.freepeople.com/search/?q=${encodeURIComponent(q)}`,
   'Jacquemus':       q => `https://www.jacquemus.com/search?q=${encodeURIComponent(q)}`,
   'JW PEI':          q => `https://www.jwpei.com/search?q=${encodeURIComponent(q)}`,
   'Le Specs':        q => `https://www.lespecs.com/search?q=${encodeURIComponent(q)}`,
   'Pandora':         q => `https://us.pandora.net/en/search?q=${encodeURIComponent(q)}`,
-  'Polène':          q => `https://polene-paris.com/en/search?q=${encodeURIComponent(q)}`,
+  'Polène':          q => `https://www.asos.com/search/?q=${encodeURIComponent(q)}`,
   'Sézane':          q => `https://www.sezane.com/us/search?q=${encodeURIComponent(q)}`,
   'Tiffany & Co.':   q => `https://www.tiffany.com/en-us/search/?q=${encodeURIComponent(q)}`,
-  'Toteme':          q => `https://toteme-studio.com/search?q=${encodeURIComponent(q)}`,
-  'Veja':            q => `https://www.veja-store.com/en/catalogsearch/result/?q=${encodeURIComponent(q)}`,
-  'YesStyle':        q => `https://www.yesstyle.com/en/search.html?qsearch=${encodeURIComponent(q)}`
+  'Toteme':          q => `https://toteme.com/search?q=${encodeURIComponent(q)}`,
+  'Veja':            q => `https://www.asos.com/search/?q=${encodeURIComponent(q)}`,
+  'YesStyle':        q => `https://www.asos.com/search/?q=${encodeURIComponent(q)}`
 };
 
 const shopUrl = (store, q) => {
@@ -830,7 +830,7 @@ softgirl: {
   shop: {
     clothing: [
       P('aff', 'SHEIN', 'Floral Mini Dress', '$22', 'floral mini dress', 'floral dress pink product'),
-      P('mid', 'Brandy Melville', 'Pastel Cardigan', '$48', 'pastel cardigan', 'pink cardigan product'),
+      P('mid', 'H&M', 'Pastel Cardigan', '$48', 'pastel knit cardigan women', 'pink cardigan product'),
       P('lux', 'Reformation', 'Lace-Trim Dress', '$248', 'lace trim midi dress', 'lace dress product')
     ],
     shoes: [
@@ -845,7 +845,7 @@ softgirl: {
     ],
     accessories: [
       P('aff', 'SHEIN', 'Heart Sunglasses', '$6', 'heart sunglasses', 'heart sunglasses pink product'),
-      P('mid', 'Brandy Melville', 'Bow Hair Clips', '$18', 'bow hair clips', 'bow hair clips product'),
+      P('mid', 'H&M', 'Bow Hair Clips', '$18', 'bow hair clips set', 'bow hair clips product'),
       P('lux', 'Urban Outfitters', 'Pearl Headband', '$35', 'pearl headband', 'pearl headband product')
     ],
     beauty: [
@@ -1081,7 +1081,7 @@ const AI_RESPONSES = [
     keywords: ['korean style', 'k-fashion', 'kpop style', 'korean aesthetic', 'korean fashion', 'korean outfit', 'korean', 'kpop', 'k-pop'],
     response: "Korean fashion = effortless softness with clean proportions:\n\n• Oversized cardigan + pleated mini skirt + white sneakers.\n• Cropped knit + high-waist wide-leg trousers + platform loafers.\n• Pastel blazer + simple white tee + straight jeans.\n• Soft blouse + soft denim skirt + Mary Janes + knee socks.",
     productRefs: [
-      ['aff', 'YesStyle', 'Oversized Knit Cardigan', '$29', 'oversized knit cardigan korean women', 'oversized cardigan product'],
+      ['aff', 'SHEIN', 'Oversized Knit Cardigan', '$29', 'oversized knit cardigan korean women', 'oversized cardigan product'],
       ['mid', 'Uniqlo', 'Pleated Wide-Leg Trousers', '$59', 'pleated wide leg trousers women korean', 'pleated trousers product'],
       ['lux', 'Acne Studios', 'Ribbed Merino Knit', '$290', 'ribbed merino knit women', 'merino knit product']
     ]
@@ -1115,7 +1115,7 @@ const AI_RESPONSES = [
     response: "Soft girl is sweetness with intention:\n\n• Floral mini dress + white platform Mary Janes + bow hair clip.\n• Pastel cardigan + pleated mini skirt + ballet flats.\n• Lace-trim blouse + ribbon skirt + pearl jewelry.\n• Cami dress + sheer cardigan over + kitten heels.",
     productRefs: [
       ['aff', 'SHEIN', 'Floral Mini Dress', '$22', 'floral mini dress women soft girl', 'floral dress product'],
-      ['mid', 'Brandy Melville', 'Pastel Knit Cardigan', '$48', 'pastel knit cardigan women soft girl', 'pastel cardigan product'],
+      ['mid', 'H&M', 'Pastel Knit Cardigan', '$48', 'pastel knit cardigan women soft girl', 'pastel cardigan product'],
       ['mid', 'Charles & Keith', 'Ballet Flat Shoes', '$55', 'ballet flat shoes women', 'ballet flats product']
     ]
   },
@@ -1347,7 +1347,7 @@ const AI_RESPONSES = [
     productRefs: [
       ['aff', 'Charles & Keith', 'Structured Shoulder Bag', '$59', 'structured shoulder bag women', 'shoulder bag product'],
       ['mid', 'JW PEI', 'Woven Tote Bag', '$68', 'woven tote bag women', 'woven tote product'],
-      ['lux', 'Polène', 'Numéro Un Mini Bag', '$295', 'polene bag women leather', 'polene bag product']
+      ['lux', 'JW PEI', 'Gabbi Mini Bag', '$88', 'mini structured bag women leather elegant', 'leather mini bag product']
     ]
   }
 

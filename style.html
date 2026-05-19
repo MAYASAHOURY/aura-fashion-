@@ -46,10 +46,10 @@
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-<script src="js/data.js?v=5"></script>
+<script src="js/data.js?v=6"></script>
 <script src="js/main.js?v=4"></script>
 <script src="js/firebase.js"></script>
-<script src="js/style-page.js?v=5"></script>
+<script src="js/style-page.js?v=6"></script>
 <script src="js/animations.js?v=12"></script>
 <script>
 function navAuthClick() { window.location.href = 'settings.html'; }
@@ -57,7 +57,11 @@ function isGuest() { return sessionStorage.getItem('aura_guest') === '1'; }
 firebase.auth().onAuthStateChanged(function(user) {
   var btn = document.getElementById('nav-auth-btn');
   if (btn) btn.textContent = 'Account';
-  if (!user && !isGuest()) { window.location.replace('login.html'); }
+  if (!user && !isGuest()) {
+    setTimeout(function() {
+      if (!firebase.auth().currentUser && !isGuest()) window.location.replace('login.html');
+    }, 600);
+  }
 });
 </script>
 

@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Moodboard — AURA</title>
+<title>Moodboard ג€” AURA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
@@ -40,16 +40,16 @@
       <div><div class="footer-brand">AUR<span>A</span></div><p class="footer-tagline">A curated fashion universe.</p></div>
       <div class="footer-col"><h4>Discover</h4><ul><li><a href="quiz.html">Style quiz</a></li><li><a href="index.html#styles">All aesthetics</a></li><li><a href="stylist.html">AI stylist</a></li><li><a href="moodboard.html">Moodboard</a></li><li><a href="brands.html">Partners</a></li></ul></div>
       <div class="footer-col"><h4>Aesthetics</h4><ul><li><a href="style.html#classic">Classic</a></li><li><a href="style.html#minimalist">Minimalist</a></li><li><a href="style.html#korean">Korean</a></li><li><a href="style.html#elegant">Elegant</a></li></ul></div>
-      <div class="footer-col"><h4>Shop partners</h4><ul><li>Zara · COS · Mango</li><li>H&M · Uniqlo · ASOS</li><li>SHEIN · Bershka · Pull&Bear</li><li>Nike · Adidas · Sephora</li></ul></div>
+      <div class="footer-col"><h4>Shop partners</h4><ul><li>Zara ֲ· COS ֲ· Mango</li><li>H&M ֲ· Uniqlo ֲ· ASOS</li><li>SHEIN ֲ· Bershka ֲ· Pull&Bear</li><li>Nike ֲ· Adidas ֲ· Sephora</li></ul></div>
     </div>
-    <div class="footer-bottom"><span>© 2026 AURA Fashion</span><span>Designed with care, dressed with intention.</span></div>
+    <div class="footer-bottom"><span>ֲ© 2026 AURA Fashion</span><span>Designed with care, dressed with intention.</span></div>
   </div>
 </footer>
 
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-<script src="js/data.js?v=5"></script>
+<script src="js/data.js?v=6"></script>
 <script src="js/main.js?v=4"></script>
 <script src="js/firebase.js"></script>
 <script src="js/animations.js?v=12"></script>
@@ -58,10 +58,10 @@
   const container = document.getElementById('moodboard-container');
   let currentFilter = 'all';
 
-  /* ── Loading state ──────────────────────────────────────── */
-  container.innerHTML = '<div style="text-align:center;padding:80px 24px;color:var(--ink-soft);">Loading your moodboard…</div>';
+  /* ג”€ג”€ Loading state ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ */
+  container.innerHTML = '<div style="text-align:center;padding:80px 24px;color:var(--ink-soft);">Loading your moodboardג€¦</div>';
 
-  /* ── Empty state ────────────────────────────────────────── */
+  /* ג”€ג”€ Empty state ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ */
   function buildEmptyState() {
     const teaser = [];
     Object.values(STYLES).forEach(s => {
@@ -70,7 +70,7 @@
     });
     teaser.sort(() => Math.random() - 0.5);
 
-    let html = '<div class="moodboard-empty"><div class="icon">✦</div>';
+    let html = '<div class="moodboard-empty"><div class="icon">ג¦</div>';
     html += '<h3>Your moodboard is empty</h3>';
     html += "<p>Save outfits across the platform and they'll collect here.</p>";
     html += '<a href="index.html#styles" class="btn">Start exploring</a></div>';
@@ -84,7 +84,7 @@
     return html;
   }
 
-  /* ── Main render ────────────────────────────────────────── */
+  /* ג”€ג”€ Main render ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ */
   function render(items) {
     if (!items.length) { container.innerHTML = buildEmptyState(); return; }
 
@@ -116,7 +116,7 @@
         html += '<button class="save-btn saved" data-id="' + item.id + '" aria-label="Remove">';
         html += '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
         html += '</button>';
-        html += '<div class="inspiration-item-overlay">' + (item.style ? item.style + ' · ' : '') + (item.label || '') + '</div>';
+        html += '<div class="inspiration-item-overlay">' + (item.style ? item.style + ' ֲ· ' : '') + (item.label || '') + '</div>';
         html += '</div>';
       });
       html += '</div>';
@@ -160,7 +160,7 @@
     }
   }
 
-  /* ── Load from Firestore on page open ───────────────────── */
+  /* ג”€ג”€ Load from Firestore on page open ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ג”€ */
   fbLoadAll().then(items => render(items));
 
 })();
@@ -171,9 +171,14 @@ function isGuest() { return sessionStorage.getItem('aura_guest') === '1'; }
 firebase.auth().onAuthStateChanged(function(user) {
   var btn = document.getElementById('nav-auth-btn');
   if (btn) btn.textContent = 'Account';
-  if (!user && !isGuest()) { window.location.replace('login.html'); }
+  if (!user && !isGuest()) {
+    setTimeout(function() {
+      if (!firebase.auth().currentUser && !isGuest()) window.location.replace('login.html');
+    }, 600);
+  }
 });
 </script>
 
 </body>
 </html>
+

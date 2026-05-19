@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Settings — AURA</title>
+<title>Settings ג€” AURA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
@@ -40,7 +40,7 @@
 }
 .settings-title em { font-style: italic; color: #c084a0; }
 
-/* ── THE BIG CIRCLE ── */
+/* ג”€ג”€ THE BIG CIRCLE ג”€ג”€ */
 .settings-circle {
   width: 560px;
   height: 560px;
@@ -67,7 +67,7 @@
   pointer-events: none;
 }
 
-/* ── Avatar ── */
+/* ג”€ג”€ Avatar ג”€ג”€ */
 .s-avatar-wrap {
   margin-bottom: 16px;
 }
@@ -92,7 +92,7 @@
   color: #0a0a0a;
 }
 
-/* ── Name & email ── */
+/* ג”€ג”€ Name & email ג”€ג”€ */
 .s-name {
   font-family: 'Playfair Display', Georgia, serif;
   font-size: 22px;
@@ -107,7 +107,7 @@
   margin-bottom: 24px;
 }
 
-/* ── Info rows ── */
+/* ג”€ג”€ Info rows ג”€ג”€ */
 .s-rows {
   width: 100%;
   margin-bottom: 24px;
@@ -132,7 +132,7 @@
   color: #0a0a0a;
 }
 
-/* ── Buttons ── */
+/* ג”€ג”€ Buttons ג”€ג”€ */
 .s-actions {
   display: flex;
   flex-direction: column;
@@ -160,7 +160,7 @@
 .s-btn-signout { background: transparent; color: #c084a0; border: 1px solid rgba(192,132,160,0.35); }
 .s-btn-signout:hover { background: #c084a0; color: #fff; border-color: #c084a0; }
 
-/* ── Guest state ── */
+/* ג”€ג”€ Guest state ג”€ג”€ */
 .s-guest-msg {
   font-size: 13px;
   color: #999;
@@ -168,10 +168,10 @@
   margin-bottom: 24px;
 }
 
-/* ── Loading ── */
+/* ג”€ג”€ Loading ג”€ג”€ */
 .s-loading { font-size: 13px; color: #bbb; }
 
-/* ── Mobile ── */
+/* ג”€ג”€ Mobile ג”€ג”€ */
 @media (max-width: 620px) {
   .settings-circle {
     width: 92vw;
@@ -209,40 +209,44 @@
   <div class="settings-circle">
 
     <!-- LOADING -->
-    <div id="state-loading" class="s-loading">Loading…</div>
+    <div id="state-loading" class="s-loading">Loadingג€¦</div>
 
     <!-- SIGNED IN -->
     <div id="state-signedin" style="display:none; width:100%; flex-direction:column; align-items:center;">
 
       <div class="s-avatar-wrap">
         <img class="s-avatar-img" id="s-avatar" src="" alt="" style="display:none">
-        <div class="s-avatar-initial" id="s-initial">—</div>
+        <div class="s-avatar-initial" id="s-initial">ג€”</div>
       </div>
 
-      <p class="s-name" id="s-name">—</p>
-      <p class="s-email" id="s-email">—</p>
+      <p class="s-name" id="s-name">ג€”</p>
+      <p class="s-email" id="s-email">ג€”</p>
 
       <div class="s-rows">
         <div class="s-row">
           <span class="s-row-label">Name</span>
-          <span class="s-row-value" id="r-name">—</span>
+          <span class="s-row-value" id="r-name">ג€”</span>
         </div>
         <div class="s-row">
           <span class="s-row-label">Email</span>
-          <span class="s-row-value" id="r-email">—</span>
+          <span class="s-row-value" id="r-email">ג€”</span>
         </div>
         <div class="s-row">
           <span class="s-row-label">Provider</span>
-          <span class="s-row-value" id="r-provider">—</span>
+          <span class="s-row-value" id="r-provider">ג€”</span>
+        </div>
+        <div class="s-row">
+          <span class="s-row-label">Aesthetic</span>
+          <span class="s-row-value" id="r-aesthetic">ג€”</span>
         </div>
         <div class="s-row">
           <span class="s-row-label">Moodboard</span>
-          <span class="s-row-value" id="r-moodboard">—</span>
+          <span class="s-row-value" id="r-moodboard">ג€”</span>
         </div>
       </div>
 
       <div class="s-actions">
-        <a href="moodboard.html" class="s-btn s-btn-primary">View Moodboard →</a>
+        <a href="moodboard.html" class="s-btn s-btn-primary">View Moodboard ג†’</a>
         <a href="index.html" class="s-btn s-btn-outline">Back to Homepage</a>
         <button class="s-btn s-btn-signout" id="signout-btn">Sign Out</button>
       </div>
@@ -253,7 +257,7 @@
     <div id="state-guest" style="display:none; width:100%; flex-direction:column; align-items:center;">
       <p class="s-guest-msg">You're browsing as a guest.<br>Sign in to save your moodboard<br>and access your profile.</p>
       <div class="s-actions">
-        <a href="login.html" class="s-btn s-btn-primary">Sign In / Create Account →</a>
+        <a href="login.html" class="s-btn s-btn-primary">Sign In / Create Account ג†’</a>
         <a href="index.html" class="s-btn s-btn-outline">Back to Homepage</a>
       </div>
     </div>
@@ -285,7 +289,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
     if (btn) btn.textContent = 'Account';
 
     var name     = user.displayName || user.email.split('@')[0];
-    var email    = user.email || '—';
+    var email    = user.email || 'ג€”';
     var photo    = user.photoURL;
     var provider = user.providerData[0]
       ? (user.providerData[0].providerId === 'google.com' ? 'Google' : 'Email / Password')
@@ -311,7 +315,16 @@ firebase.auth().onAuthStateChanged(async function(user) {
       document.getElementById('r-moodboard').textContent =
         items.length + ' saved ' + (items.length === 1 ? 'look' : 'looks');
     } catch(e) {
-      document.getElementById('r-moodboard').textContent = '—';
+      document.getElementById('r-moodboard').textContent = 'ג€”';
+    }
+
+    try {
+      var profileDoc = await firebase.firestore().collection('users').doc(user.uid).get();
+      var quizResult = profileDoc.exists && profileDoc.data().quizResult;
+      document.getElementById('r-aesthetic').textContent =
+        quizResult ? quizResult.name : 'Not taken yet';
+    } catch(e) {
+      document.getElementById('r-aesthetic').textContent = 'ג€”';
     }
 
     show('state-signedin', true);
@@ -321,7 +334,9 @@ firebase.auth().onAuthStateChanged(async function(user) {
     show('state-guest', true);
 
   } else {
-    window.location.href = 'login.html';
+    setTimeout(function() {
+      if (!firebase.auth().currentUser && !isGuest()) window.location.href = 'login.html';
+    }, 600);
   }
 });
 
@@ -335,3 +350,4 @@ document.getElementById('signout-btn').addEventListener('click', function() {
 
 </body>
 </html>
+
