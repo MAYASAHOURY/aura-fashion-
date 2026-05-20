@@ -99,5 +99,7 @@ function toggleMoodboard(item) {
   fbSave(item); return true;
 }
 
-/* ── Sync cache from Firestore on page load ────────────────── */
-fbLoadAll().catch(() => {});
+/* ── Sync cache from Firestore on pages that use moodboard ── */
+if (document.getElementById('moodboard-container') || document.getElementById('r-moodboard')) {
+  fbLoadAll().catch(() => {});
+}
