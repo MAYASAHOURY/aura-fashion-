@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var l=localStorage.getItem("aura_lang");if(!l){var nl=(navigator.language||"en").toLowerCase().slice(0,2);l=(["en","es","ar","he"].indexOf(nl)>=0)?nl:"en";}document.documentElement.lang=l;document.documentElement.dir=(l==="ar"||l==="he")?"rtl":"ltr";}catch(e){}})();</script>
+<script>/* Synchronous auth gate — redirect to login if no session marker. */
+(function(){try{if(!localStorage.getItem('aura_has_session')){document.documentElement.style.visibility='hidden';window.location.replace('login.html');return;}}catch(e){}})();</script>
+<title>Style Community — Aura Glossy</title>
+<meta name="description" content="Your private fashion circle. Connect exclusively with members who share your aesthetic on Aura Glossy.">
+<meta property="og:title" content="Style Community — Aura Glossy">
+<meta property="og:description" content="Private style circles for every aesthetic. Join your community.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://auraglossy.com/images/home/hero-1.jpg">
+<link rel="canonical" href="https://auraglossy.com/community.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css?v=37">
+<style>
+/* Belt-and-suspenders: ensure native cursor is always visible if custom cursor JS hasn't run */
+@media (pointer: fine) {
+  html:not(.custom-cursor-active) * { cursor: auto !important; }
+  html:not(.custom-cursor-active) a,
+  html:not(.custom-cursor-active) button,
+  html:not(.custom-cursor-active) [role="button"],
+  html:not(.custom-cursor-active) .group-card--mine { cursor: pointer !important; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">AURA GLOSS<span>Y</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+    <li><a href="quiz.html" data-i18n="nav.quiz">Style Quiz</a></li>
+    <li><a href="index.html#styles" data-i18n="nav.aesthetics">Aesthetics</a></li>
+    <li><a href="moodboard.html" data-i18n="nav.moodboard">Moodboard</a></li>
+    <li><a href="community.html" class="active" data-i18n="nav.community">Community</a></li>
+    <li><a href="brands.html" data-i18n="nav.partners">Partners</a></li>
+  </ul>
+  <button class="nav-auth-btn" id="nav-auth-btn" onclick="navAuthClick()" data-i18n="nav.account">Account</button>
+  <div id="lang-switcher" class="nav-lang-slot"></div>
+  <div class="nav-burger" aria-label="Open menu" data-i18n-attr="aria-label:nav.open_menu" role="button" tabindex="0"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- ── Hub: all circles ─────────────────────────────────────── -->
+<div id="comm-hub" class="comm-hub">
+  <div class="comm-hero">
+    <p class="eyebrow">Private Circles</p>
+    <h1>Your Style Community</h1>
+    <p class="comm-hero-sub">Exclusive groups for every aesthetic. Find your circle.</p>
+  </div>
+  <div id="hub-groups" class="hub-groups">
+    <div class="feed-loading" style="grid-column:1/-1">
+      <div class="auth-veil-dots">
+        <div class="auth-veil-dot"></div>
+        <div class="auth-veil-dot"></div>
+        <div class="auth-veil-dot"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Group view ───────────────────────────────────────────── -->
+<div id="comm-group" class="comm-group" style="display:none">
+
+  <div class="group-topbar">
+    <button class="group-back" onclick="showHub()">← All Circles</button>
+    <div class="group-identity" id="group-identity"></div>
+  </div>
+
+  <div class="group-content">
+
+    <!-- Post composer -->
+    <div class="post-composer" id="post-composer">
+      <div class="composer-header">
+        <div class="composer-avatar" id="composer-avatar">?</div>
+        <p class="composer-label">Share with your circle</p>
+      </div>
+      <textarea class="composer-text" id="composer-text" placeholder="Share something with your style circle…" rows="3" maxlength="1000"></textarea>
+      <div class="composer-img-row" id="composer-img-row" style="display:none">
+        <input type="url" class="composer-img-input" id="composer-img-url" placeholder="Paste an image URL (Pinterest, Unsplash…)">
+      </div>
+      <span class="composer-hint" id="composer-hint"></span>
+      <div class="composer-footer">
+        <div class="composer-tabs">
+          <button class="ctab active" data-type="thought">✦ Thought</button>
+          <button class="ctab" data-type="outfit">◎ Outfit</button>
+          <button class="ctab" data-type="moodboard">◈ Moodboard</button>
+        </div>
+        <button class="composer-post-btn" id="composer-post-btn">Post</button>
+      </div>
+    </div>
+
+    <!-- Feed -->
+    <div class="posts-feed" id="posts-feed">
+      <div class="feed-loading">
+        <div class="auth-veil-dots">
+          <div class="auth-veil-dot"></div>
+          <div class="auth-veil-dot"></div>
+          <div class="auth-veil-dot"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── Access denied modal ──────────────────────────────────── -->
+<div id="access-modal" class="access-modal" style="display:none" onclick="if(event.target===this)closeAccessModal()">
+  <div class="access-modal-box" id="access-modal-box"></div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">AURA GLOSS<span>Y</span></div>
+        <p class="footer-tagline" data-i18n="footer.tagline">A curated fashion universe.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.col_discover">Discover</h4>
+        <ul>
+          <li><a href="quiz.html" data-i18n="footer.link_quiz">Style quiz</a></li>
+          <li><a href="index.html#styles" data-i18n="footer.link_all">All aesthetics</a></li>
+          <li><a href="moodboard.html" data-i18n="nav.moodboard">Moodboard</a></li>
+          <li><a href="community.html" data-i18n="nav.community">Community</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.col_aesthetics">Aesthetics</h4>
+        <ul>
+          <li><a href="style.html#classic">Classic</a></li>
+          <li><a href="style.html#minimalist">Minimalist</a></li>
+          <li><a href="style.html#korean">Korean</a></li>
+          <li><a href="style.html#elegant">Elegant</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.col_partners">Shop partners</h4>
+        <ul>
+          <li>Zara · COS · Mango</li>
+          <li>H&amp;M · Uniqlo · ASOS</li>
+          <li>SHEIN · Bershka · Pull&amp;Bear</li>
+          <li>Nike · Adidas · Sephora</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="footer.copyright">© 2026 Aura Glossy</span>
+      <span data-i18n="footer.designed">Designed with care, dressed with intention.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+<script src="js/i18n.js?v=8"></script>
+<script src="js/monitor.js?v=2"></script>
+<script src="js/firebase.js?v=11"></script>
+<script src="js/animations.js?v=15"></script>
+<script src="js/community.js?v=7"></script>
+<script>
+function navAuthClick() { window.location.href = 'settings.html'; }
+initAuthGuard();
+</script>
+
+</body>
+</html>

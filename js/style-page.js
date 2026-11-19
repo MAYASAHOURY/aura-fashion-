@@ -89,6 +89,19 @@
   const desc = DESCRIPTIONS[s.id] || s.short;
   const breakdown = BREAKDOWNS[s.id] || BREAKDOWNS.classic;
 
+  const STYLE_THEME = {
+    classic:    { acc: '#b08050', bg: '#f8f4ed', brd: '#e8ddc8', text: '#2a1f0f' },
+    casual:     { acc: '#5a9e8a', bg: '#f0f7f4', brd: '#c0d8d0', text: '#0e2a20' },
+    streetwear: { acc: '#1a1a1a', bg: '#f2f2f2', brd: '#d0d0d0', text: '#0a0a0a' },
+    minimalist: { acc: '#8c8880', bg: '#f5f5f2', brd: '#dddbd5', text: '#1a1a18' },
+    elegant:    { acc: '#8a6050', bg: '#f7f2ee', brd: '#e0d0c4', text: '#1a0e08' },
+    korean:     { acc: '#d88aaa', bg: '#fdf5f8', brd: '#f0d0dc', text: '#2a0a14' },
+    y2k:        { acc: '#9050d0', bg: '#f8f0ff', brd: '#d8c0f0', text: '#1a0a28' },
+    vintage:    { acc: '#9a6430', bg: '#f8f0e4', brd: '#e0ccaa', text: '#2a1500' },
+    softgirl:   { acc: '#e060a0', bg: '#fff0f8', brd: '#f8c8e0', text: '#2a0018' }
+  };
+  const theme = STYLE_THEME[s.id] || STYLE_THEME.classic;
+
   // ---------- Curated outfits (accurate links) ----------
   const CURATED_COMBOS = {
 
@@ -597,6 +610,7 @@
   }
 
   const styleCombos = (CURATED_COMBOS[s.id] || CURATED_COMBOS.classic);
+
   const COMBOS = styleCombos.map(combo => {
     const heroOutfit = s.outfits[combo.heroIdx] || s.outfits[0];
     return {
@@ -612,87 +626,20 @@
   // ===== Build markup =====
   let html = '';
 
-  // 01 Style Overview
-  html += '<section class="ssec ssec-overview"><div class="ssec-inner">';
-  html += '<span class="ssec-num">01 — Style Overview</span>';
-  html += '<div class="ssec-overview-grid">';
-  html += '<div class="ssec-overview-img"><img src="' + s.heroImg + '" alt="' + s.name + '"></div>';
-  html += '<div class="ssec-overview-text">';
-  html += '<h1 class="ssec-overview-title">' + s.name + '</h1>';
-  html += '<p class="ssec-overview-desc">' + desc + '</p>';
-  html += '</div></div></div></section>';
+  // ── HERO SECTION ── full bleed image + style name
+  var html_hero = '<section class="ssec-hero" style="--hero-acc:' + theme.acc + '">';
+  html_hero += '<div class="ssec-hero-bg" style="background-image:url(\'' + s.heroImg + '\')"></div>';
+  html_hero += '<div class="ssec-hero-overlay"></div>';
+  html_hero += '<div class="ssec-hero-content">';
+  html_hero += '<span class="ssec-hero-eyebrow">Aesthetic</span>';
+  html_hero += '<h1 class="ssec-hero-name">' + s.name + '</h1>';
+  html_hero += '<p class="ssec-hero-sub">' + desc + '</p>';
+  html_hero += '</div>';
+  html_hero += '</section>';
 
-  // 02 Inspiration — deduplicate so no image appears twice in the grid
-  const _seenInspo = new Set();
-  const _uniqueOutfits = s.outfits.filter(o => {
-    if (_seenInspo.has(o.img)) return false;
-    _seenInspo.add(o.img);
-    return true;
-  });
-  html += '<section class="ssec ssec-inspo"><div class="ssec-inner">';
-  html += '<span class="ssec-num">02 — Inspiration</span>';
-  html += '<div class="ssec-inspo-grid">';
-  _uniqueOutfits.forEach((o, i) => {
-    const saveId = s.id + '-outfit-' + i;
-    html += '<div class="ssec-inspo-cell">';
-    html += '<img src="' + o.img + '" alt="" loading="lazy">';
-    html += '<button class="inspo-save-btn" data-save-id="' + saveId + '" data-save-img="' + o.img + '" data-save-label="' + (o.name || s.name + ' outfit') + '" data-save-style="' + s.name + '" aria-label="Save to moodboard">';
-    html += '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
-    html += '</button>';
-    html += '</div>';
-  });
-  html += '</div></div></section>';
+  // ===== Full Wardrobe data (FDIR_CATS, FASHION_DIR used below for builder) =====
 
-
-  // 03 Full Outfit Breakdown
-  html += '<section class="ssec ssec-breakdown"><div class="ssec-inner">';
-  html += '<span class="ssec-num">03 — Full Outfit Breakdown</span>';
-  html += '<div class="ssec-breakdown-grid">';
-  html += '<div class="ssec-breakdown-img"><img src="' + s.completeLook.img + '" alt="Full outfit"></div>';
-  html += '<div class="ssec-breakdown-text">';
-  html += '<h2>Why this <em>outfit.</em></h2>';
-  html += '<div class="ssec-breakdown-item"><h4>Top</h4><p>' + breakdown.top + '</p></div>';
-  html += '<div class="ssec-breakdown-item"><h4>Pants / Skirt</h4><p>' + breakdown.bottom + '</p></div>';
-  html += '<div class="ssec-breakdown-item"><h4>Shoes</h4><p>' + breakdown.shoes + '</p></div>';
-  html += '<div class="ssec-breakdown-item"><h4>Accessories</h4><p>' + breakdown.accessories + '</p></div>';
-  html += '</div></div></div></section>';
-
-  // 04 Shop the Aesthetic
-  html += '<section class="ssec ssec-shop-rich"><div class="ssec-inner">';
-  html += '<span class="ssec-num">04 — Shop the Aesthetic</span>';
-  html += '<h2 class="ssec-shop-title">A full wardrobe in <em>' + s.name + '.</em></h2>';
-  html += '<p class="ssec-shop-intro">Curated picks across every budget. Every link opens the live store with the exact search.</p>';
-
-  // 4a Complete the Look
-  html += '<div class="rich-block">';
-  html += '<div class="rich-block-head"><span class="rich-block-eyebrow">Complete the look</span>';
-  html += '<h3>Three outfit edits, fully shoppable.</h3></div>';
-  html += '<div class="combo-grid">';
-  COMBOS.forEach((combo, ci) => {
-    html += '<article class="combo-card">';
-    html += '<div class="combo-card-img"><img src="' + combo.hero + '" alt="' + combo.name + '" loading="lazy">';
-    html += '<span class="combo-card-badge">' + TIER_BADGE[combo.tier] + '</span></div>';
-    html += '<div class="combo-card-body">';
-    html += '<span class="combo-card-num">Outfit ' + String(ci + 1).padStart(2, '0') + '</span>';
-    html += '<h4>' + combo.name + '</h4>';
-    html += '<p class="combo-card-tag">' + combo.tag + '</p>';
-    html += '<ul class="combo-pieces combo-pieces-typo">';
-    combo.pieces.forEach(p => {
-      html += '<li><a href="' + p.url + '" target="_blank" rel="noopener noreferrer">';
-      html += '<span class="piece-cat">' + p.category + '</span>';
-      html += '<span class="piece-name">' + p.name + '</span>';
-      html += '<span class="piece-meta"><span>' + p.store + '</span><span>' + p.price + '</span></span>';
-      html += '</a></li>';
-    });
-    html += '</ul></div></article>';
-  });
-  html += '</div></div>';
-
-  // 4b Styling Tips — moved to end of page (rendered after shop section)
-
-  // 4c Brand Guide — removed
-
-  // 4d Fashion Directory — 12 categories × 3 budget tiers
+  // Fashion Directory — 12 categories × 3 budget tiers
   const FDIR_CATS = [
     { id: 'tops',        label: 'Tops'        },
     { id: 'pants',       label: 'Pants'       },
@@ -1280,147 +1227,292 @@
     }
   };
 
-  // Build fashion directory HTML
-  function buildFashionDir() {
-    const dir = FASHION_DIR[s.id];
-    if (!dir) return '';
+  // ===== Hotspot outfit data (built here so FASHION_DIR is initialized) =====
+  var _allCombos = (CURATED_COMBOS[s.id] || CURATED_COMBOS.classic).concat(EXTRA_COMBOS[s.id] || []);
+  var _comboByIdx = {};
+  _allCombos.forEach(function(c) { _comboByIdx[c.heroIdx] = c; });
 
-    const catBtns = FDIR_CATS.map((cat, i) =>
-      '<button class="fshop-cat' + (i === 0 ? ' fshop-cat-active' : '') + '" data-fshop-cat="' + cat.id + '">' + cat.label + '</button>'
-    ).join('');
+  var HOTSPOT_POS = {
+    'Top': {x:42,y:28}, 'Dress': {x:45,y:43}, 'Jacket': {x:32,y:26}, 'Blazer': {x:30,y:26},
+    'Coat': {x:33,y:22}, 'Outer': {x:33,y:22}, 'Layer': {x:66,y:28},
+    'Bottom': {x:50,y:63}, 'Skirt': {x:50,y:60}, 'Belt': {x:47,y:52},
+    'Tights': {x:50,y:76}, 'Shoes': {x:50,y:89}, 'Boots': {x:50,y:85},
+    'Bag': {x:74,y:63}, 'Accessory': {x:58,y:13}, 'Hat': {x:50,y:7},
+    'Jewelry': {x:53,y:37}, 'Scarf': {x:38,y:22}, 'Hair': {x:52,y:8}
+  };
 
-    const panels = FDIR_CATS.map((cat, i) => {
-      const catData = dir[cat.id] || {};
-      const tierBlocks = [['aff','Affordable'],['mid','Mid-Range'],['lux','Luxury']].map(function(t) {
-        const tier = t[0], tierLabel = t[1];
-        const items = catData[tier] || [];
-        if (!items.length) return '';
-        const itemsHtml = items.map(function(item) {
-          return '<a class="fshop-item" href="' + buildUrl(item.store, item.q) + '" target="_blank" rel="noopener noreferrer">' +
-            '<span class="fshop-item-name">' + item.name + '</span>' +
-            '<span class="fshop-item-right">' +
-              '<span class="fshop-item-store">' + item.store + '</span>' +
-              '<span class="fshop-item-price">' + item.price + '</span>' +
-            '</span>' +
-          '</a>';
-        }).join('');
-        return '<div class="fshop-tier-block" data-fshop-tier="' + tier + '">' +
-          '<span class="fshop-tier-tag fshop-tier-tag-' + tier + '">' + tierLabel + '</span>' +
-          '<div class="fshop-items">' + itemsHtml + '</div>' +
+  function _getAutoHotspots() {
+    var dir = FASHION_DIR[s.id];
+    if (!dir) return [];
+    return [['Top',dir.tops],['Bottom',dir.pants],['Shoes',dir.shoes],['Bag',dir.bags]]
+      .filter(function(p) { return p[1] && p[1].mid && p[1].mid[0]; })
+      .map(function(p) {
+        var d = p[1].mid[0];
+        return { category: p[0], name: d.name, store: d.store, price: d.price, url: buildUrl(d.store, d.q) };
+      });
+  }
+
+  var hotspotOutfits = [0,1,2,3,4,5].map(function(idx) {
+    var outfit = s.outfits[idx] || { img: s.heroImg, label: s.name };
+    var rc = _comboByIdx[idx];
+    return {
+      img: outfit.img,
+      label: rc ? rc.name : (outfit.label || s.name),
+      tag:   rc ? rc.tag  : '',
+      saveId: s.id + '-hs-' + idx,
+      pieces: rc
+        ? rc.pieces.map(function(p) { return { category: p.category, name: p.name, store: p.store, price: p.price, url: buildUrl(p.store, p.q) }; })
+        : _getAutoHotspots()
+    };
+  });
+
+  // 01 Interactive Outfit Shop — hotspot grid
+  var html01 = '<section class="ssec ssec-hotshop"><div class="ssec-inner">';
+  html01 += '<span class="ssec-num">01 — Shop This Style</span>';
+  html01 += '<h2 class="ssec-hotshop-title">Interactive outfits, <em>fully shoppable.</em></h2>';
+  html01 += '<p class="ssec-hotshop-intro">Tap the glowing dots to shop each piece. Six complete looks, every budget.</p>';
+  html01 += '<div class="hs-grid">';
+  hotspotOutfits.forEach(function(outfit, oi) {
+    html01 += '<div class="hs-outfit-wrap">';
+    html01 += '<img src="' + outfit.img + '" alt="' + outfit.label + '" loading="' + (oi < 3 ? 'eager' : 'lazy') + '">';
+    html01 += '<div class="hs-outfit-overlay"></div>';
+    outfit.pieces.forEach(function(piece, pi) {
+      var pos = HOTSPOT_POS[piece.category] || {x:50,y:50};
+      var xO = (pi===1?5:pi===2?-4:0), yO = (pi===1?-3:pi===2?5:0);
+      html01 += '<div class="hs-dot" style="left:' + Math.min(88,Math.max(12,pos.x+xO)) + '%;top:' + Math.min(90,Math.max(6,pos.y+yO)) + '%">';
+      html01 += '<div class="hs-dot-ring"><div class="hs-dot-core"></div></div>';
+      html01 += '<div class="hs-panel">';
+      html01 += '<div class="hs-panel-cat">' + piece.category + '</div>';
+      html01 += '<div class="hs-panel-name">' + piece.name + '</div>';
+      html01 += '<div class="hs-panel-meta"><span class="hs-panel-store">' + piece.store + '</span><span class="hs-panel-price">' + piece.price + '</span></div>';
+      html01 += '<a href="' + piece.url + '" class="hs-panel-link" target="_blank" rel="noopener noreferrer">Shop now →</a>';
+      html01 += '</div></div>';
+    });
+    html01 += '<button class="hs-save-btn" data-save-id="' + outfit.saveId + '" data-save-img="' + outfit.img + '" data-save-label="' + outfit.label + '" data-save-style="' + s.name + '" aria-label="Save to moodboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>';
+    html01 += '<div class="hs-outfit-info"><span class="hs-outfit-name">' + outfit.label + '</span>';
+    if (outfit.tag) html01 += '<span class="hs-outfit-tag">' + outfit.tag + '</span>';
+    html01 += '</div></div>';
+  });
+  html01 += '</div></div></section>';
+
+  // ── YOUR BUDGET / YOUR STYLE ── 3 tiers from BRAND_GUIDE
+  var _bg = BRAND_GUIDE[s.id] || BRAND_GUIDE.classic;
+  html01 += '<section class="ssec ssec-budget" style="--wb-acc:' + theme.acc + ';--wb-brd:' + theme.brd + ';--wb-text:' + theme.text + '">';
+  html01 += '<div class="ssec-inner">';
+  html01 += '<span class="ssec-num">Your Budget / Your Style</span>';
+  html01 += '<h2 class="ssec-budget-title">Shop <em>' + s.name + '</em> at every price point.</h2>';
+  html01 += '<div class="ssec-budget-tiers">';
+  [['aff','Affordable','$15 – $80'],['mid','Mid-range','$80 – $250'],['lux','Luxury','$250+']].forEach(function(t) {
+    var td = _bg[t[0]] || {};
+    html01 += '<div class="ssec-budget-tier">';
+    html01 += '<div class="ssec-budget-tier-head">';
+    html01 += '<span class="ssec-budget-tier-label">' + t[1] + '</span>';
+    html01 += '<span class="ssec-budget-tier-range">' + t[2] + '</span>';
+    html01 += '</div>';
+    html01 += '<p class="ssec-budget-stores">' + (td.stores || '') + '</p>';
+    html01 += '<p class="ssec-budget-note">' + (td.note || '') + '</p>';
+    html01 += '</div>';
+  });
+  html01 += '</div></div></section>';
+
+  // ===== Wardrobe Builder HTML (uses FASHION_DIR which is now initialized) =====
+  var WB_CATS = [
+    { id: 'tops',        label: 'Tops'        },
+    { id: 'pants',       label: 'Bottoms'     },
+    { id: 'shoes',       label: 'Shoes'       },
+    { id: 'accessories', label: 'Accessories' }
+  ];
+  var html02 = '<section class="ssec ssec-builder" style="--wb-acc:' + theme.acc + ';--wb-bg:' + theme.bg + ';--wb-brd:' + theme.brd + ';--wb-text:' + theme.text + '">';
+  html02 += '<div class="ssec-inner">';
+  html02 += '<span class="ssec-num">03 — Build Your Wardrobe</span>';
+  html02 += '<h2 class="wb-title">Style it your way, <em>' + s.name + '.</em></h2>';
+  html02 += '<p class="wb-subtitle">Select one piece per category — watch your look come together.</p>';
+  html02 += '<div class="wb-layout">';
+  html02 += '<div class="wb-catalog">';
+  html02 += '<div class="wb-nav">';
+  html02 += '<div class="wb-cat-row">';
+  WB_CATS.forEach(function(cat, i) {
+    html02 += '<button class="wb-cat' + (i === 0 ? ' wb-cat-active' : '') + '" data-wcat="' + cat.id + '">' + cat.label + '</button>';
+  });
+  html02 += '</div>';
+  html02 += '<div class="wb-tier-row">';
+  [['all','All'],['aff','Affordable'],['mid','Mid-range'],['lux','Luxury']].forEach(function(t, i) {
+    html02 += '<button class="wb-tier' + (i === 0 ? ' wb-tier-active' : '') + '" data-wtier="' + t[0] + '">' + t[1] + '</button>';
+  });
+  html02 += '</div></div>';
+  html02 += '<div class="wb-items" id="wb-items" data-wb-id="' + s.id + '"></div>';
+  html02 += '</div>';
+  html02 += '<div class="wb-preview" id="wb-preview">';
+  html02 += '<div class="wb-preview-label">Your Look</div>';
+  html02 += '<div class="wb-slots" id="wb-slots">';
+  WB_CATS.forEach(function(cat) {
+    html02 += '<div class="wb-slot wb-slot-empty" id="wb-slot-' + cat.id + '" data-wslot="' + cat.id + '">';
+    html02 += '<span class="wb-slot-cat">' + cat.label + '</span>';
+    html02 += '<span class="wb-slot-empty-label">Not selected</span>';
+    html02 += '</div>';
+  });
+  html02 += '</div>';
+  html02 += '<div class="wb-total-row"><span class="wb-total-label">Est. total</span><span class="wb-total-val" id="wb-total">—</span></div>';
+  html02 += '<button class="wb-shop-all" id="wb-shop-all" disabled>Shop all pieces →</button>';
+  html02 += '<button class="wb-clear" id="wb-clear">Clear selection</button>';
+  html02 += '</div>';
+  html02 += '</div></div></section>';
+
+  // ── STYLE NAME DIVIDER ── repeated title block before inspiration
+  html += '<section class="ssec-namebar" style="--nb-acc:' + theme.acc + '">';
+  html += '<div class="ssec-namebar-inner">';
+  html += '<p class="ssec-namebar-eyebrow">The Look</p>';
+  html += '<div class="ssec-namebar-title">' + s.name + '</div>';
+  html += '</div>';
+  html += '</section>';
+
+  // ── INSPIRATION — LAST SECTION ──
+  var _seenInspo = new Set();
+  var _uniqueOutfits = s.outfits.filter(function(o) {
+    if (_seenInspo.has(o.img)) return false;
+    _seenInspo.add(o.img);
+    return true;
+  });
+  html += '<section class="ssec ssec-inspo"><div class="ssec-inner">';
+  html += '<div class="ssec-inspo-header">';
+  html += '<span class="ssec-num">Inspiration</span>';
+  html += '</div>';
+  html += '<div class="ssec-inspo-grid">';
+  _uniqueOutfits.forEach(function(o, i) {
+    var saveId = s.id + '-outfit-' + i;
+    html += '<div class="ssec-inspo-cell">';
+    html += '<img src="' + o.img + '" alt="" loading="lazy">';
+    html += '<button class="inspo-save-btn" data-save-id="' + saveId + '" data-save-img="' + o.img + '" data-save-label="' + (o.label || s.name + ' outfit') + '" data-save-style="' + s.name + '" aria-label="Save to moodboard">';
+    html += '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
+    html += '</button>';
+    html += '</div>';
+  });
+  html += '</div></div></section>';
+
+  root.innerHTML = html_hero + html01 + html02 + html;
+
+  // Wardrobe Builder interactivity
+  (function initWardrobeBuilder() {
+    var itemsEl = document.getElementById('wb-items');
+    if (!itemsEl) return;
+    var styleId = itemsEl.dataset.wbId;
+    var wbDir = (typeof FASHION_DIR !== 'undefined') ? (FASHION_DIR[styleId] || FASHION_DIR.classic) : null;
+    if (!wbDir) return;
+
+    var WB_CATS_LOCAL = [
+      { id: 'tops',        label: 'Tops'        },
+      { id: 'pants',       label: 'Bottoms'     },
+      { id: 'shoes',       label: 'Shoes'       },
+      { id: 'accessories', label: 'Accessories' }
+    ];
+    var activeCat  = 'tops';
+    var activeTier = 'all';
+    var selection  = {};
+
+    function parsePrice(p) {
+      return parseFloat((p || '').replace(/[^0-9.]/g, '')) || 0;
+    }
+
+    function renderItems() {
+      var catData = wbDir[activeCat] || {};
+      var tiers = activeTier === 'all' ? ['aff','mid','lux'] : [activeTier];
+      var rows = [];
+      tiers.forEach(function(t) { (catData[t] || []).forEach(function(item) { rows.push({ item: item, tier: t }); }); });
+      if (!rows.length) { itemsEl.innerHTML = '<p class="wb-empty">No items in this category.</p>'; return; }
+      itemsEl.innerHTML = rows.map(function(row) {
+        var item = row.item;
+        var sel = selection[activeCat] && selection[activeCat].name === item.name;
+        var url = (typeof buildUrl === 'function') ? buildUrl(item.store, item.q) : '#';
+        return '<div class="wb-item' + (sel ? ' wb-item-sel' : '') + '" data-wcat="' + activeCat + '" data-wname="' + item.name.replace(/"/g,'&quot;') + '" data-wstore="' + item.store + '" data-wprice="' + item.price + '" data-wurl="' + url + '">' +
+          '<div class="wb-item-info">' +
+            '<span class="wb-tier-dot wb-tier-dot-' + row.tier + '"></span>' +
+            '<span class="wb-item-name">' + item.name + '</span>' +
+            '<span class="wb-item-meta"><span class="wb-item-store">' + item.store + '</span><span class="wb-item-price">' + item.price + '</span></span>' +
+          '</div>' +
+          '<button class="wb-add-btn' + (sel ? ' wb-add-btn-sel' : '') + '">' + (sel ? '✓' : '+') + '</button>' +
         '</div>';
       }).join('');
-      return '<div class="fshop-cat-panel' + (i === 0 ? ' fshop-cat-panel-active' : '') + '" data-fshop-cat="' + cat.id + '">' +
-        tierBlocks +
-      '</div>';
-    }).join('');
-
-    return '<div class="fshop">' +
-      '<div class="fshop-bar">' +
-        '<div class="fshop-cats-scroll"><div class="fshop-cats">' + catBtns + '</div></div>' +
-        '<div class="fshop-buds">' +
-          '<button class="fshop-bud fshop-bud-active" data-fshop-bud="all">All</button>' +
-          '<button class="fshop-bud" data-fshop-bud="aff">Affordable</button>' +
-          '<button class="fshop-bud" data-fshop-bud="mid">Mid-range</button>' +
-          '<button class="fshop-bud" data-fshop-bud="lux">Luxury</button>' +
-        '</div>' +
-      '</div>' +
-      '<div class="fshop-panel">' + panels + '</div>' +
-    '</div>';
-  }
-
-  html += '<div class="rich-block">';
-  html += '<div class="rich-block-head"><span class="rich-block-eyebrow">Fashion Directory</span>';
-  html += '<h3>Build your wardrobe, category by category.</h3></div>';
-  html += '<p class="fdir-intro">Every category. Every budget. Every link opens a live search so you can shop directly.</p>';
-  html += buildFashionDir();
-  html += '</div>'; // closes rich-block (fashion directory)
-
-  html += '</div></section>'; // closes ssec-shop-rich
-
-  // 05 — How to wear it (styling rules at the very end)
-  const tips = STYLING_TIPS[s.id] || [];
-  if (tips.length) {
-    html += '<section class="ssec ssec-tips-end"><div class="ssec-inner">';
-    html += '<span class="ssec-num">How to wear it</span>';
-    html += '<h2 class="ssec-tips-title">Four rules for <em>' + s.name + '.</em></h2>';
-    html += '<div class="style-tips-grid">';
-    tips.forEach((t, i) => {
-      html += '<div class="style-tip">';
-      html += '<span class="style-tip-num">0' + (i + 1) + '</span>';
-      html += '<p class="style-tip-rule">' + t.tip + '</p>';
-      html += '<p class="style-tip-detail">' + t.detail + '</p>';
-      html += '</div>';
-    });
-    html += '</div></div></section>';
-  }
-
-  // 06 — Closing section
-  const CLOSING = {
-    classic:    { quote: 'Dress quietly. Make noise with your presence.', note: 'The art of lasting style is knowing exactly what to leave out.' },
-    casual:     { quote: 'The best outfit is the one you forget you\'re wearing.', note: 'Comfort isn\'t a compromise — it\'s a considered choice.' },
-    streetwear: { quote: 'Your clothes are your first language.', note: 'Street culture made fashion personal, permanent, and loud.' },
-    minimalist: { quote: 'Simplicity is the ultimate sophistication.', note: 'A wardrobe of fewer, better things is the most radical choice you can make.' },
-    elegant:    { quote: 'Elegance is not about being noticed — it\'s about being remembered.', note: 'Silk moves. Pearls glow. Some things are simply worth it.' },
-    korean:     { quote: 'Style is a conversation. Make yours soft, sharp, and surprising.', note: 'K-fashion doesn\'t follow trends. It writes them.' },
-    y2k:        { quote: 'Low rise. High energy. Zero apologies.', note: 'The 2000s got it right the first time. Now you get to do it better.' },
-    vintage:    { quote: 'The best pieces have already been worn and loved.', note: 'Vintage dressing is a form of archaeology — and the finds are always worth it.' },
-    softgirl:   { quote: 'Be soft. Be sweet. Be exactly who you are.', note: 'Femininity is not a weakness. It is a whole aesthetic universe.' }
-  };
-  const closing = CLOSING[s.id] || { quote: 'Dress with intention.', note: 'Your wardrobe tells your story before you say a word.' };
-
-  html += '<section class="ssec ssec-closing">';
-  html += '<div class="ssec-inner ssec-closing-inner">';
-  html += '<div class="ssec-closing-divider"></div>';
-  html += '<blockquote class="ssec-closing-quote">' + closing.quote + '</blockquote>';
-  html += '<p class="ssec-closing-note">' + closing.note + '</p>';
-  html += '<div class="ssec-closing-ctas">';
-  html += '<a href="index.html#styles" class="btn btn-large">Explore all aesthetics</a>';
-  html += '<a href="quiz.html" class="ssec-closing-link">Retake the style quiz →</a>';
-  html += '</div>';
-  html += '<p class="ssec-closing-credit">Curated by <strong>AURA</strong> — dressed with intention.</p>';
-  html += '</div></section>';
-
-  root.innerHTML = html;
-
-  // Init fashion shop filter
-  (function initFashionShop() {
-    var fshopBar = document.querySelector('.fshop-bar');
-    if (!fshopBar) return;
-    var catBtns = Array.from(document.querySelectorAll('[data-fshop-cat]'));
-    var budBtns = Array.from(document.querySelectorAll('[data-fshop-bud]'));
-    var allPanels = Array.from(document.querySelectorAll('.fshop-cat-panel'));
-    var activeBud = 'all';
-
-    function applyBudget(bud, panel) {
-      var p = panel || document.querySelector('.fshop-cat-panel-active');
-      if (!p) return;
-      p.querySelectorAll('.fshop-tier-block').forEach(function(block) {
-        block.style.display = (bud === 'all' || block.dataset.fshopTier === bud) ? '' : 'none';
+      itemsEl.querySelectorAll('.wb-item').forEach(function(el) {
+        el.addEventListener('click', function() {
+          var cat = el.dataset.wcat;
+          if (selection[cat] && selection[cat].name === el.dataset.wname) {
+            delete selection[cat];
+          } else {
+            selection[cat] = { name: el.dataset.wname, store: el.dataset.wstore, price: el.dataset.wprice, url: el.dataset.wurl };
+          }
+          renderItems();
+          updatePreview();
+        });
       });
     }
 
-    catBtns.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var cat = btn.dataset.fshopCat;
-        catBtns.forEach(function(b) { b.classList.toggle('fshop-cat-active', b.dataset.fshopCat === cat); });
-        allPanels.forEach(function(p) { p.classList.toggle('fshop-cat-panel-active', p.dataset.fshopCat === cat); });
-        applyBudget(activeBud);
+    function updatePreview() {
+      var total = 0, hasAny = false;
+      WB_CATS_LOCAL.forEach(function(cat) {
+        var slot = document.getElementById('wb-slot-' + cat.id);
+        if (!slot) return;
+        var sel = selection[cat.id];
+        if (sel) {
+          hasAny = true;
+          total += parsePrice(sel.price);
+          slot.className = 'wb-slot wb-slot-filled';
+          slot.innerHTML = '<span class="wb-slot-cat">' + cat.label + '</span>' +
+            '<div class="wb-slot-item"><span class="wb-slot-name">' + sel.name + '</span><span class="wb-slot-price">' + sel.price + '</span></div>' +
+            '<button class="wb-slot-remove" data-wrmcat="' + cat.id + '">×</button>';
+          slot.querySelector('.wb-slot-remove').addEventListener('click', function(e) {
+            e.stopPropagation();
+            delete selection[cat.id];
+            renderItems();
+            updatePreview();
+          });
+        } else {
+          slot.className = 'wb-slot wb-slot-empty';
+          slot.innerHTML = '<span class="wb-slot-cat">' + cat.label + '</span><span class="wb-slot-empty-label">Not selected</span>';
+        }
       });
-    });
+      var totalEl = document.getElementById('wb-total');
+      if (totalEl) totalEl.textContent = total > 0 ? '$' + total.toFixed(0) : '—';
+      var shopBtn = document.getElementById('wb-shop-all');
+      if (shopBtn) shopBtn.disabled = !hasAny;
+    }
 
-    budBtns.forEach(function(btn) {
+    document.querySelectorAll('.wb-cat').forEach(function(btn) {
       btn.addEventListener('click', function() {
-        activeBud = btn.dataset.fshopBud;
-        budBtns.forEach(function(b) { b.classList.toggle('fshop-bud-active', b.dataset.fshopBud === activeBud); });
-        applyBudget(activeBud);
+        activeCat = btn.dataset.wcat;
+        document.querySelectorAll('.wb-cat').forEach(function(b) { b.classList.toggle('wb-cat-active', b.dataset.wcat === activeCat); });
+        renderItems();
       });
     });
+    document.querySelectorAll('.wb-tier').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        activeTier = btn.dataset.wtier;
+        document.querySelectorAll('.wb-tier').forEach(function(b) { b.classList.toggle('wb-tier-active', b.dataset.wtier === activeTier); });
+        renderItems();
+      });
+    });
+    var shopAllBtn = document.getElementById('wb-shop-all');
+    if (shopAllBtn) {
+      shopAllBtn.addEventListener('click', function() {
+        Object.values(selection).forEach(function(item) {
+          if (item && item.url) window.open(item.url, '_blank', 'noopener,noreferrer');
+        });
+      });
+    }
+    var clearBtn = document.getElementById('wb-clear');
+    if (clearBtn) {
+      clearBtn.addEventListener('click', function() {
+        selection = {};
+        renderItems();
+        updatePreview();
+      });
+    }
+    renderItems();
   })();
 
   // Scroll to top after render — overrides browser scroll restoration
   requestAnimationFrame(() => window.scrollTo(0, 0));
 
-  // Wire up save buttons on inspo grid
+  // Wire up all save-to-moodboard buttons (inspo grid + hotspot outfit saves)
   document.querySelectorAll('[data-save-id]').forEach(btn => {
     if (btn._wired) return;
     btn._wired = true;
@@ -1433,4 +1525,86 @@
       if (typeof showToast === 'function') showToast(added ? 'Saved to moodboard ✦' : 'Removed from moodboard');
     });
   });
+
+  // Hotspot interactions — hover on desktop, tap on touch
+  (function initHotspots() {
+    var hsDots = Array.from(document.querySelectorAll('.hs-dot'));
+    if (!hsDots.length) return;
+    var isHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    function closeAll(except) {
+      hsDots.forEach(function(d) { if (d !== except) d.classList.remove('open'); });
+    }
+    function setEdge(dot) {
+      var wrap = dot.closest('.hs-outfit-wrap');
+      if (!wrap) return;
+      var wr = wrap.getBoundingClientRect(), dr = dot.getBoundingClientRect();
+      var xPct = ((dr.left + dr.width / 2) - wr.left) / wr.width * 100;
+      var yPct = ((dr.top  + dr.height / 2) - wr.top)  / wr.height * 100;
+      dot.classList.toggle('panel-right', xPct > 65);
+      dot.classList.toggle('panel-left',  xPct < 30);
+      dot.classList.toggle('panel-below', yPct < 32);
+    }
+
+    if (isHover) {
+      hsDots.forEach(function(dot) {
+        var panel = dot.querySelector('.hs-panel');
+        dot.addEventListener('mouseenter', function() { setEdge(dot); dot.classList.add('open'); });
+        dot.addEventListener('mouseleave', function(e) {
+          if (panel && panel.contains(e.relatedTarget)) return;
+          dot.classList.remove('open');
+        });
+        if (panel) panel.addEventListener('mouseleave', function(e) {
+          if (!dot.contains(e.relatedTarget)) dot.classList.remove('open');
+        });
+      });
+    } else {
+      hsDots.forEach(function(dot) {
+        dot.addEventListener('click', function(e) {
+          e.stopPropagation();
+          var wasOpen = dot.classList.contains('open');
+          closeAll();
+          if (!wasOpen) { setEdge(dot); dot.classList.add('open'); }
+        });
+      });
+      document.addEventListener('click', function() { closeAll(); });
+    }
+    document.querySelectorAll('.hs-panel').forEach(function(p) {
+      p.addEventListener('click', function(e) { e.stopPropagation(); });
+    });
+  })();
+
+  /* ✦✦ Per-user features — recently viewed + aesthetic like button ✦✦ */
+  function _initUserFeatures() {
+    /* Record this aesthetic as recently viewed (debounced 2s in firebase.js) */
+    if (typeof fbRecordView === 'function') fbRecordView(s.id, s.name);
+
+    /* Like button — sync state from Firestore then wire click */
+    var likeBtn = document.getElementById('aesthetic-like-btn');
+    if (!likeBtn || typeof fbGetLikedAesthetics !== 'function') return;
+
+    fbGetLikedAesthetics().then(function(liked) {
+      var isLiked = liked.some(function(a) { return a.id === s.id; });
+      likeBtn.classList.toggle('liked', isLiked);
+      var lbl = likeBtn.querySelector('.aesthetic-like-label');
+      if (lbl) lbl.textContent = isLiked ? 'Saved' : 'Save';
+    }).catch(function() {});
+
+    likeBtn.addEventListener('click', function() {
+      if (typeof fbToggleLikeAesthetic !== 'function') return;
+      fbToggleLikeAesthetic(s.id, s.name).then(function(nowLiked) {
+        likeBtn.classList.toggle('liked', nowLiked);
+        var lbl = likeBtn.querySelector('.aesthetic-like-label');
+        if (lbl) lbl.textContent = nowLiked ? 'Saved' : 'Save';
+        if (typeof showToast === 'function') {
+          showToast(nowLiked ? s.name + ' aesthetic saved ✦' : 'Removed from saved aesthetics');
+        }
+      }).catch(function() {});
+    });
+  }
+
+  /* Wait for Firebase auth confirmation before initialising user features */
+  if (typeof _auth !== 'undefined') {
+    _auth.onAuthStateChanged(function(user) { if (user) _initUserFeatures(); });
+  }
 })();

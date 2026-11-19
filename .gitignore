@@ -1,0 +1,5 @@
+.DS_Store
+.sync
+.netlify/
+node_modules/
+*.log

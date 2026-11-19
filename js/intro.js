@@ -21,17 +21,45 @@
        • First open  → intro plays, flag is set
        • Navigate away + come back → instant, flag already set
        • Close tab + reopen → fresh experience, flag gone
-     When we skip, we remove all intro DOM so auth.js sees no
-     #intro and proceeds straight to its normal flow.
+     When we skip, we remove all intro DOM so the homepage shows
+     immediately with no delay.
+
+     We also skip the intro on hostile environments where the
+     cinematic experience hurts more than helps:
+       • TikTok / Instagram / Facebook / Twitter in-app WebViews
+       • Save-Data on, or 2g / slow-2g connections
+       • Devices that report prefers-reduced-motion
   ─────────────────────────────────────────────────────────────── */
   var INTRO_SEEN_KEY = 'aura_intro_seen';
-  if (sessionStorage.getItem(INTRO_SEEN_KEY)) {
+  var _skipIntro = false;
+  try {
+    if (localStorage.getItem(INTRO_SEEN_KEY))       _skipIntro = true;
+    if (sessionStorage.getItem('aura_skip_intro'))  _skipIntro = true;
+  } catch(e) { /* private mode / quota — play intro but don't crash */ }
+
+  /* Environment-based skip (mirrors the head-script detection so
+     this also works if intro.js loads in isolation, e.g. tests). */
+  try {
+    var ua = navigator.userAgent || '';
+    if (/TikTok|musical_ly|Instagram|FBAN|FBAV|FB_IAB|FBIOS|Twitter|Snapchat|Pinterest|Line\/|MicroMessenger|WeChat/i.test(ua)) {
+      _skipIntro = true;
+    }
+    var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    if (conn && (conn.saveData || /(^|-)2g$/i.test(conn.effectiveType || ''))) {
+      _skipIntro = true;
+    }
+  } catch(e) {}
+
+  if (_skipIntro) {
     /* Tear down intro chrome immediately */
     if (intro.parentNode)  intro.parentNode.removeChild(intro);
     if (spacer.parentNode) spacer.parentNode.removeChild(spacer);
     var _preroll = document.getElementById('intro-preroll');
     if (_preroll && _preroll.parentNode) _preroll.parentNode.removeChild(_preroll);
-    /* auth.js will now see no #intro → calls show() / homepage-reveal as normal */
+    /* Make sure the homepage-reveal listener still fires so the veil lifts */
+    setTimeout(function() {
+      window.dispatchEvent(new CustomEvent('aura:homepage-reveal'));
+    }, 50);
     return;
   }
 
@@ -41,7 +69,7 @@
 
   var REDUCED     = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var SCENE_COUNT = 3;
-  var TOTAL_MS    = 5800;   /* full playthrough duration in ms (after preroll) */
+  var TOTAL_MS    = 9000;   /* full playthrough duration in ms (after preroll) */
 
   var scenes  = intro.querySelectorAll('.scene');
   var skip    = intro.querySelector('.intro-skip');
@@ -182,7 +210,7 @@
   function endIntro() {
     if (ended) return;
     ended = true;
-    sessionStorage.setItem(INTRO_SEEN_KEY, '1'); /* mark seen — skip on next visit */
+    try { localStorage.setItem(INTRO_SEEN_KEY, '1'); } catch(e) {} /* survives OAuth redirects */
     window.scrollTo({ top: 0, behavior: 'instant' }); /* ensure homepage starts from top */
     intro.classList.add('is-done');
     setTimeout(function () {
@@ -202,8 +230,7 @@
 
     var elapsed = ts - startTime;
     var tNorm   = clamp(elapsed / TOTAL_MS, 0, 1);
-    /* Ease so the intro starts briskly and pauses on the final scene */
-    var globalP = easeInOut(tNorm) * SCENE_COUNT;
+    var globalP = tNorm * SCENE_COUNT;
 
     for (var i = 0; i < SCENE_COUNT; i++) {
       applyScene(i, globalP - i);

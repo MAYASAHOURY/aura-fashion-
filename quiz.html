@@ -1,35 +1,41 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Style Quiz — AURA</title>
-<meta name="description" content="Take the AURA style quiz and discover your personal fashion aesthetic. 10 questions to find your unique style identity.">
-<meta property="og:title" content="Style Quiz — AURA">
+<script>(function(){try{var l=localStorage.getItem("aura_lang");if(!l){var nl=(navigator.language||"en").toLowerCase().slice(0,2);l=(["en","es","ar","he"].indexOf(nl)>=0)?nl:"en";}document.documentElement.lang=l;document.documentElement.dir=(l==="ar"||l==="he")?"rtl":"ltr";}catch(e){}})();</script>
+<script>/* Synchronous auth gate — redirect to login if no session marker.
+  Avoids the 4-12s blank-screen Firebase-IndexedDB wait on TikTok/IG WebViews. */
+(function(){try{if(!localStorage.getItem('aura_has_session')){document.documentElement.style.visibility='hidden';window.location.replace('login.html');return;}}catch(e){}})();</script>
+<title>Style Quiz — Aura Glossy</title>
+<meta name="description" content="Take the Aura Glossy style quiz and discover your personal fashion aesthetic. 10 questions to find your unique style identity.">
+<meta property="og:title" content="Style Quiz — Aura Glossy">
 <meta property="og:description" content="Discover your fashion aesthetic in 10 questions. Classic, Minimalist, Y2K, Streetwear, and more.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://auraglossy.com/images/home/hero-1.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://auraglossy.com/quiz.html">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=12">
+<link rel="stylesheet" href="css/styles.css?v=37">
 </head>
 <body>
 
 <nav class="nav">
-  <a href="index.html" class="nav-logo">AUR<span>A</span></a>
+  <a href="index.html" class="nav-logo">AURA GLOSS<span>Y</span></a>
   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="quiz.html" class="active">Style Quiz</a></li>
-    <li><a href="index.html#styles">Aesthetics</a></li>
-    <li><a href="stylist.html">AI Stylist</a></li>
-    <li><a href="moodboard.html">Moodboard</a></li>
-    <li><a href="brands.html">Partners</a></li>
+    <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+    <li><a href="quiz.html" class="active" data-i18n="nav.quiz">Style Quiz</a></li>
+    <li><a href="index.html#styles" data-i18n="nav.aesthetics">Aesthetics</a></li>
+    <li><a href="moodboard.html" data-i18n="nav.moodboard">Moodboard</a></li>
+    <li><a href="community.html" data-i18n="nav.community">Community</a></li>
+    <li><a href="brands.html" data-i18n="nav.partners">Partners</a></li>
   </ul>
-  <button class="nav-auth-btn" id="nav-auth-btn" onclick="navAuthClick()">Account</button>
-  <div class="nav-burger" aria-label="Open menu" role="button" tabindex="0"><span></span><span></span><span></span></div>
+  <button class="nav-auth-btn" id="nav-auth-btn" onclick="navAuthClick()" data-i18n="nav.account">Account</button>
+  <div id="lang-switcher" class="nav-lang-slot"></div>
+  <div class="nav-burger" aria-label="Open menu" data-i18n-attr="aria-label:nav.open_menu" role="button" tabindex="0"><span></span><span></span><span></span></div>
 </nav>
 
 <section class="quiz-page">
@@ -39,28 +45,106 @@
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
-      <div><div class="footer-brand">AUR<span>A</span></div><p class="footer-tagline">A curated fashion universe.</p></div>
-      <div class="footer-col"><h4>Discover</h4><ul><li><a href="quiz.html">Style quiz</a></li><li><a href="index.html#styles">All aesthetics</a></li><li><a href="stylist.html">AI stylist</a></li><li><a href="moodboard.html">Moodboard</a></li><li><a href="brands.html">Partners</a></li></ul></div>
-      <div class="footer-col"><h4>Aesthetics</h4><ul><li><a href="style.html#classic">Classic</a></li><li><a href="style.html#minimalist">Minimalist</a></li><li><a href="style.html#korean">Korean</a></li><li><a href="style.html#elegant">Elegant</a></li></ul></div>
-      <div class="footer-col"><h4>Shop partners</h4><ul><li>Zara · COS · Mango</li><li>H&M · Uniqlo · ASOS</li><li>SHEIN · Bershka · Pull&Bear</li><li>Nike · Adidas · Sephora</li></ul></div>
+      <div><div class="footer-brand">AURA GLOSS<span>Y</span></div><p class="footer-tagline" data-i18n="footer.tagline">A curated fashion universe.</p></div>
+      <div class="footer-col"><h4 data-i18n="footer.col_discover">Discover</h4><ul><li><a href="quiz.html" data-i18n="footer.link_quiz">Style quiz</a></li><li><a href="index.html#styles" data-i18n="footer.link_all">All aesthetics</a></li><li><a href="moodboard.html" data-i18n="nav.moodboard">Moodboard</a></li><li><a href="brands.html" data-i18n="nav.partners">Partners</a></li></ul></div>
+      <div class="footer-col"><h4 data-i18n="footer.col_aesthetics">Aesthetics</h4><ul><li><a href="style.html#classic">Classic</a></li><li><a href="style.html#minimalist">Minimalist</a></li><li><a href="style.html#korean">Korean</a></li><li><a href="style.html#elegant">Elegant</a></li></ul></div>
+      <div class="footer-col"><h4 data-i18n="footer.col_partners">Shop partners</h4><ul><li>Zara · COS · Mango</li><li>H&M · Uniqlo · ASOS</li><li>SHEIN · Bershka · Pull&Bear</li><li>Nike · Adidas · Sephora</li></ul></div>
     </div>
-    <div class="footer-bottom"><span>© 2026 AURA Fashion</span><span>Designed with care, dressed with intention.</span></div>
+    <div class="footer-bottom"><span data-i18n="footer.copyright">© 2026 Aura Glossy</span><span data-i18n="footer.designed">Designed with care, dressed with intention.</span></div>
   </div>
 </footer>
 
-<script src="js/data.js?v=6"></script>
-<script src="js/main.js?v=4"></script>
-<script src="js/animations.js?v=12"></script>
+<!-- i18n.js loaded FIRST so the quiz IIFE below can read Aura.i18n
+     synchronously at first render (otherwise we'd flash English even
+     when the user has chosen another language). -->
+<script src="js/i18n.js?v=8"></script>
+<script src="js/data.js?v=7"></script>
+<script src="js/main.js?v=5"></script>
+<script src="js/animations.js?v=15"></script>
 <script>
 (function() {
   const container = document.getElementById('quiz-container');
   let stepIndex = 0;
   let answers = [];
+  let autoTimer = null;
+
+  /* ── i18n helpers ──────────────────────────────────────────────
+     `_tr(key, fallback)` returns the translated string for `key`,
+     or `fallback` if i18n hasn't loaded yet or the key is missing.
+     `_trQ(idx)` returns the translated question object (q, hint,
+     helpText, options[], moods[]) for question index `idx`, falling
+     back per-field to the English QUIZ[idx] in data.js. */
+  function _tr(key, fallback) {
+    if (window.Aura && window.Aura.i18n) {
+      var v = window.Aura.i18n.t(key);
+      if (v && v !== key) return v;
+    }
+    return fallback;
+  }
+  function _trQ(idx) {
+    var base = QUIZ[idx] || {};
+    var arr  = (window.Aura && window.Aura.i18n && typeof window.Aura.i18n.raw === 'function')
+                 ? window.Aura.i18n.raw('quiz.questions') : null;
+    var tr   = (arr && Array.isArray(arr)) ? arr[idx] : null;
+    return {
+      q:        (tr && tr.q)        || base.q,
+      hint:     (tr && tr.hint)     || base.hint,
+      helpText: (tr && tr.helpText) || base.helpText,
+      /* option text + mood are per-index — fall back per-slot */
+      optionText: function (i) {
+        if (tr && tr.options && tr.options[i]) return tr.options[i];
+        return (base.options && base.options[i] && base.options[i].text) || '';
+      },
+      moodText: function (i) {
+        if (tr && tr.moods && tr.moods[i]) return tr.moods[i];
+        return (base.options && base.options[i] && base.options[i].mood) || '';
+      }
+    };
+  }
+
+  function showHelpModal(step, idx) {
+    const tQ = _trQ(idx);
+    const overlay = document.createElement('div');
+    overlay.className = 'quiz-modal-overlay';
+    overlay.innerHTML =
+      '<div class="quiz-modal-card">' +
+        '<div class="quiz-modal-icon">✦</div>' +
+        '<p class="quiz-modal-title">' + _tr('quiz.modal_title', 'No wrong answers.') + '</p>' +
+        '<p class="quiz-modal-body">' + (tQ.helpText || _tr('quiz.modal_body', 'Just pick the option that feels most natural — your instinct is always right.')) + '</p>' +
+        '<button class="quiz-modal-close" id="modal-close-btn">' + _tr('common.got_it', 'Got it ✦') + '</button>' +
+      '</div>';
+    document.body.appendChild(overlay);
+
+    const close = () => {
+      overlay.style.transition = 'opacity 0.2s ease';
+      overlay.style.opacity = '0';
+      setTimeout(() => { if (overlay.parentNode) overlay.remove(); }, 200);
+    };
+    overlay.querySelector('#modal-close-btn').addEventListener('click', close);
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
+    const onKey = (e) => { if (e.key === 'Escape') { close(); document.removeEventListener('keydown', onKey); } };
+    document.addEventListener('keydown', onKey);
+  }
+
+  function advance() {
+    const el = document.getElementById('quiz-step');
+    if (el) {
+      el.classList.add('exiting');
+      setTimeout(() => { stepIndex++; render(); }, 300);
+    }
+  }
 
   function render() {
+    clearTimeout(autoTimer);
     if (stepIndex >= QUIZ.length) { renderResult(); return; }
     const step = QUIZ[stepIndex];
+    const tQ   = _trQ(stepIndex);                     /* live translation */
     const progress = (stepIndex / QUIZ.length) * 100;
+
+    /* "Question N" label uses {n} interpolation from quiz.question */
+    const qLabel = (window.Aura && window.Aura.i18n)
+                     ? window.Aura.i18n.t('quiz.question', { n: stepIndex + 1 })
+                     : ('Question ' + (stepIndex + 1));
 
     let html = '<div class="quiz-progress">';
     html += '<div class="quiz-progress-bar"><div class="quiz-progress-fill" style="width:' + progress + '%"></div></div>';
@@ -68,20 +152,42 @@
     html += '</div>';
 
     html += '<div class="quiz-step" id="quiz-step">';
-    html += '<p class="quiz-question-num">Question ' + (stepIndex + 1) + '</p>';
-    html += '<h2 class="quiz-question">' + step.q + '</h2>';
+    html += '<p class="quiz-question-num">' + qLabel + '</p>';
+
+    html += '<div class="quiz-top-row">';
+    html += '<h2 class="quiz-question">' + tQ.q + '</h2>';
+    html += '<button class="quiz-help-btn" id="quiz-help-btn" type="button" aria-label="' + _tr('quiz.help_btn', 'Help me') + '">';
+    html += '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17" stroke-linecap="round"/></svg>';
+    html += ' ' + _tr('quiz.help_btn', 'Help me') + '</button>';
+    html += '</div>';
+
+    if (tQ.hint) {
+      html += '<p class="quiz-hint">' + tQ.hint + '</p>';
+    }
+
     html += '<div class="quiz-options quiz-options-clean">';
     step.options.forEach((opt, i) => {
       const sel = answers[stepIndex] === opt.tag ? ' selected' : '';
+      const optText = tQ.optionText(i);
+      const moodText = tQ.moodText(i);
       html += '<button class="quiz-option' + sel + '" data-tag="' + opt.tag + '" data-idx="' + i + '">';
       html += '<span class="quiz-option-icon">' + opt.icon + '</span>';
-      html += '<span class="quiz-option-text">' + opt.text + '</span>';
+      html += '<span class="quiz-option-label">';
+      html += '<span class="quiz-option-text">' + optText + '</span>';
+      if (moodText) { html += '<span class="quiz-option-mood">' + moodText + '</span>'; }
+      html += '</span>';
       html += '</button>';
     });
     html += '</div>';
+
+    const nextLabel = (stepIndex === QUIZ.length - 1)
+      ? _tr('quiz.see_result', 'See result →')
+      : _tr('common.next', 'Next →');
+    const backLabel = _tr('common.back', 'Back');
+
     html += '<div class="quiz-nav">';
-    html += '<button id="prev-btn"' + (stepIndex === 0 ? ' disabled' : '') + '>← Back</button>';
-    html += '<button id="next-btn"' + (!answers[stepIndex] ? ' disabled' : '') + '>' + (stepIndex === QUIZ.length - 1 ? 'See result →' : 'Next →') + '</button>';
+    html += '<button id="prev-btn"' + (stepIndex === 0 ? ' disabled' : '') + '>← ' + backLabel + '</button>';
+    html += '<button id="next-btn"' + (!answers[stepIndex] ? ' disabled' : '') + '>' + nextLabel + '</button>';
     html += '</div>';
     html += '</div>';
 
@@ -89,25 +195,37 @@
 
     container.querySelectorAll('.quiz-option').forEach(btn => {
       btn.addEventListener('click', () => {
+        clearTimeout(autoTimer);
         answers[stepIndex] = btn.dataset.tag;
         container.querySelectorAll('.quiz-option').forEach(b => b.classList.remove('selected'));
         btn.classList.add('selected');
         document.getElementById('next-btn').disabled = false;
+
+        /* Auto-advance after a short pause — unless this is the last question */
+        if (stepIndex < QUIZ.length - 1) {
+          autoTimer = setTimeout(advance, 460);
+        }
       });
+    });
+
+    document.getElementById('quiz-help-btn').addEventListener('click', () => {
+      showHelpModal(step, stepIndex);
     });
 
     document.getElementById('prev-btn').addEventListener('click', () => {
       if (stepIndex > 0) {
-        const step = document.getElementById('quiz-step');
-        step.classList.add('exiting');
+        clearTimeout(autoTimer);
+        const el = document.getElementById('quiz-step');
+        el.classList.add('exiting');
         setTimeout(() => { stepIndex--; render(); }, 300);
       }
     });
 
     document.getElementById('next-btn').addEventListener('click', () => {
       if (!answers[stepIndex]) return;
-      const step = document.getElementById('quiz-step');
-      step.classList.add('exiting');
+      clearTimeout(autoTimer);
+      const el = document.getElementById('quiz-step');
+      el.classList.add('exiting');
       setTimeout(() => { stepIndex++; render(); }, 300);
     });
   }
@@ -122,7 +240,7 @@
     return STYLES[bestTag];
   }
 
-  /* ── Aura identity data ── */
+  /* ✦✦ Aura identity data ✦✦ */
   const AURA_COLORS = {
     classic:    '#c4a882', minimalist: '#aeaaa4', korean:  '#f2b8c6',
     elegant:    '#a08070', y2k:        '#c084fc', streetwear: '#7c8794',
@@ -145,7 +263,7 @@
     const auraColor  = AURA_COLORS[result.id]  || '#c8b49a';
     const mantra     = AURA_MANTRAS[result.id] || 'Your style is your signature.';
 
-    /* ── Flood the entire page with this aesthetic's color ── */
+    /* ✦✦ Flood the entire page with this aesthetic's color —✦ */
     const quizSection = document.querySelector('.quiz-page');
     quizSection.style.transition = 'background 1.6s cubic-bezier(.4,0,.2,1)';
     quizSection.style.minHeight = '100vh';
@@ -190,10 +308,14 @@
               '0 0 180px '  + auraColor + '22' +
           '"></div>' +
         '</div>' +
-        /* name */
+        /* name — dir="ltr" + unicode-bidi:isolate keeps "Minimalist"
+           rendering left-to-right even when the page is in Arabic or
+           Hebrew (RTL). Each letter is its own span for the staggered
+           reveal animation, which is exactly what triggered the bidi
+           reversal bug ("tsilaminiM"). */
         '<div class="qr-name-wrap">' +
           '<span class="qr-eyebrow" style="color:' + auraColor + 'bb;letter-spacing:0.22em">Your aesthetic is</span>' +
-          '<div class="qr-name" style="color:#1a1209">' + letters + '</div>' +
+          '<div class="qr-name aura-name-ltr" dir="ltr" style="color:#1a1209">' + letters + '</div>' +
           '<p class="qr-mantra" style="color:#7a6a60">&ldquo;' + mantra + '&rdquo;</p>' +
         '</div>' +
         /* aura color chip */
@@ -208,7 +330,7 @@
         '<div class="qr-breakdown">' +
           top3.map((s, i) =>
             '<div class="qr-bar-row" style="animation-delay:' + (0.6 + i * 0.18) + 's">' +
-              '<span class="qr-bar-label" style="color:#3a3028">' + s.name + '</span>' +
+              '<span class="qr-bar-label aura-name-ltr" dir="ltr" style="color:#3a3028">' + s.name + '</span>' +
               '<div class="qr-bar-track" style="background:rgba(0,0,0,0.08)">' +
                 '<div class="qr-bar-fill" style="--pct:' + s.pct + '%;background:' + (s.primary ? auraColor : 'rgba(0,0,0,0.14)') + '"></div>' +
               '</div>' +
@@ -218,8 +340,9 @@
         '</div>' +
         /* actions */
         '<div class="qr-actions">' +
-          '<a href="style.html#' + result.id + '" class="btn" style="background:' + auraColor + ';color:#fff;border:none;box-shadow:0 4px 24px ' + auraColor + '66">Explore your style →</a>' +
-          '<button id="retake" class="btn btn-outline" style="border-color:rgba(0,0,0,0.18);color:#3a3028;background:rgba(255,255,255,0.5)">Retake quiz</button>' +
+          '<a href="community.html#' + result.id + '" class="btn" style="background:' + auraColor + ';color:#fff;border:none;box-shadow:0 4px 24px ' + auraColor + '66">Join Your Community →</a>' +
+          '<a href="style.html#' + result.id + '" class="btn btn-outline" style="border-color:rgba(0,0,0,0.18);color:#3a3028;background:rgba(255,255,255,0.5)">Explore your style →</a>' +
+          '<button id="retake" style="font-size:0.82rem;color:#8a7a70;background:none;border:none;cursor:pointer;padding:6px 0;text-decoration:underline;text-underline-offset:3px;font-family:inherit">Retake quiz</button>' +
         '</div>' +
       '</div>';
 
@@ -242,38 +365,56 @@
       stepIndex = 0; answers = []; render();
     });
 
-    /* Save quiz result to Firestore so settings page can display it */
-    try {
-      var _fbAuth = firebase.auth ? firebase.auth() : null;
-      var _fbUser = _fbAuth && _fbAuth.currentUser;
-      if (_fbUser) {
-        firebase.firestore().collection('users').doc(_fbUser.uid).set({
-          quizResult: { id: result.id, name: result.name, auraColor: auraColor, updatedAt: Date.now() }
-        }, { merge: true }).catch(function() {});
-      }
-    } catch(e) {}
+    /* Save full quiz result to Firestore — answers, breakdown, mantra, aura color */
+    if (typeof fbSaveQuizResult === 'function') {
+      fbSaveQuizResult({
+        id:        result.id,
+        name:      result.name,
+        auraColor: auraColor,
+        mantra:    mantra,
+        breakdown: top3.map(function(b) { return { name: b.name, pct: b.pct }; }),
+        answers:   answers.slice()
+      });
+    }
   }
 
   render();
+
+  /* ── Language switch: re-render the visible quiz state ──────────
+     Translated content lives in i18n.js's quiz.questions[] arrays
+     and quiz.* keys. When the user picks a new language we rebuild
+     whatever's on screen so every string (question, options, hints,
+     help, counter, buttons) updates immediately. */
+  window.addEventListener('aura:langchange', function () {
+    /* Close any open help modal so we don't leave stale-language
+       copy on screen behind / above the fresh translation. */
+    var openModal = document.querySelector('.quiz-modal-overlay');
+    if (openModal && openModal.parentNode) openModal.remove();
+
+    if (stepIndex < QUIZ.length) {
+      /* Mid-quiz: re-render the current question. We don't preserve
+         the exit animation here — switching language is rare enough
+         that a clean rebuild is better than a partial DOM patch. */
+      render();
+    } else {
+      /* On the result page: re-render so the dynamic mantra +
+         buttons translate. The aesthetic color flood already lives
+         on the page background and stays untouched. */
+      try { renderResult(); } catch(e) {}
+    }
+  });
 })();
 </script>
 
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-<script src="js/firebase.js"></script>
+<!-- i18n.js is already loaded above the quiz IIFE; no duplicate needed. -->
+<script src="js/monitor.js?v=2"></script>
+<script src="js/firebase.js?v=11"></script>
 <script>
 function navAuthClick() { window.location.href = 'settings.html'; }
-function isGuest() { return sessionStorage.getItem('aura_guest') === '1'; }
-firebase.auth().onAuthStateChanged(function(user) {
-  var btn = document.getElementById('nav-auth-btn');
-  if (btn) btn.textContent = 'Account';
-  if (!user && !isGuest()) {
-    setTimeout(function() {
-      if (!firebase.auth().currentUser && !isGuest()) window.location.replace('login.html');
-    }, 600);
-  }
-});
+initAuthGuard();
 </script>
 
 </body>

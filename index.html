@@ -1,24 +1,85 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AURA — Discover Your Fashion Aesthetic</title>
-<meta name="description" content="AURA is a fashion-editorial aesthetic discovery platform. Take the style quiz, explore curated aesthetics, get AI styling advice, and build your personal moodboard.">
-<meta property="og:title" content="AURA — Discover Your Fashion Aesthetic">
+<title>Aura Glossy ✦ Discover Your Fashion Aesthetic</title>
+<meta name="description" content="Aura Glossy is a fashion-editorial aesthetic discovery platform. Take the style quiz, explore curated aesthetics, get AI styling advice, and build your personal moodboard.">
+<meta property="og:title" content="Aura Glossy ✦ Discover Your Fashion Aesthetic">
 <meta property="og:description" content="Take the style quiz and discover your personal aesthetic. Curated fashion inspiration, AI styling, and shoppable looks across 9 aesthetics.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://auraglossy.com">
 <meta property="og:image" content="https://auraglossy.com/images/home/hero-1.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AURA — Discover Your Fashion Aesthetic">
+<meta name="twitter:title" content="Aura Glossy ✦ Discover Your Fashion Aesthetic">
 <meta name="twitter:description" content="Take the style quiz and discover your personal aesthetic. Curated fashion inspiration, AI styling, and shoppable looks.">
 <meta name="twitter:image" content="https://auraglossy.com/images/home/hero-1.jpg">
+<link rel="canonical" href="https://auraglossy.com/">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script>
+/* Pre-paint lang/dir setter — chooses saved language, falls back to
+   browser language (en/es/ar/he) then 'en'. Sets <html dir="rtl"> for
+   ar/he so the page never flashes LTR before i18n.js runs. */
+(function(){try{var l=localStorage.getItem('aura_lang');if(!l){var nl=(navigator.language||'en').toLowerCase().slice(0,2);l=(['en','es','ar','he'].indexOf(nl)>=0)?nl:'en';}document.documentElement.lang=l;document.documentElement.dir=(l==='ar'||l==='he')?'rtl':'ltr';}catch(e){}})();
+</script>
+<script>
+/* ─────────────────────────────────────────────────────────────────
+   AURA — SYNCHRONOUS AUTH GATE (must be first head script)
+
+   Runs BEFORE Firebase loads. Decides instantly whether to show
+   the page or redirect to login, using a localStorage flag that
+   firebase.js keeps in sync with onAuthStateChanged.
+
+   Why this exists:
+   • The platform is gated (sign-in required for everything).
+   • Firebase IndexedDB hydration takes 4-12s on TikTok/Instagram
+     in-app WebViews, which previously meant 4-12s of blank screen
+     before any decision was made.
+   • This gate decides in <1ms. If session flag is missing, we
+     replace-navigate to login.html before any layout / paint /
+     downstream script. User never sees a flash of the homepage.
+
+   Storage-blocked browsers (iOS private mode): we let them through
+   here and defer to Firebase's own guard. Worst case they see a
+   brief loader. We DO NOT silently bypass auth — initAuthGuard /
+   the listener at the bottom still enforces.
+   ───────────────────────────────────────────────────────────────── */
+(function () {
+  try {
+    if (!localStorage.getItem('aura_has_session')) {
+      /* Hide the current page so we never flash homepage content
+         while the browser processes the navigation. */
+      document.documentElement.style.visibility = 'hidden';
+      window.location.replace('login.html');
+      return;
+    }
+  } catch (e) { /* storage blocked — Firebase will gate below */ }
+
+  /* ── Environment hints (kept from the loading-reliability pass) ── */
+  try {
+    var ua = navigator.userAgent || '';
+    var isInApp =
+      /TikTok|musical_ly|Instagram|FBAN|FBAV|FB_IAB|FBIOS|Twitter|Snapchat|Pinterest|Line\/|MicroMessenger|WeChat/i.test(ua);
+    var conn  = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    var isSlow = !!(conn && (conn.saveData || /(^|-)2g$/i.test(conn.effectiveType || '')));
+    if (isInApp || isSlow) {
+      try { sessionStorage.setItem('aura_skip_intro', '1'); } catch(e) {}
+      try { localStorage.setItem('aura_intro_seen', '1'); } catch(e) {}
+      document.documentElement.setAttribute('data-inapp', '1');
+    }
+  } catch (e) {}
+
+  /* Hard safety: veil fades after 1.2s no matter what */
+  window.__auraVeilSafetyMs = 1200;
+})();
+</script>
+<link rel="preload" as="image" href="images/home/hero-1.jpg" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://firestore.googleapis.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=12">
+<link rel="stylesheet" href="css/styles.css?v=37">
 </head>
 <body>
 
@@ -28,7 +89,7 @@
 <!-- ===== PRE-ROLL: AURA on black (click anywhere to skip) ===== -->
 <div id="intro-preroll" class="intro-preroll" aria-hidden="true">
   <div class="intro-preroll-inner">
-    <span class="intro-preroll-logo">AURA</span>
+    <span class="intro-preroll-logo">AURA GLOSSY</span>
     <span class="intro-preroll-rule"></span>
     <span class="intro-preroll-sub">discover your aesthetic</span>
   </div>
@@ -68,9 +129,9 @@
     <div class="scene-bg scene-bg-clean"><img src="images/intro/intro-1.jpg" alt=""></div>
     <div class="scene-fg scene-fg-light"></div>
     <div class="scene-text scene-text-c">
-      <span class="scene-eyebrow">III — Your AURA</span>
+      <span class="scene-eyebrow">III — Your Aura Glossy</span>
     </div>
-    <div class="scene-cta">Enter AURA</div>
+    <div class="scene-cta">Enter Aura Glossy</div>
   </section>
 
   <!-- Persistent UI chrome -->
@@ -84,36 +145,37 @@
   </div>
 </div>
 
-<!-- Scroll spacer — 3 scenes × 80vh = 240vh -->
+<!-- Scroll spacer — 3 scenes · 80vh = 240vh -->
 <div id="intro-spacer" aria-hidden="true"></div>
 
 
 <nav class="nav">
-  <a href="index.html" class="nav-logo">AUR<span>A</span></a>
+  <a href="index.html" class="nav-logo">AURA GLOSS<span>Y</span></a>
   <ul class="nav-links">
-    <li><a href="index.html" class="active">Home</a></li>
-    <li><a href="quiz.html">Style Quiz</a></li>
-    <li><a href="#styles">Aesthetics</a></li>
-    <li><a href="stylist.html">AI Stylist</a></li>
-    <li><a href="moodboard.html">Moodboard</a></li>
-    <li><a href="brands.html">Partners</a></li>
+    <li><a href="index.html" class="active" data-i18n="nav.home">Home</a></li>
+    <li><a href="quiz.html" data-i18n="nav.quiz">Style Quiz</a></li>
+    <li><a href="#styles" data-i18n="nav.aesthetics">Aesthetics</a></li>
+    <li><a href="moodboard.html" data-i18n="nav.moodboard">Moodboard</a></li>
+    <li><a href="community.html" data-i18n="nav.community">Community</a></li>
+    <li><a href="brands.html" data-i18n="nav.partners">Partners</a></li>
   </ul>
-  <button class="nav-auth-btn" id="nav-auth-btn" onclick="navAuthClick()">Account</button>
-  <div class="nav-burger" aria-label="Open menu" role="button" tabindex="0"><span></span><span></span><span></span></div>
+  <button class="nav-auth-btn" id="nav-auth-btn" onclick="navAuthClick()" data-i18n="nav.account">Account</button>
+  <div id="lang-switcher" class="nav-lang-slot"></div>
+  <div class="nav-burger" aria-label="Open menu" data-i18n-attr="aria-label:nav.open_menu" role="button" tabindex="0"><span></span><span></span><span></span></div>
 </nav>
 
 <!-- HERO -->
 <section class="hero hero-minimal">
   <div class="hero-grid">
     <div class="hero-content" data-parallax="0.06">
-      <span class="eyebrow">A curated fashion universe</span>
-      <h1 class="hero-title">Discover your aesthetic.<br><em>Own your style.</em></h1>
+      <span class="eyebrow" data-i18n="hero.eyebrow">A curated fashion universe</span>
+      <h1 class="hero-title"><span data-i18n="hero.title_a">Discover your aesthetic.</span><br><em data-i18n="hero.title_b">Own your style.</em></h1>
       <div class="hero-actions">
         <a href="quiz.html" class="btn btn-large">
-          Take the Style Quiz
+          <span data-i18n="hero.cta_quiz">Take the Style Quiz</span>
           <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
-        <a href="#styles" class="btn btn-outline btn-large">Explore aesthetics</a>
+        <a href="#styles" class="btn btn-outline btn-large" data-i18n="hero.cta_explore">Explore aesthetics</a>
       </div>
     </div>
     <div class="hero-visual" data-parallax="0.14">
@@ -155,142 +217,142 @@
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
-      <div><div class="footer-brand">AUR<span>A</span></div><p class="footer-tagline">A curated fashion universe.</p></div>
-      <div class="footer-col"><h4>Discover</h4><ul><li><a href="quiz.html">Style quiz</a></li><li><a href="#styles">All aesthetics</a></li><li><a href="stylist.html">AI stylist</a></li><li><a href="moodboard.html">Moodboard</a></li><li><a href="brands.html">Partners</a></li></ul></div>
-      <div class="footer-col"><h4>Aesthetics</h4><ul><li><a href="style.html#classic">Classic</a></li><li><a href="style.html#minimalist">Minimalist</a></li><li><a href="style.html#korean">Korean</a></li><li><a href="style.html#elegant">Elegant</a></li></ul></div>
-      <div class="footer-col"><h4>Shop partners</h4><ul><li>Zara · COS · Mango</li><li>H&M · Uniqlo · ASOS</li><li>SHEIN · Bershka · Pull&Bear</li><li>Nike · Adidas · Sephora</li></ul></div>
+      <div><div class="footer-brand">AURA GLOSS<span>Y</span></div><p class="footer-tagline" data-i18n="footer.tagline">A curated fashion universe.</p></div>
+      <div class="footer-col"><h4 data-i18n="footer.col_discover">Discover</h4><ul><li><a href="quiz.html" data-i18n="footer.link_quiz">Style quiz</a></li><li><a href="#styles" data-i18n="footer.link_all">All aesthetics</a></li><li><a href="moodboard.html" data-i18n="nav.moodboard">Moodboard</a></li><li><a href="brands.html" data-i18n="nav.partners">Partners</a></li></ul></div>
+      <div class="footer-col"><h4 data-i18n="footer.col_aesthetics">Aesthetics</h4><ul><li><a href="style.html#classic">Classic</a></li><li><a href="style.html#minimalist">Minimalist</a></li><li><a href="style.html#korean">Korean</a></li><li><a href="style.html#elegant">Elegant</a></li></ul></div>
+      <div class="footer-col"><h4 data-i18n="footer.col_partners">Shop partners</h4><ul><li>Zara · COS · Mango</li><li>H&M · Uniqlo · ASOS</li><li>SHEIN · Bershka · Pull&Bear</li><li>Nike · Adidas · Sephora</li></ul></div>
     </div>
-    <div class="footer-bottom"><span>© 2026 AURA Fashion</span><span>Designed with care, dressed with intention.</span></div>
+    <div class="footer-bottom"><span data-i18n="footer.copyright">© 2026 Aura Glossy</span><span data-i18n="footer.designed">Designed with care, dressed with intention.</span></div>
   </div>
 </footer>
 
-<script src="js/intro.js?v=7"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-<script src="js/data.js?v=6"></script>
-<script src="js/main.js?v=4"></script>
-<script src="js/firebase.js"></script>
-<script src="js/animations.js?v=12"></script>
+<script src="js/i18n.js?v=8" defer></script>
+<script src="js/intro.js?v=10" defer></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js" defer></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js" defer></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js" defer></script>
+<script src="js/data.js?v=6" defer></script>
+<script src="js/main.js?v=5" defer></script>
+<script src="js/monitor.js?v=2" defer></script>
+<script src="js/firebase.js?v=11" defer></script>
+<script src="js/animations.js?v=15" defer></script>
+<script src="js/onboarding.js?v=12" defer></script>
 <script>
-/* ══════════════════════════════════════════════════════════════
-   AURA — Auth gate + cinematic transition pipeline
-   ══════════════════════════════════════════════════════════════
+/* ─────────────────────────────────────────────────────────────────
+   AURA — Homepage auth gate (PUBLIC-BY-DEFAULT, NON-BLOCKING)
 
-   HOW THE VEIL WORKS
-   ─────────────────
-   #aura-veil sits at z-index 9997 — above all page content
-   and nav (100), but just below the cinematic intro (9998).
-   It starts FULLY OPAQUE so content never flashes before auth
-   resolves. The intro plays on top of it. Once we know the
-   user's state we either fade the veil out (show homepage)
-   or navigate to login while it's still covering everything
-   (zero visible flash in either direction).
-   ══════════════════════════════════════════════════════════════ */
+   ── How this works ──────────────────────────────────────────────
+   The homepage is publicly browsable. The veil exists only as a
+   tasteful first-paint cover that fades out quickly. Auth resolves
+   in the background and updates the nav button — it NEVER blocks
+   content or redirects away.
 
-localStorage.removeItem('aura_guest'); // clean up legacy flag
+   Three things guarantee the page is always usable:
 
-function isGuest() { return sessionStorage.getItem('aura_guest') === '1'; }
-function navAuthClick() { window.location.href = 'settings.html'; }
+     1. _hardReveal() runs after __auraVeilSafetyMs (1200ms set by
+        the head-script). The veil fades out unconditionally — no
+        Firebase dependency. This is the floor.
 
-/* ── Veil helpers ──────────────────────────────────────────── */
+     2. _earlyReveal() runs as soon as Firebase auth fires, with
+        EITHER a user or null. If auth resolves in 200ms we fade
+        in 200ms — faster than the safety floor.
+
+     3. _onIntroEnd() lifts the veil when the cinematic intro
+        finishes, in case the intro outlasts both timers.
+
+   The previous flow redirected anonymous visitors to login.html
+   after 7-20 seconds. That destroyed conversion from TikTok /
+   Instagram in-app browsers where Firebase IndexedDB is slow.
+   Homepage no longer redirects ANYONE. Quiz / Moodboard /
+   Settings / Community keep their own auth guards.
+   ───────────────────────────────────────────────────────────────── */
+
+function navAuthClick() {
+  /* If signed in → Account page. If not → Sign-in page. */
+  try {
+    if (typeof firebase !== 'undefined' && firebase.apps && firebase.apps.length && firebase.auth().currentUser) {
+      window.location.href = 'settings.html'; return;
+    }
+  } catch(e) {}
+  window.location.href = 'login.html';
+}
+
+/* ── Veil helpers ───────────────────────────────────────────────── */
+var _veilRevealed = false;
 function _revealPage() {
-  /* Fade the veil out → homepage slides in */
+  if (_veilRevealed) return;
+  _veilRevealed = true;
   var v = document.getElementById('aura-veil');
   if (v) {
-    /* Tiny tick so the browser has painted first */
     requestAnimationFrame(function() {
-      requestAnimationFrame(function() {
-        v.classList.add('veil-out');
-      });
+      requestAnimationFrame(function() { v.classList.add('veil-out'); });
     });
+    /* Remove from DOM after the CSS transition so it never blocks taps */
+    setTimeout(function() {
+      if (v && v.parentNode) v.parentNode.removeChild(v);
+    }, 1200);
   }
 }
 
-function _goToLogin() {
-  /* Veil is still opaque → navigate instantly, zero flash */
-  window.location.replace('login.html');
-}
+/* ── HARD SAFETY: fade the veil after a fixed time, no matter what ── */
+setTimeout(_revealPage, window.__auraVeilSafetyMs || 1200);
 
-/* ── Intro awareness ───────────────────────────────────────── */
-function _introIsPlaying() {
-  var el   = document.getElementById('intro');
-  var seen = sessionStorage.getItem('aura_intro_seen');
-  return el && !seen;
-}
+/* ── If the cinematic intro is running, lift the veil when it ends ── */
+window.addEventListener('aura:homepage-reveal', _revealPage, { once: true });
 
-/* ── Main auth listener ────────────────────────────────────── */
-/*
-   FIX: onAuthStateChanged can fire twice on page load — once with null
-   (before Firebase finishes reading the persisted session from IndexedDB)
-   and again with the real user. The old code added a new event listener
-   each time, so both _goToLogin and _revealPage ended up registered on
-   aura:homepage-reveal. When the intro ended, the redirect won.
-
-   Fix: register the intro-end listener only once (_introHooked flag) and
-   have it read _authPending at fire-time so the last state wins. For the
-   no-intro case, delay the redirect 600 ms to let Firebase finish loading.
-*/
-var _authPending = 'loading'; /* 'authed' | 'anon' */
-var _introHooked = false;
-var _loginTimer  = null;
-
-function _onIntroEnd() {
-  if (_authPending === 'authed') _revealPage();
-  else _goToLogin();
-}
-
-firebase.auth().onAuthStateChanged(function(user) {
-  clearTimeout(_loginTimer);
-  var btn = document.getElementById('nav-auth-btn');
-  if (btn) btn.textContent = 'Account';
-
-  if (user || isGuest()) {
-    /* ── Authenticated or guest: show the homepage ── */
-    _authPending = 'authed';
-
-    if (_introIsPlaying()) {
-      /* Intro running → hook its end event once; _onIntroEnd reads current state */
-      if (!_introHooked) {
-        _introHooked = true;
-        window.addEventListener('aura:homepage-reveal', _onIntroEnd, { once: true });
-      }
-    } else {
+/* ── Auth state listener — updates nav, redirects if session is stale ──
+   The synchronous head-gate already lets us through if the localStorage
+   flag was set. Once Firebase finishes IndexedDB hydration we have the
+   real truth. If it says null, the flag was stale (logged out elsewhere,
+   session revoked, etc.) and we bounce to login. If it says user, we're
+   good — just update the nav. Either way the veil is lifted instantly. */
+function _initAuthListener() {
+  if (typeof firebase === 'undefined' || !firebase.apps || !firebase.apps.length) return false;
+  try {
+    firebase.auth().onAuthStateChanged(function(user) {
+      var btn = document.getElementById('nav-auth-btn');
+      if (btn) btn.textContent = user ? 'Account' : 'Sign in';
       _revealPage();
-    }
-
-  } else {
-    /* ── Not authenticated ── */
-    _authPending = 'anon';
-
-    if (_introIsPlaying()) {
-      /* Hook intro end once; safety-net timeout fires if event never arrives */
-      if (!_introHooked) {
-        _introHooked = true;
-        window.addEventListener('aura:homepage-reveal', _onIntroEnd, { once: true });
-        setTimeout(function() {
-          if (window.location.pathname.indexOf('login') === -1 && _authPending === 'anon') {
-            _goToLogin();
-          }
-        }, 14000);
+      if (!user) {
+        /* Stale-session bounce. firebase.js already cleared the
+           aura_has_session flag; navigate so the next load is clean. */
+        window.location.replace('login.html');
       }
-    } else {
-      /* Delay 600 ms — Firebase's initial null can arrive before IndexedDB
-         finishes restoring the persisted session. Re-check before redirecting. */
-      _loginTimer = setTimeout(function() {
-        if (!firebase.auth().currentUser && !isGuest()) _goToLogin();
-      }, 600);
-    }
-  }
+    });
+    return true;
+  } catch(e) { return false; }
+}
+
+/* Firebase scripts are deferred — try to attach as soon as they're ready.
+   Multiple attempts (no fixed delay) so we attach the moment firebase
+   is defined, instead of guessing at a setTimeout duration. */
+(function _waitForFirebase() {
+  if (_initAuthListener()) return;
+  var attempts = 0;
+  var iv = setInterval(function() {
+    attempts++;
+    if (_initAuthListener() || attempts > 40 /* ~4s max */) clearInterval(iv);
+  }, 100);
+})();
+
+/* ── bfcache restore: page came back from cache — show immediately ── */
+window.addEventListener('pageshow', function(e) {
+  if (!e.persisted) return;
+  _revealPage();
 });
 </script>
 <script>
+/* Styles grid render — depends on STYLES from data.js (deferred), so it
+   must wait until DOMContentLoaded which fires AFTER all defer scripts. */
 const STYLE_ORDER = ['classic','casual','streetwear','minimalist','elegant','korean','y2k','vintage','softgirl'];
-(function() {
+function _renderStylesGrid() {
+  if (typeof STYLES === 'undefined') return false;
   const grid = document.getElementById('styles-grid');
+  if (!grid || grid.children.length) return true;
   let html = '';
   STYLE_ORDER.forEach((id, i) => {
     const s = STYLES[id];
+    if (!s) return;
     const num = String(i + 1).padStart(2, '0');
     html += '<a href="style.html#' + s.id + '" class="style-card">';
     html += '<img class="style-card-img" src="' + s.heroImg + '" alt="' + s.name + '" loading="lazy">';
@@ -300,7 +362,20 @@ const STYLE_ORDER = ['classic','casual','streetwear','minimalist','elegant','kor
     html += '<span class="style-card-link">Explore &rarr;</span></div></a>';
   });
   grid.innerHTML = html;
-})();
+  return true;
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', _renderStylesGrid);
+} else {
+  /* DOM already parsed — try immediately; retry briefly if data.js still loading */
+  if (!_renderStylesGrid()) {
+    var _gridTries = 0;
+    var _gridIv = setInterval(function() {
+      _gridTries++;
+      if (_renderStylesGrid() || _gridTries > 40) clearInterval(_gridIv);
+    }, 100);
+  }
+}
 </script>
 
 </body>

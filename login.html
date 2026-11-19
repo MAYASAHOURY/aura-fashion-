@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Join AURA</title>
+<script>(function(){try{var l=localStorage.getItem("aura_lang");if(!l){var nl=(navigator.language||"en").toLowerCase().slice(0,2);l=(["en","es","ar","he"].indexOf(nl)>=0)?nl:"en";}document.documentElement.lang=l;document.documentElement.dir=(l==="ar"||l==="he")?"rtl":"ltr";}catch(e){}})();</script>
+<meta name="robots" content="noindex, nofollow">
+<title>Join Aura Glossy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
@@ -23,14 +25,14 @@
 
 body { font-family: var(--font-sans); background: #0a0a0a; overflow: hidden; height: 100vh; }
 
-/* ── Layout ─────────────────────────────────────────────────── */
+/* ✦✦ Layout ✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦ */
 .auth-wrap {
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 100vh;
 }
 
-/* ── LEFT: photo panel ──────────────────────────────────────── */
+/* ✦✦ LEFT: photo panel ✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦ */
 .auth-photo {
   position: relative;
   overflow: hidden;
@@ -64,7 +66,7 @@ body { font-family: var(--font-sans); background: #0a0a0a; overflow: hidden; hei
   color: rgba(255,255,255,0.45);
 }
 
-/* ── RIGHT: form panel ──────────────────────────────────────── */
+/* ✦✦ RIGHT: form panel ✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦ */
 .auth-form-panel {
   background: #0d0d0d;
   display: flex;
@@ -109,7 +111,7 @@ body { font-family: var(--font-sans); background: #0a0a0a; overflow: hidden; hei
   line-height: 1.6;
 }
 
-/* ── Tabs (Join / Sign In) ──────────────────────────────────── */
+/* ✦✦ Tabs (Join / Sign In) ✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦ */
 .auth-tabs {
   display: flex;
   gap: 0;
@@ -141,7 +143,7 @@ body { font-family: var(--font-sans); background: #0a0a0a; overflow: hidden; hei
   background: #fff;
 }
 
-/* ── Form ───────────────────────────────────────────────────── */
+/* ✦✦ Form ✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦ */
 .auth-fields { display: flex; flex-direction: column; gap: 0; }
 .auth-field {
   position: relative;
@@ -156,13 +158,338 @@ body { font-family: var(--font-sans); background: #0a0a0a; overflow: hidden; hei
   outline: none;
   color: #fff;
   font-family: var(--font-sans);
-  font-size: 15px;
+  /* 16px to prevent iOS auto-zoom on focus (any value < 16 triggers zoom) */
+  font-size: 16px;
   padding: 18px 0;
   caret-color: var(--rose);
 }
 .auth-field input::placeholder { color: rgba(255,255,255,0.3); }
 
-/* ── Buttons ────────────────────────────────────────────────── */
+/* ✦✦ Password visibility eye toggle ✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦
+   Auto-injected by JS into every .auth-field that contains a
+   password input. Positioned at the trailing edge (right in LTR,
+   left in RTL) and reserves padding inside the input so text never
+   slides under the icon — no layout shift on toggle. */
+.auth-field--password input { padding-right: 40px; }
+.auth-eye {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  transition: color 0.18s ease, background-color 0.18s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.auth-eye:hover, .auth-eye:focus-visible {
+  color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.05);
+  outline: none;
+}
+.auth-eye svg {
+  width: 18px;
+  height: 18px;
+  /* Crisp on all devices */
+  stroke-width: 1.8;
+}
+/* RTL: eye on the left, padding flips */
+html[dir="rtl"] .auth-eye  { right: auto; left: 0; }
+html[dir="rtl"] .auth-field--password input { padding-right: 0; padding-left: 40px; }
+
+/* ✦✦ Forgot-password link ✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦ */
+.auth-forgot-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 14px;
+}
+html[dir="rtl"] .auth-forgot-row { justify-content: flex-start; }
+.auth-forgot {
+  background: none;
+  border: 0;
+  padding: 2px 0;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  transition: color 0.18s ease;
+  text-underline-offset: 3px;
+}
+.auth-forgot:hover, .auth-forgot:focus-visible {
+  color: var(--rose);
+  text-decoration: underline;
+  outline: none;
+}
+
+/* ✦✦ Language switcher dropdown (DARK theme for login) ✦✦✦✦✦
+   login.html doesn't load /css/styles.css, so we ship the
+   dropdown styles inline. Visual model mirrors the main site's
+   dropdown but inverted for the auth dark background. */
+#lang-switcher.aura-lang-dropdown {
+  position: relative;
+  display: inline-flex;
+  margin-top: 28px;
+}
+#lang-switcher .aura-lang-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.88);
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease;
+  white-space: nowrap;
+}
+#lang-switcher .aura-lang-trigger:hover,
+#lang-switcher .aura-lang-trigger:focus-visible {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.3);
+  outline: none;
+}
+#lang-switcher .aura-lang-trigger-globe {
+  width: 15px;
+  height: 15px;
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+#lang-switcher .aura-lang-trigger-name { font-weight: 500; letter-spacing: 0.01em; }
+#lang-switcher .aura-lang-trigger-name[lang="ar"],
+#lang-switcher .aura-lang-trigger-name[lang="he"] { font-size: 14px; }
+#lang-switcher .aura-lang-trigger-chevron {
+  width: 10px;
+  height: 10px;
+  opacity: 0.55;
+  flex-shrink: 0;
+  transition: transform 0.18s ease;
+}
+#lang-switcher.is-open .aura-lang-trigger-chevron { transform: rotate(180deg); }
+
+#lang-switcher .aura-lang-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 200px;
+  padding: 6px;
+  background: #181818;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55), 0 2px 6px rgba(0, 0, 0, 0.4);
+  list-style: none;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s linear 0.18s;
+  z-index: 200;
+}
+#lang-switcher.is-open .aura-lang-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s linear 0s;
+}
+html[dir="rtl"] #lang-switcher .aura-lang-menu { left: auto; right: 0; }
+#lang-switcher .aura-lang-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  background: transparent;
+  border: 0;
+  border-radius: 10px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.14s ease, color 0.14s ease;
+}
+html[dir="rtl"] #lang-switcher .aura-lang-option { text-align: right; }
+#lang-switcher .aura-lang-option:hover,
+#lang-switcher .aura-lang-option:focus-visible {
+  background: rgba(255, 255, 255, 0.06);
+  outline: none;
+}
+#lang-switcher .aura-lang-option.is-active {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+#lang-switcher .aura-lang-option-name { flex: 1; font-weight: 500; }
+#lang-switcher .aura-lang-option-name[lang="ar"],
+#lang-switcher .aura-lang-option-name[lang="he"] { font-size: 14px; }
+#lang-switcher .aura-lang-option-check {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  opacity: 0;
+  color: var(--rose);
+  transition: opacity 0.14s ease;
+}
+#lang-switcher .aura-lang-option-check svg { width: 100%; height: 100%; display: block; }
+#lang-switcher .aura-lang-option.is-active .aura-lang-option-check { opacity: 1; }
+
+/* ✦✦ Reset-password modal ✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦ */
+.reset-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.reset-modal.is-open { display: flex; }
+.reset-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.74);
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+.reset-modal.is-open .reset-modal-overlay { opacity: 1; }
+.reset-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: #141414;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 36px 32px 28px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+  color: #fff;
+  text-align: center;
+  transform: translateY(10px) scale(0.97);
+  opacity: 0;
+  transition: opacity 0.28s ease, transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reset-modal.is-open .reset-modal-card {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+.reset-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: color 0.18s ease, background-color 0.18s ease;
+}
+.reset-close:hover, .reset-close:focus-visible {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.06);
+  outline: none;
+}
+html[dir="rtl"] .reset-close { right: auto; left: 12px; }
+.reset-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 8px;
+}
+.reset-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.reset-body {
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 22px;
+}
+.reset-field {
+  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  transition: border-color 0.2s;
+  text-align: left;
+}
+html[dir="rtl"] .reset-field { text-align: right; }
+.reset-field:focus-within { border-color: rgba(255, 255, 255, 0.55); }
+.reset-field input {
+  width: 100%;
+  background: none;
+  border: 0;
+  outline: 0;
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  padding: 14px 0;
+  caret-color: var(--rose);
+}
+.reset-field input::placeholder { color: rgba(255, 255, 255, 0.3); }
+.reset-message {
+  font-size: 12px;
+  min-height: 18px;
+  margin: 12px 0 0;
+  line-height: 1.5;
+  text-align: left;
+}
+html[dir="rtl"] .reset-message { text-align: right; }
+.reset-message.is-error   { color: #f87171; }
+.reset-message.is-success { color: #86efac; }
+.reset-send {
+  margin-top: 22px;
+  width: 100%;
+  padding: 14px 24px;
+  background: #fff;
+  color: #0a0a0a;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border: 0;
+  cursor: pointer;
+  border-radius: 0;
+  transition: background 0.2s, transform 0.15s, opacity 0.2s;
+}
+.reset-send:hover:not(:disabled) {
+  background: #f0ece6;
+  transform: translateY(-1px);
+}
+.reset-send:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Reduced motion — drop the entrance scale */
+@media (prefers-reduced-motion: reduce) {
+  .reset-modal-overlay,
+  .reset-modal-card { transition: opacity 0.18s ease; transform: none; }
+  .reset-modal.is-open .reset-modal-card { transform: none; }
+}
+
+/* ✦✦ Buttons ✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦ */
 .auth-cta {
   margin-top: 32px;
   width: 100%;
@@ -180,55 +507,6 @@ body { font-family: var(--font-sans); background: #0a0a0a; overflow: hidden; hei
 }
 .auth-cta:hover { background: #f0ece6; transform: translateY(-1px); }
 
-.auth-or {
-  text-align: center;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  color: rgba(255,255,255,0.2);
-  margin: 20px 0;
-  position: relative;
-}
-.auth-or::before, .auth-or::after {
-  content: '';
-  position: absolute;
-  top: 50%; width: 42%;
-  height: 1px;
-  background: rgba(255,255,255,0.08);
-}
-.auth-or::before { left: 0; }
-.auth-or::after  { right: 0; }
-
-.auth-google {
-  width: 100%;
-  padding: 15px 24px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.35);
-  color: #fff;
-  font-family: var(--font-sans);
-  font-size: 14px;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center; gap: 12px;
-  transition: border-color 0.2s, background 0.2s;
-}
-.auth-google:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.1); }
-
-.auth-guest {
-  margin-top: 14px;
-  width: 100%;
-  padding: 15px 24px;
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.08);
-  color: rgba(255,255,255,0.4);
-  font-family: var(--font-sans);
-  font-size: 14px;
-  cursor: pointer;
-  transition: border-color 0.2s, color 0.2s;
-  text-align: center;
-  text-decoration: none;
-  display: block;
-}
-.auth-guest:hover { border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.65); }
 
 .auth-switch {
   margin-top: 24px;
@@ -245,7 +523,7 @@ body { font-family: var(--font-sans); background: #0a0a0a; overflow: hidden; hei
   text-underline-offset: 3px;
 }
 
-/* ── Signed-in state ────────────────────────────────────────── */
+/* ✦✦ Signed-in state ✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦ */
 .auth-user { display: none; flex-direction: column; align-items: center; gap: 16px; text-align: center; }
 .auth-avatar { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.2); }
 .auth-user-name { font-family: var(--font-display); font-size: 22px; color: #fff; }
@@ -265,13 +543,13 @@ body { font-family: var(--font-sans); background: #0a0a0a; overflow: hidden; hei
 }
 .auth-signout:hover { border-color: rgba(255,255,255,0.35); color: rgba(255,255,255,0.7); }
 
-/* ── Error ──────────────────────────────────────────────────── */
+/* ✦✦ Error ✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦ */
 .auth-error {
   font-size: 12px; color: #f87171;
   margin-top: 12px; display: none;
 }
 
-/* ── Mobile ─────────────────────────────────────────────────── */
+/* ✦✦ Mobile ✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦ */
 @media (max-width: 768px) {
   body { overflow: auto; }
   .auth-wrap { grid-template-columns: 1fr; height: auto; min-height: 100vh; }
@@ -287,9 +565,9 @@ body { font-family: var(--font-sans); background: #0a0a0a; overflow: hidden; hei
 
   <!-- LEFT: photo -->
   <div class="auth-photo">
-    <img src="signin-bg.jpg" alt="AURA Fashion">
+    <img src="signin-bg.jpg" alt="Aura Glossy Fashion">
     <div class="auth-photo-veil"></div>
-    <div class="auth-photo-top">AURA &nbsp;·&nbsp; 2026</div>
+    <div class="auth-photo-top">AURA GLOSSY &nbsp;·&nbsp; 2026</div>
     <div class="auth-photo-bottom">
       <span class="auth-photo-tag">Style</span>
       <span class="auth-photo-tag">Identity</span>
@@ -299,53 +577,48 @@ body { font-family: var(--font-sans); background: #0a0a0a; overflow: hidden; hei
 
   <!-- RIGHT: form -->
   <div class="auth-form-panel">
-    <a href="index.html" class="auth-logo">AURA</a>
+    <a href="login.html" class="auth-logo">AURA GLOSSY</a>
 
     <!-- Not signed in -->
     <div id="auth-forms">
-      <p class="auth-eyebrow">Begin your story</p>
+      <p class="auth-eyebrow" data-i18n="login.eyebrow">Begin your story</p>
 
       <!-- TABS -->
       <div class="auth-tabs">
-        <button class="auth-tab active" id="tab-join">Join</button>
-        <button class="auth-tab" id="tab-signin">Sign in</button>
+        <button class="auth-tab active" id="tab-join" data-i18n="login.tab_join">Join</button>
+        <button class="auth-tab" id="tab-signin" data-i18n="login.tab_signin">Sign in</button>
       </div>
 
       <!-- JOIN FORM -->
       <div id="form-join">
         <div class="auth-fields">
-          <div class="auth-field"><input type="text" id="join-name" placeholder="Your name" autocomplete="name"></div>
-          <div class="auth-field"><input type="email" id="join-email" placeholder="Email address" autocomplete="email"></div>
-          <div class="auth-field"><input type="password" id="join-pass" placeholder="Create password" autocomplete="new-password"></div>
+          <div class="auth-field"><input type="text" id="join-name" placeholder="Your name" autocomplete="name" data-i18n-attr="placeholder:login.name_placeholder"></div>
+          <div class="auth-field"><input type="email" id="join-email" placeholder="Email address" autocomplete="email" data-i18n-attr="placeholder:login.email_placeholder"></div>
+          <div class="auth-field"><input type="password" id="join-pass" placeholder="Create password" autocomplete="new-password" data-i18n-attr="placeholder:login.new_password_placeholder"></div>
         </div>
         <p class="auth-error" id="join-error"></p>
-        <button class="auth-cta" id="join-btn">Create account →</button>
+        <button class="auth-cta" id="join-btn" data-i18n="login.create_account">Create account →</button>
       </div>
 
       <!-- SIGN IN FORM -->
       <div id="form-signin" style="display:none">
         <div class="auth-fields">
-          <div class="auth-field"><input type="email" id="si-email" placeholder="Email address" autocomplete="email"></div>
-          <div class="auth-field"><input type="password" id="si-pass" placeholder="Password" autocomplete="current-password"></div>
+          <div class="auth-field"><input type="email" id="si-email" placeholder="Email address" autocomplete="email" data-i18n-attr="placeholder:login.email_placeholder"></div>
+          <div class="auth-field"><input type="password" id="si-pass" placeholder="Password" autocomplete="current-password" data-i18n-attr="placeholder:login.password_placeholder"></div>
         </div>
         <p class="auth-error" id="si-error"></p>
-        <button class="auth-cta" id="si-btn">Sign in →</button>
+        <div class="auth-forgot-row">
+          <button type="button" class="auth-forgot" id="forgot-btn" data-i18n="login.forgot_password">Forgot password?</button>
+        </div>
+        <button class="auth-cta" id="si-btn" data-i18n="login.signin_btn">Sign in →</button>
       </div>
 
-      <div class="auth-or">or</div>
-      <button class="auth-google" id="google-btn">
-        <svg width="18" height="18" viewBox="0 0 48 48">
-          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-          <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.35-8.16 2.35-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
-        </svg>
-        Continue with Google
-      </button>
-      <a href="index.html" class="auth-guest" id="guest-link">Continue as guest →</a>
       <p class="auth-switch" id="switch-text">
-        Already a member? <button id="switch-btn">Sign in</button>
+        <span data-i18n="login.already_member">Already a member?</span> <button id="switch-btn" data-i18n="login.signin_link">Sign in</button>
       </p>
+
+      <!-- Language selector visible directly on login (no nav here) -->
+      <div id="lang-switcher"></div>
     </div>
 
     <!-- Signed in state -->
@@ -354,9 +627,9 @@ body { font-family: var(--font-sans); background: #0a0a0a; overflow: hidden; hei
       <p class="auth-user-name" id="user-name"></p>
       <p class="auth-user-email" id="user-email"></p>
       <div class="auth-user-actions">
-        <a href="moodboard.html">View my Moodboard →</a>
+        <a href="moodboard.html" data-i18n="settings.moodboard_link">View my Moodboard →</a>
         <a href="index.html">Go to Homepage →</a>
-        <button class="auth-signout" id="signout-btn">Sign out</button>
+        <button class="auth-signout" id="signout-btn" data-i18n="nav.signout">Sign out</button>
       </div>
     </div>
 
@@ -366,17 +639,37 @@ body { font-family: var(--font-sans); background: #0a0a0a; overflow: hidden; hei
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-<script src="js/firebase.js"></script>
-<script src="js/animations.js?v=12"></script>
+<script src="js/i18n.js?v=8"></script>
+<script src="js/monitor.js?v=2"></script>
+<script src="js/firebase.js?v=11"></script>
+<script src="js/animations.js?v=15"></script>
 <script>
 (function() {
   const auth     = firebase.auth();
-  const provider = new firebase.auth.GoogleAuthProvider();
+
+  /* ✦✦ Rate limiting: max 5 failed attempts — 30s lockout ✦✦✦ */
+  var _rl = { count: 0, lockedUntil: 0 };
+  function rlCheck(errEl) {
+    if (Date.now() < _rl.lockedUntil) {
+      var secs = Math.ceil((_rl.lockedUntil - Date.now()) / 1000);
+      var msg = (window.Aura && window.Aura.i18n)
+        ? window.Aura.i18n.t('login.err_rate', { secs: secs })
+        : 'Too many attempts. Please wait ' + secs + ' seconds.';
+      showErr(errEl, msg);
+      return false;
+    }
+    return true;
+  }
+  function rlFail() {
+    _rl.count++;
+    if (_rl.count >= 5) { _rl.lockedUntil = Date.now() + 30000; _rl.count = 0; }
+  }
+  function rlReset() { _rl.count = 0; _rl.lockedUntil = 0; }
 
   const formsEl   = document.getElementById('auth-forms');
   const userEl    = document.getElementById('auth-user');
 
-  /* ── Tab switch ─────────────────────────────────────────── */
+  /* ✦✦ Tab switch ✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦ */
   let mode = 'join';
   document.getElementById('tab-join').addEventListener('click', () => setMode('join'));
   document.getElementById('tab-signin').addEventListener('click', () => setMode('signin'));
@@ -388,96 +681,380 @@ body { font-family: var(--font-sans); background: #0a0a0a; overflow: hidden; hei
     document.getElementById('form-signin').style.display  = m === 'signin' ? 'block' : 'none';
     document.getElementById('tab-join').classList.toggle('active', m === 'join');
     document.getElementById('tab-signin').classList.toggle('active', m === 'signin');
+    var T = (window.Aura && window.Aura.i18n) ? window.Aura.i18n.t : function(k, f){ return f; };
     document.getElementById('switch-text').innerHTML = m === 'join'
-      ? 'Already a member? <button id="switch-btn">Sign in</button>'
-      : 'New here? <button id="switch-btn">Create account</button>';
+      ? '<span>' + T('login.already_member', 'Already a member?') + '</span> <button id="switch-btn">' + T('login.signin_link', 'Sign in') + '</button>'
+      : '<span>' + T('login.new_here',       'New here?')          + '</span> <button id="switch-btn">' + T('login.create_link', 'Create account') + '</button>';
     document.getElementById('switch-btn').addEventListener('click', () => setMode(mode === 'join' ? 'signin' : 'join'));
   }
 
-  /* ── Guest flag ─────────────────────────────────────────── */
-  document.getElementById('guest-link').addEventListener('click', function(e) {
-    e.preventDefault();
-    sessionStorage.setItem('aura_guest', '1'); // clears automatically when tab closes
-    window.location.href = 'index.html';
+  /* ✦✦ ONBOARDING TRIGGER — first-time account creation ONLY ✦✦
+     The `aura_onboard_trigger` flag tells onboarding.js to auto-show
+     the Aura Guide on the next page load. We deliberately set it
+     ONLY at real account-creation points (never on plain sign-in),
+     because the user explicitly does NOT want the guide to replay
+     on every login or refresh.
+
+     Set it in:
+       • the join-btn click handler, AFTER createUserWithEmailAndPassword
+       • any Google sign-in handler, when additionalUserInfo.isNewUser === true
+
+     DO NOT set it in:
+       • onAuthStateChanged   (fires on EVERY sign-in, including returners)
+       • pageshow bfcache     (a cache restore is not a new account)
+       • signInWithEmailAndPassword (always returning user)
+  ────────────────────────────────────────────────────────────── */
+
+  /* ✦✦ bfcache guard — when browser restores this page from cache
+     and the user is now signed in, skip straight to homepage. */
+  window.addEventListener('pageshow', function(e) {
+    if (e.persisted && auth.currentUser) {
+      if (_navigating) return;
+      _navigating = true;
+      sessionStorage.setItem('aura_skip_intro', '1');
+      sessionStorage.setItem('aura_just_authed', '1');
+      /* NO aura_onboard_trigger here — a bfcache restore is not a new account */
+      setTimeout(function() {
+        window.location.replace('index.html');
+      }, 800);
+    }
   });
 
-  /* ── Auth state ─────────────────────────────────────────── */
+  /* ✦✦ Auth state ✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦
+     This handles BOTH sign-in and sign-up navigation. We don't set
+     the onboard trigger here — only the specific create-account
+     handler below sets it, so returning users never see the guide. */
+  var _navigating = false; /* prevent double-redirect */
   auth.onAuthStateChanged(user => {
     if (user) {
-      sessionStorage.removeItem('aura_guest'); // clear guest flag when properly signed in
-      window.location.href = 'index.html';    // send to homepage
+      if (_navigating) return;
+      _navigating = true;
+      sessionStorage.setItem('aura_skip_intro', '1');
+      sessionStorage.setItem('aura_just_authed', '1'); /* tells index.html: use long timer */
+      /* NO aura_onboard_trigger here — only set in the create-account success path */
+      /* 800 ms delay — lets Firebase finish writing auth session to IndexedDB
+         before we navigate away, preventing the session-loss loop on iOS Safari */
+      setTimeout(function() {
+        window.location.replace('index.html');
+      }, 800);
     } else {
       formsEl.style.display = 'block';
       userEl.style.display  = 'none';
     }
   });
 
-  /* ── Create account ─────────────────────────────────────── */
+  /* ✦✦ Brevo: add contact via server-side Netlify function ✦✦✦ */
+  function addToBrevo(email, name) {
+    fetch('/.netlify/functions/add-contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, name: name || '' })
+    }).catch(e => console.warn('Brevo sync failed:', e));
+  }
+
+  /* ✦✦ Create account ✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦ */
   document.getElementById('join-btn').addEventListener('click', async () => {
     const name  = document.getElementById('join-name').value.trim();
     const email = document.getElementById('join-email').value.trim();
     const pass  = document.getElementById('join-pass').value;
     const errEl = document.getElementById('join-error');
+    const btn   = document.getElementById('join-btn');
     errEl.style.display = 'none';
-    if (!email || !pass) { showErr(errEl, 'Please fill in all fields.'); return; }
+    if (!rlCheck(errEl)) return;
+    if (!email || !pass) { showErr(errEl, _T('login.err_fill', 'Please fill in all fields.')); return; }
+    btn.disabled = true; btn.textContent = _T('login.creating', 'Creating account…');
     try {
       const cred = await auth.createUserWithEmailAndPassword(email, pass);
       if (name) await cred.user.updateProfile({ displayName: name });
-    } catch(e) { showErr(errEl, friendlyErr(e.code)); }
+      /* THIS is the only place the onboard trigger is set for email/password.
+         createUserWithEmailAndPassword by definition only resolves when a
+         brand-new account was created — Firebase rejects with
+         auth/email-already-in-use otherwise. So reaching this line
+         guarantees we have a first-time user. The flag is read+deleted
+         once in onboarding.js, so the guide can only fire one time. */
+      try { sessionStorage.setItem('aura_onboard_trigger', '1'); } catch(e) {}
+      localStorage.removeItem('aura_uid');
+      rlReset();
+      addToBrevo(email, name);
+      /* DO NOT navigate here — onAuthStateChanged (with 800ms delay) handles it. */
+      btn.textContent = _T('login.redirecting', 'Redirecting…');
+    } catch(e) {
+      rlFail();
+      showErr(errEl, friendlyErr(e.code));
+      btn.disabled = false; btn.textContent = _T('login.create_account', 'Create account →');
+    }
   });
 
-  /* ── Sign in ────────────────────────────────────────────── */
+  /* ✦✦ Google sign-in (placeholder — UI not currently wired) ✦✦✦
+     When a Google sign-in button is added, use this pattern to
+     correctly distinguish a brand-new Google account from a
+     returning user. Only the brand-new case sets the trigger:
+
+       async function signInWithGoogle() {
+         var provider = new firebase.auth.GoogleAuthProvider();
+         var cred = await auth.signInWithPopup(provider);
+         // additionalUserInfo.isNewUser is true ONLY for first-ever
+         // sign-in with this Google account against THIS Firebase project.
+         if (cred.additionalUserInfo && cred.additionalUserInfo.isNewUser) {
+           try { sessionStorage.setItem('aura_onboard_trigger', '1'); } catch(e) {}
+         }
+         // onAuthStateChanged then handles the navigation.
+       }
+  ────────────────────────────────────────────────────────────── */
+
+  /* ✦✦ Sign in ✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦ */
   document.getElementById('si-btn').addEventListener('click', async () => {
     const email = document.getElementById('si-email').value.trim();
     const pass  = document.getElementById('si-pass').value;
     const errEl = document.getElementById('si-error');
+    const btn   = document.getElementById('si-btn');
     errEl.style.display = 'none';
+    if (!rlCheck(errEl)) return;
+    btn.disabled = true; btn.textContent = _T('login.signing_in', 'Signing in…');
     try {
       await auth.signInWithEmailAndPassword(email, pass);
-    } catch(e) { showErr(errEl, friendlyErr(e.code)); }
-  });
-
-  /* ── Google ─────────────────────────────────────────────── */
-  /* Mobile browsers block popups — use redirect on phones/tablets */
-  var isMobile = /iPhone|iPad|iPod|Android|Mobile/i.test(navigator.userAgent);
-
-  /* Handle the return from a redirect sign-in */
-  auth.getRedirectResult().then(function(result) {
-    if (result && result.user) {
-      sessionStorage.removeItem('aura_guest');
-      window.location.href = 'index.html';
-    }
-  }).catch(function(e) {
-    if (e.code && e.code !== 'auth/no-current-user') {
-      showErr(document.getElementById('join-error'), friendlyErr(e.code));
+      localStorage.removeItem('aura_uid');
+      rlReset();
+      btn.textContent = _T('login.redirecting', 'Redirecting…');
+    } catch(e) {
+      rlFail();
+      showErr(errEl, friendlyErr(e.code));
+      btn.disabled = false; btn.textContent = _T('login.signin_btn', 'Sign in →');
     }
   });
 
-  document.getElementById('google-btn').addEventListener('click', function() {
-    if (isMobile) {
-      auth.signInWithRedirect(provider);
-    } else {
-      auth.signInWithPopup(provider).catch(function(e) {
-        showErr(document.getElementById('join-error'), friendlyErr(e.code));
-      });
-    }
-  });
-
-  /* ── Sign out ───────────────────────────────────────────── */
+  /* ✦✦ Sign out ✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦ */
   document.getElementById('signout-btn').addEventListener('click', () => auth.signOut());
 
+  function _T(k, f) { return (window.Aura && window.Aura.i18n) ? (window.Aura.i18n.t(k) || f) : f; }
   function showErr(el, msg) { el.textContent = msg; el.style.display = 'block'; }
   function friendlyErr(code) {
-    const map = {
-      'auth/email-already-in-use': 'This email is already registered.',
-      'auth/invalid-email':        'Invalid email address.',
-      'auth/weak-password':        'Password must be at least 6 characters.',
-      'auth/user-not-found':       'No account found with this email.',
-      'auth/wrong-password':       'Incorrect password.',
-      'auth/popup-closed-by-user': 'Sign-in cancelled.',
+    /* Map Firebase error codes → i18n keys, then translate.
+       Generic fallback for any unmapped code. */
+    var keyMap = {
+      'auth/email-already-in-use':  'login.err_already',
+      'auth/invalid-email':         'login.err_invalid_email',
+      'auth/weak-password':         'login.err_weak',
+      'auth/user-not-found':        'login.err_no_user',
+      'auth/wrong-password':        'login.err_wrong_pw',
+      'auth/invalid-credential':    'login.err_bad_cred',
+      'auth/network-request-failed':'login.err_network',
+      'auth/too-many-requests':     'login.err_too_many',
+      'auth/user-disabled':         'login.err_disabled'
     };
-    return map[code] || 'Something went wrong. Please try again.';
+    var k = keyMap[code];
+    return k ? _T(k, _T('login.err_generic', 'Something went wrong. Please try again.'))
+             : _T('login.err_generic', 'Something went wrong. Please try again.');
   }
+})();
+</script>
+
+<!-- ===================================================================
+     RESET-PASSWORD MODAL
+     A small dark card centered over the auth screen. Email-only field
+     that calls firebase.auth().sendPasswordResetEmail. Opened by the
+     "Forgot password?" link below the sign-in form. Closes on overlay
+     click, X button, or Escape key. Re-uses Aura's dark palette.
+     =================================================================== -->
+<div id="reset-modal" class="reset-modal" aria-hidden="true">
+  <div class="reset-modal-overlay" id="reset-modal-overlay"></div>
+  <div class="reset-modal-card" role="dialog" aria-modal="true" aria-labelledby="reset-modal-title">
+    <button type="button" class="reset-close" id="reset-modal-close" aria-label="Close" data-i18n-attr="aria-label:login.reset_close">×</button>
+    <p class="reset-eyebrow" data-i18n="login.forgot_password">Forgot password?</p>
+    <h3 class="reset-title" id="reset-modal-title" data-i18n="login.reset_title">Reset your password</h3>
+    <p class="reset-body" data-i18n="login.reset_body">Enter your email and we'll send you a reset link.</p>
+    <div class="reset-field">
+      <input
+        type="email"
+        id="reset-email"
+        autocomplete="email"
+        placeholder="Email address"
+        data-i18n-attr="placeholder:login.reset_email_placeholder">
+    </div>
+    <p class="reset-message" id="reset-message" aria-live="polite"></p>
+    <button type="button" class="reset-send" id="reset-send" data-i18n="login.reset_send">Send reset link</button>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   PASSWORD VISIBILITY EYE TOGGLE
+   Auto-attaches to every .auth-field whose input is type=password.
+   Click toggles type, swaps icon, updates aria-label.
+
+   Designed so it's safe to call multiple times (idempotent) and so
+   new password fields added later (e.g. a "Confirm password" field)
+   pick up the toggle automatically — just wrap them in .auth-field.
+   ============================================================ */
+(function () {
+  var SVG_SHOW =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>' +
+      '<circle cx="12" cy="12" r="3"/>' +
+    '</svg>';
+  var SVG_HIDE =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>' +
+      '<path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>' +
+      '<path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/>' +
+      '<line x1="1" y1="1" x2="23" y2="23"/>' +
+    '</svg>';
+
+  function _T(k, f) { return (window.Aura && window.Aura.i18n) ? (window.Aura.i18n.t(k) || f) : f; }
+
+  function attachToggle(input) {
+    if (input._eyeWired) return;
+    input._eyeWired = true;
+
+    var field = input.closest('.auth-field') || input.parentElement;
+    if (!field) return;
+    field.classList.add('auth-field--password');
+
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'auth-eye';
+    btn.setAttribute('aria-label', _T('login.show_password', 'Show password'));
+    btn.setAttribute('tabindex', '0');
+    btn.innerHTML = SVG_SHOW;
+
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      var hidden = input.type === 'password';
+      input.type = hidden ? 'text' : 'password';
+      btn.innerHTML = hidden ? SVG_HIDE : SVG_SHOW;
+      btn.setAttribute('aria-label',
+        hidden ? _T('login.hide_password', 'Hide password')
+               : _T('login.show_password', 'Show password'));
+    });
+
+    /* Keep the input focused after toggling for keyboard users */
+    btn.addEventListener('mousedown', function (e) { e.preventDefault(); });
+
+    field.appendChild(btn);
+  }
+
+  function attachAll() {
+    var inputs = document.querySelectorAll('.auth-field input[type="password"]');
+    for (var i = 0; i < inputs.length; i++) attachToggle(inputs[i]);
+  }
+
+  /* Initial pass + re-apply on language change so aria-labels translate */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', attachAll);
+  } else {
+    attachAll();
+  }
+  window.addEventListener('aura:langchange', function () {
+    /* Re-set the current aria-label in the new language */
+    var btns = document.querySelectorAll('.auth-eye');
+    for (var i = 0; i < btns.length; i++) {
+      var input = btns[i].parentElement && btns[i].parentElement.querySelector('input');
+      if (!input) continue;
+      btns[i].setAttribute('aria-label',
+        input.type === 'password'
+          ? _T('login.show_password', 'Show password')
+          : _T('login.hide_password', 'Hide password'));
+    }
+  });
+})();
+
+/* ============================================================
+   FORGOT-PASSWORD MODAL — open / send / close
+   ============================================================ */
+(function () {
+  var modal   = document.getElementById('reset-modal');
+  var card    = modal && modal.querySelector('.reset-modal-card');
+  var overlay = document.getElementById('reset-modal-overlay');
+  var closeBt = document.getElementById('reset-modal-close');
+  var sendBt  = document.getElementById('reset-send');
+  var emailIn = document.getElementById('reset-email');
+  var msgEl   = document.getElementById('reset-message');
+  var openBt  = document.getElementById('forgot-btn');
+  var siEmail = document.getElementById('si-email');
+  var _busy = false;
+
+  if (!modal || !openBt) return;
+
+  function _T(k, f, vars) { return (window.Aura && window.Aura.i18n) ? (window.Aura.i18n.t(k, vars) || f) : f; }
+
+  function show(msg, kind) {
+    msgEl.textContent = msg || '';
+    msgEl.classList.remove('is-error', 'is-success');
+    if (kind) msgEl.classList.add('is-' + kind);
+  }
+
+  function open() {
+    /* Pre-fill from the sign-in email field if the user typed one */
+    if (siEmail && siEmail.value) emailIn.value = siEmail.value;
+    show('', null);
+    sendBt.disabled = false;
+    sendBt.textContent = _T('login.reset_send', 'Send reset link');
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    /* Focus the email field next frame so the open transition starts first */
+    requestAnimationFrame(function () { setTimeout(function () { emailIn.focus(); }, 60); });
+    document.addEventListener('keydown', onKey);
+  }
+  function close() {
+    if (_busy) return;        /* don't close mid-request */
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.removeEventListener('keydown', onKey);
+    openBt.focus();           /* return focus to the trigger */
+  }
+  function onKey(e) {
+    if (e.key === 'Escape') close();
+  }
+
+  function validEmail(s) { return /^\S+@\S+\.\S+$/.test((s || '').trim()); }
+
+  async function send() {
+    if (_busy) return;
+    var email = (emailIn.value || '').trim();
+    if (!validEmail(email)) {
+      show(_T('login.err_reset_invalid', 'Please enter a valid email address.'), 'error');
+      emailIn.focus();
+      return;
+    }
+    _busy = true;
+    sendBt.disabled = true;
+    sendBt.textContent = _T('login.reset_sending', 'Sending…');
+    show('', null);
+
+    try {
+      await firebase.auth().sendPasswordResetEmail(email);
+      show(_T('login.reset_success', 'Check your email for the reset link.'), 'success');
+      sendBt.textContent = _T('login.reset_send', 'Send reset link');
+      /* Auto-close shortly after success so the user doesn't have to */
+      setTimeout(function () { _busy = false; close(); }, 2200);
+      return;
+    } catch (e) {
+      var code = (e && e.code) || '';
+      var key  = 'login.err_reset_generic';
+      if      (code === 'auth/invalid-email')          key = 'login.err_reset_invalid';
+      else if (code === 'auth/user-not-found')         key = 'login.err_reset_no_user';
+      else if (code === 'auth/network-request-failed') key = 'login.err_reset_network';
+      else if (code === 'auth/too-many-requests')      key = 'login.err_too_many';
+      show(_T(key, "Couldn't send reset email. Please try again."), 'error');
+    } finally {
+      if (_busy) {
+        _busy = false;
+        sendBt.disabled = false;
+        sendBt.textContent = _T('login.reset_send', 'Send reset link');
+      }
+    }
+  }
+
+  /* Wire events */
+  openBt.addEventListener('click', open);
+  closeBt.addEventListener('click', close);
+  overlay.addEventListener('click', close);
+  sendBt.addEventListener('click', send);
+  emailIn.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); send(); }
+  });
+  /* Stop clicks inside the card from bubbling to the overlay */
+  card.addEventListener('click', function (e) { e.stopPropagation(); });
 })();
 </script>
 

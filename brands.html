@@ -1,22 +1,26 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Brand Partners — AURA</title>
-<meta name="description" content="AURA's fashion brand partners. Shop curated looks from Zara, COS, Mango, Uniqlo, ASOS, Nike, and more.">
-<meta property="og:title" content="Brand Partners — AURA">
-<meta property="og:description" content="Discover AURA's curated fashion brand partners across every budget and aesthetic.">
+<script>(function(){try{var l=localStorage.getItem("aura_lang");if(!l){var nl=(navigator.language||"en").toLowerCase().slice(0,2);l=(["en","es","ar","he"].indexOf(nl)>=0)?nl:"en";}document.documentElement.lang=l;document.documentElement.dir=(l==="ar"||l==="he")?"rtl":"ltr";}catch(e){}})();</script>
+<script>/* Synchronous auth gate — redirect to login if no session marker. */
+(function(){try{if(!localStorage.getItem('aura_has_session')){document.documentElement.style.visibility='hidden';window.location.replace('login.html');return;}}catch(e){}})();</script>
+<title>Brand Partners — Aura Glossy</title>
+<meta name="description" content="Aura Glossy's fashion brand partners. Shop curated looks from Zara, COS, Mango, Uniqlo, ASOS, Nike, and more.">
+<meta property="og:title" content="Brand Partners — Aura Glossy">
+<meta property="og:description" content="Discover Aura Glossy's curated fashion brand partners across every budget and aesthetic.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://auraglossy.com/images/home/hero-1.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://auraglossy.com/brands.html">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=12">
+<link rel="stylesheet" href="css/styles.css?v=37">
 <style>
-/* ── Brands page specific styles ── */
+/* ✦✦ Brands page specific styles ✦✦ */
 
 /* Hero */
 .brands-hero {
@@ -441,7 +445,7 @@
 }
 
 .brands-tier-features li::before {
-  content: '—';
+  content: '→';
   color: var(--rose);
   flex-shrink: 0;
   margin-top: 1px;
@@ -705,28 +709,29 @@
 <body>
 
 <nav class="nav">
-  <a href="index.html" class="nav-logo">AUR<span>A</span></a>
+  <a href="index.html" class="nav-logo">AURA GLOSS<span>Y</span></a>
   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="quiz.html">Style Quiz</a></li>
-    <li><a href="index.html#styles">Aesthetics</a></li>
-    <li><a href="stylist.html">AI Stylist</a></li>
-    <li><a href="moodboard.html">Moodboard</a></li>
-    <li><a href="brands.html" class="active">Partners</a></li>
+    <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+    <li><a href="quiz.html" data-i18n="nav.quiz">Style Quiz</a></li>
+    <li><a href="index.html#styles" data-i18n="nav.aesthetics">Aesthetics</a></li>
+    <li><a href="moodboard.html" data-i18n="nav.moodboard">Moodboard</a></li>
+    <li><a href="community.html" data-i18n="nav.community">Community</a></li>
+    <li><a href="brands.html" class="active" data-i18n="nav.partners">Partners</a></li>
   </ul>
-  <button class="nav-auth-btn" id="nav-auth-btn" onclick="navAuthClick()">Account</button>
-  <div class="nav-burger" aria-label="Open menu" role="button" tabindex="0"><span></span><span></span><span></span></div>
+  <button class="nav-auth-btn" id="nav-auth-btn" onclick="navAuthClick()" data-i18n="nav.account">Account</button>
+  <div id="lang-switcher" class="nav-lang-slot"></div>
+  <div class="nav-burger" aria-label="Open menu" data-i18n-attr="aria-label:nav.open_menu" role="button" tabindex="0"><span></span><span></span><span></span></div>
 </nav>
 
-<!-- ── HERO ── -->
+<!-- ✦✦ HERO ✦✦ -->
 <section class="brands-hero">
   <div class="brands-hero-inner">
     <span class="eyebrow">For fashion brands &amp; retailers</span>
     <h1 class="brands-hero-title">Your brand.<br><em>Her world.</em></h1>
-    <p class="brands-hero-sub">AURA connects fashion brands with millions of style-conscious women through intelligent aesthetic matching — placing your products exactly where they belong.</p>
+    <p class="brands-hero-sub">Aura Glossy connects fashion brands with millions of style-conscious women through intelligent aesthetic matching — placing your products exactly where they belong.</p>
     <div class="brands-hero-actions">
       <a href="#contact" class="btn btn-dark">
-        Partner with AURA
+        Partner with Aura Glossy
         <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
       <a href="#how-it-works" class="btn-outline-light">See how it works</a>
@@ -738,7 +743,7 @@
   </div>
 </section>
 
-<!-- ── STATS BAR ── -->
+<!-- ✦✦ STATS BAR ✦✦ -->
 <section class="brands-stats reveal">
   <div class="brands-stats-grid">
     <div class="brands-stat-item">
@@ -760,36 +765,36 @@
   </div>
 </section>
 
-<!-- ── HOW IT WORKS ── -->
+<!-- ✦✦ HOW IT WORKS ✦✦ -->
 <section id="how-it-works" class="brands-how section reveal">
   <div class="brands-section-head container">
-    <span class="eyebrow">The AURA difference</span>
+    <span class="eyebrow">The Aura Glossy difference</span>
     <h2 class="brands-section-title">Built for brands that care about context.</h2>
     <p class="brands-section-sub">We don't just show products — we place them inside a woman's aesthetic world, making every recommendation feel personal and intentional.</p>
   </div>
   <div class="brands-how-grid container">
     <div class="brands-how-step">
-      <span class="brands-step-num">01 — Intelligence</span>
+      <span class="brands-step-num">01 → Intelligence</span>
       <h3 class="brands-step-title">Your products, matched intelligently</h3>
-      <p class="brands-step-desc">AURA's AI maps every item to the precise aesthetic — Classic, Minimalist, Korean, Y2K, and more — matching your collection to the exact woman who already loves that world. No guesswork, no wasted impressions.</p>
+      <p class="brands-step-desc">Aura Glossy's AI maps every item to the precise aesthetic — Classic, Minimalist, Korean, Y2K, and more — matching your collection to the exact woman who already loves that world. No guesswork, no wasted impressions.</p>
     </div>
     <div class="brands-how-step">
-      <span class="brands-step-num">02 — Placement</span>
+      <span class="brands-step-num">02 → Placement</span>
       <h3 class="brands-step-title">Editorial placement, not just ads</h3>
-      <p class="brands-step-desc">Your brand appears inside curated style guides, AI Stylist conversations, and outfit builders — woven into editorial content that women trust. Products feel discovered, not pushed.</p>
+      <p class="brands-step-desc">Your brand appears inside curated style guides and outfit builders — woven into editorial content that women trust. Products feel discovered, not pushed.</p>
     </div>
     <div class="brands-how-step">
-      <span class="brands-step-num">03 — Conversion</span>
+      <span class="brands-step-num">03 → Conversion</span>
       <h3 class="brands-step-title">Real conversions, zero friction</h3>
       <p class="brands-step-desc">Every product link goes directly to your store. No intermediary marketplace, no commission cut on sales. Women click through to you. Your store. Your data. Your relationship.</p>
     </div>
   </div>
 </section>
 
-<!-- ── CURRENT PARTNERS ── -->
+<!-- ✦✦ CURRENT PARTNERS ✦✦ -->
 <section class="brands-partners reveal">
   <span class="eyebrow">Trusted by</span>
-  <h2 class="brands-partners-title">The brands already inside AURA.</h2>
+  <h2 class="brands-partners-title">The brands already inside Aura Glossy.</h2>
   <p class="brands-partners-sub">Leading retailers whose collections are already matched across our 12 aesthetic worlds.</p>
 
   <div class="brands-logo-grid">
@@ -809,7 +814,7 @@
   <p class="brands-partners-note">All brand names used for illustrative purposes only. Partnership listings reflect affiliate and referral arrangements.</p>
 </section>
 
-<!-- ── TIERS ── -->
+<!-- ✦✦ TIERS ✦✦ -->
 <section class="brands-tiers section reveal">
   <div class="brands-section-head container">
     <span class="eyebrow">Partnership tiers</span>
@@ -842,7 +847,6 @@
       <div class="brands-tier-price">Partnership · Custom arrangement</div>
       <ul class="brands-tier-features">
         <li>Priority placement across all aesthetics</li>
-        <li>AI Stylist integration — brand recommended directly</li>
         <li>Analytics dashboard with user insight reports</li>
         <li>Curated outfit builder inclusion</li>
         <li>Moodboard featured placement</li>
@@ -858,7 +862,7 @@
       <div class="brands-tier-price">Premium · Tailored to your brand</div>
       <ul class="brands-tier-features">
         <li>Hero placement on homepage &amp; style pages</li>
-        <li>Dedicated aesthetic world co-created with AURA</li>
+        <li>Dedicated aesthetic world co-created with Aura Glossy</li>
         <li>Co-branded editorial campaigns &amp; content</li>
         <li>First-access to new platform features</li>
         <li>Full attribution &amp; conversion analytics</li>
@@ -870,14 +874,14 @@
   </div>
 </section>
 
-<!-- ── CONTACT ── -->
+<!-- ✦✦ CONTACT ✦✦ -->
 <section id="contact" class="brands-contact section reveal">
   <div class="brands-contact-inner">
     <div class="brands-contact-intro">
       <span class="eyebrow">Start the conversation</span>
       <h2 class="brands-section-title" style="text-align:center;">Ready to be part of<br><em>her world?</em></h2>
       <p>Tell us about your brand and we'll find the right partnership tier together. No pressure — just a conversation.</p>
-      <p class="brands-contact-direct">Prefer to reach out directly? <a href="mailto:mayasahoury333@gmail.com">mayasahoury333@gmail.com</a></p>
+      <p class="brands-contact-direct">Prefer to reach out directly? <a href="mailto:hello@auraglossy.com">hello@auraglossy.com</a></p>
     </div>
 
     <div class="brands-form" id="brands-form-wrap">
@@ -916,7 +920,7 @@
       </form>
       <div class="brands-success-msg" id="brands-success">
         <p>Thank you. We'll be in touch within 48 hours.</p>
-        <span>A member of the AURA partnerships team will reach out to discuss next steps.</span>
+        <span>A member of the Aura Glossy partnerships team will reach out to discuss next steps.</span>
       </div>
     </div>
   </div>
@@ -925,18 +929,18 @@
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
-      <div><div class="footer-brand">AUR<span>A</span></div><p class="footer-tagline">A curated fashion universe.</p></div>
-      <div class="footer-col"><h4>Discover</h4><ul><li><a href="quiz.html">Style quiz</a></li><li><a href="index.html#styles">All aesthetics</a></li><li><a href="stylist.html">AI stylist</a></li><li><a href="moodboard.html">Moodboard</a></li><li><a href="brands.html">Partners</a></li></ul></div>
-      <div class="footer-col"><h4>Aesthetics</h4><ul><li><a href="style.html#classic">Classic</a></li><li><a href="style.html#minimalist">Minimalist</a></li><li><a href="style.html#korean">Korean</a></li><li><a href="style.html#elegant">Elegant</a></li></ul></div>
-      <div class="footer-col"><h4>Shop partners</h4><ul><li>Zara · COS · Mango</li><li>H&amp;M · Uniqlo · ASOS</li><li>SHEIN · Bershka · Pull&amp;Bear</li><li>Nike · Adidas · Sephora</li></ul></div>
+      <div><div class="footer-brand">AURA GLOSS<span>Y</span></div><p class="footer-tagline" data-i18n="footer.tagline">A curated fashion universe.</p></div>
+      <div class="footer-col"><h4 data-i18n="footer.col_discover">Discover</h4><ul><li><a href="quiz.html" data-i18n="footer.link_quiz">Style quiz</a></li><li><a href="index.html#styles" data-i18n="footer.link_all">All aesthetics</a></li><li><a href="moodboard.html" data-i18n="nav.moodboard">Moodboard</a></li><li><a href="brands.html" data-i18n="nav.partners">Partners</a></li></ul></div>
+      <div class="footer-col"><h4 data-i18n="footer.col_aesthetics">Aesthetics</h4><ul><li><a href="style.html#classic">Classic</a></li><li><a href="style.html#minimalist">Minimalist</a></li><li><a href="style.html#korean">Korean</a></li><li><a href="style.html#elegant">Elegant</a></li></ul></div>
+      <div class="footer-col"><h4 data-i18n="footer.col_partners">Shop partners</h4><ul><li>Zara · COS · Mango</li><li>H&amp;M · Uniqlo · ASOS</li><li>SHEIN · Bershka · Pull&amp;Bear</li><li>Nike · Adidas · Sephora</li></ul></div>
     </div>
-    <div class="footer-bottom"><span>© 2026 AURA Fashion</span><span>Designed with care, dressed with intention.</span></div>
+    <div class="footer-bottom"><span data-i18n="footer.copyright">© 2026 Aura Glossy</span><span data-i18n="footer.designed">Designed with care, dressed with intention.</span></div>
   </div>
 </footer>
 
 <script src="js/data.js?v=6"></script>
-<script src="js/main.js?v=4"></script>
-<script src="js/animations.js?v=12"></script>
+<script src="js/main.js?v=5"></script>
+<script src="js/animations.js?v=15"></script>
 <script>
 (function() {
   // Smooth scroll for in-page anchor links
@@ -971,15 +975,12 @@
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-<script src="js/firebase.js"></script>
+<script src="js/i18n.js?v=8"></script>
+<script src="js/monitor.js?v=2"></script>
+<script src="js/firebase.js?v=11"></script>
 <script>
 function navAuthClick() { window.location.href = 'settings.html'; }
-function isGuest() { return sessionStorage.getItem('aura_guest') === '1'; }
-firebase.auth().onAuthStateChanged(function(user) {
-  var btn = document.getElementById('nav-auth-btn');
-  if (btn) btn.textContent = 'Account';
-  if (!user && !isGuest()) { window.location.replace('login.html'); }
-});
+initAuthGuard();
 </script>
 
 </body>

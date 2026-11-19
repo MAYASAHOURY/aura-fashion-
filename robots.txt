@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /login.html
+Disallow: /settings.html
+
+Sitemap: https://auraglossy.com/sitemap.xml
